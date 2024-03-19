@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "../../../../furniture_web"
+	},
+	{
+		"path": "../Express_example"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "w3_band"
+  }
+}
