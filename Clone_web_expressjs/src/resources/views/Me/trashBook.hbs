@@ -1,0 +1,108 @@
+<form
+  class="mt-4"
+  method="Post"
+  name="container-form"
+  action="/book_references/handle-form-actions"
+>
+  <div>
+    <h2>List refered books deleted</h2>
+    <div class="mt-">
+      <a href="/me/stored/book">List refered books</a>
+    </div>
+  </div>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Name</th>
+        <th scope="col">N.o pages</th>
+        <th scope="col">Author</th>
+        <th scope="col">Deleted time</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each books}}
+        <tr>
+          <th scope="row">{{sum @index 1}}</th>
+          <td>{{this.Name}}</td>
+          <td>{{this.Number_of_pages}}</td>
+          <td>{{this.Author}}</td>
+          <td>{{this.deletedAt}}</td>
+          <td>
+            <a
+              href=""
+              class="btn btn-link btn-restore"
+              data-id="{{this._id}}"
+            >Restore</a>
+            <a
+              href=""
+              class="btn btn-link"
+              data-toggle="modal"
+              data-id="{{this._id}}"
+              data-target="#delete-book-modal"
+            >Delete</a>
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan="5" class="text-center">
+            The bin is empty
+            <a href="/me/stored/book">List refered book</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</form>
+
+<form name="delete-book-form" method="POST"></form>
+<form name="restore-book-form" method="POST"></form>
+
+<div id="delete-book-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete book</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Do you want to permanently delete this book</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          id="btn-delete-book"
+          type="button"
+          class="btn btn-danger"
+        >Delete</button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() { var bookId; var
+  deletebookForm = document.forms['delete-book-form']; var restorebookForm =
+  document.forms['restore-book-form']; var btnDeleteBook =
+  document.getElementById('btn-delete-book'); var restoreBtn =
+  $('.btn-restore'); $('#delete-book-modal').on('show.bs.modal',
+  function(event){ var button = $(event.relatedTarget); bookId =
+  button.data('id'); }) btnDeleteBook.onclick = function() {
+  deletebookForm.action = '/book_reference/'+bookId+'/force?_method=DELETE';
+  deletebookForm.submit(); } restoreBtn.click(function(e) { e.preventDefault();
+  //get id of btn restore var bookId_restore = $(this).data('id');
+  restorebookForm.action =
+  '/book_reference/'+bookId_restore+"/restorebook?_method=PATCH";
+  restorebookForm.submit(); }) })
+</script>

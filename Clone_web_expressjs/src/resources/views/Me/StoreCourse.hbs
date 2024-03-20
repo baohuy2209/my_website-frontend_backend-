@@ -1,0 +1,104 @@
+<form class="mt-4" method="POST" name="container-form" action="/courses/handle-form-action">
+    <div class="mt-4">
+        <h2>List course you posted</h2>
+        <a href="/me/trash/course">Cart rubbish ({{deletedCourse}})</a>
+
+        <div class="mt-4 d-flex align-item-center">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="Checkbox-all">
+                <label class="form-check-label" for="Checkbox-all">
+                    Select all
+                </label>
+            </div>
+
+            <select class="form-control form-control-sm checkbox-select-all-options" name="action" required>
+                <option value="" selected>Operator</option>
+                <option value="Delete">Delete course</option>
+            </select>
+
+            <button class="btn btn-primary btn-sm check-all-submit-btn disabled">Apply</button>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">STT</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Level</th>
+                <th scope="col">Instructor</th>
+                <th scope="col">Posted time</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each courses}}
+            <tr>
+                <td>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="courseIds[]" value="{{this._id}}">
+                    </div>
+                </td>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.Name}}</td>
+                <td>{{this.Description}}</td>
+                <td>{{this.Level}}</td>
+                <td>{{this.Create}}</td>
+                <td>{{this.createdAt}}</td>
+                <td>
+                    <a href="/courses/{{this._id}}/edit" class = "btn btn-link">Update</a>
+                    <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}"
+                        data-target="#delete-course-modal">Delete</a>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="8" class="text-center">
+                    Don't have any courses.
+                    <a href="/courses/create_new_course">Add some new courses</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    </div>
+</form>
+<form name="delete-course-form" method="POST"></form>
+
+<div id="delete-course-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete course</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to delete this course ?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-course" type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var courseId;
+        var deletecourseForm = document.forms['delete-course-form'];
+        var btnDeleteCourse = document.getElementById('btn-delete-course');
+        var courseItemCheckbox = $('input[name="courseIds[]"]');
+        $('#delete-courses-modal').on('show.bs.modal' function (event) {
+            var button = $(event.relatedTarget);
+            courseId = buttion.data('id');
+        });
+        btnDeleteCourse.onclick = function () {
+            deletecourseForm.action = '/courses/'+courseId+'?_method=DELETE'; 
+            deletecourseForm.submit(); 
+        }
+    })
+</script>

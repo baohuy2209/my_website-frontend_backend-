@@ -1,0 +1,166 @@
+<form
+  class="mt-4"
+  method="POST"
+  name="container-form"
+  action="/book_references/handle-form-actions"
+>
+  <div>
+    <h2>List refered books was added</h2>
+    <a href="/me/trash/book">Cart rubbish ({{deletedBook}})</a>
+
+    <div class="mt-4 d-flex align-item-center">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="Checkbox-all"
+        />
+        <label class="form-check-label" for="Checkbox-all">
+          Select all
+        </label>
+      </div>
+
+      <select
+        class="form-control form-control-sm checkbox-select-all-options"
+        name="action"
+        required
+      >
+        <option value="" selected>Operator</option>
+        <option value="Delete">Delete book</option>
+      </select>
+
+      <button
+        class="btn btn-primary btn-sm check-all-submit-btn disabled"
+      >Apply</button>
+    </div>
+  </div>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th></th>
+        <th scope="col">STT</th>
+        <th scope="col">
+          Name
+          {{{sortable "Name" _sort}}}
+        </th>
+        <th scope="col">
+          N.o pages
+          {{{sortable "N.o pages" _sort}}}
+        </th>
+        <th scope="col">Author</th>
+        <th scope="col">Created Time</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each books}}
+        <tr>
+          <td>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="bookIds[]"
+                value="{{this._id}}"
+              />
+            </div>
+          </td>
+          <th scope="row">{{sum @index 1}}</th>
+          <td>{{this.Name}}</td>
+          <td>{{this.Number_of_pages}}</td>
+          <td>{{this.Author}}</td>
+          <td>{{this.createdAt}}</td>
+          <td>
+            <a
+              href="/book_reference/{{this._id}}/edit"
+              class="btn btn-link"
+            >Update</a>
+            <a
+              href=""
+              class="btn btn-link"
+              data-toggle="modal"
+              data-id="{{this._id}}"
+              data-target="#delete-book-modal"
+            >Delete</a>
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan="6" class="text-center">
+            Don't have any books in database
+            <a href="/book_reference/create_new_book">Add product</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</form>
+
+<form name="delete-book-form" method="POST"></form>
+
+<div id="delete-book-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete book</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Do you want to delete this book ?</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          id="btn-delete-book"
+          type="button"
+          class="btn btn-danger"
+        >Delete</button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () { var bookId; var
+  deletebookForm = document.forms['delete-book-form']; var containerForm =
+  $('form[name="container-form"]'); var btnDeleteBook =
+  document.getElementById('btn-delete-book'); var checkboxAll =
+  $('#Checkbox-all'); var bookItemCheckbox = $('input[name="bookIds[]"]'); var
+  checkAllSubmitBtn = $('.check-all-submit-btn');
+  $('#delete-book-modal').on('show.bs.modal', function (event) { var button =
+  $(event.relatedTarget); // Button that triggered the modal bookId =
+  button.data('id'); // Extract infor from data-* attribute }) // Handle button
+  delete at the deleted-modal; btnDeleteBook.onclick = function () {
+  deletebookForm.action = '/book_reference/' + bookId + '?_method=DELETE';
+  deletebookForm.submit(); } // If you choose the checkbox "Select All", all
+  books will be choosen. // If you don't choose this, all books will be not
+  chosen. checkboxAll.change(function () { var isCheckedAll =
+  $(this).prop('checked'); bookItemCheckbox.prop('checked', isCheckedAll);
+  renderCheckAllSubmitBtn() }) //If you choose any book, the checkbox "Select
+  all" will disabled. //However, you choose all book, the checkbox "Select all"
+  will not disabled. bookItemCheckbox.change(function () { var isCheckedAll =
+  bookItemCheckbox.length === $('input[name="bookIds[]"]:checked').length;
+  checkboxAll.prop('checked', isCheckedAll); renderCheckAllSubmitBtn() }) // If
+  you choose any checkbox, you will allow click on button "Apply"
+  checkAllSubmitBtn.click(function (e) { e.preventDefault(); var isSubmittable =
+  !$(this).hasClass('disabled'); if (isSubmittable) { containerForm.submit(); }
+  }) containerForm.on('submit', function (e) { var isSubmittable =
+  checkAllSubmitBtn.hasClass('disabled'); if (!isSubmittable) {
+  e.preventDefault(); } }) // Re-render check all submit button function
+  renderCheckAllSubmitBtn() { var checkedCount =
+  $('input[name="bookIds[]"]:checked').length; if (checkedCount) {
+  checkAllSubmitBtn.removeClass('disabled'); } else {
+  checkAllSubmitBtn.addClass('disabled'); } } })
+</script>

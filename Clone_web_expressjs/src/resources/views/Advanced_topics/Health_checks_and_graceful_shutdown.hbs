@@ -1,0 +1,495 @@
+<div id="page-doc" markdown="1">
+  <h1 id="health-checks-and-graceful-shutdown">Health Checks and Graceful
+    Shutdown</h1>
+  <h2 id="graceful-shutdown">Graceful shutdown</h2>
+  <p>When you deploy a new version of your application, you must replace the
+    previous version. The
+    <a href="pm.html">process manager</a>
+    you’re using will first send a SIGTERM signal to the application to notify
+    it that it will be killed. Once the application gets this signal, it should
+    stop accepting new requests, finish all the ongoing requests, clean up the
+    resources it used, including database connections and file locks then exit.</p>
+  <h3 id="example-graceful-shutdown">Example Graceful Shutdown</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      server
+      <span class="token operator">=</span>
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >listen<span class="token punctuation">(</span></span>port<span
+        class="token punctuation"
+      >)</span>
+
+      process<span class="token punctuation">.</span><span
+        class="token function"
+      >on<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'SIGTERM'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token function">debug<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'SIGTERM signal received:
+        closing HTTP server'</span><span class="token punctuation">)</span>
+      server<span class="token punctuation">.</span><span
+        class="token function"
+      >close<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >(</span><span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token function">debug<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'HTTP server closed'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <h2 id="health-checks">Health checks</h2>
+  <p>A load balancer uses health checks to determine if an application instance
+    is healthy and can accept requests. For example,
+    <a
+      href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/"
+    >Kubernetes has two health checks</a>:</p>
+  <ul>
+    <li><code>liveness</code>, that determines when to restart a container.</li>
+    <li><code>readiness</code>, that determines when a container is ready to
+      start accepting traffic. When a pod is not ready, it is removed from the
+      service load balancers.</li>
+  </ul>
+  <h2 id="third-party-solutions">Third-party solutions</h2>
+  <div class="doc-box doc-warn">
+    <p><b>Warning</b>: This information refers to third-party sites, products,
+      or modules that are not maintained by the Expressjs team. Listing here
+      does not constitute an endorsement or recommendation from the Expressjs
+      project team.</p>
+  </div>
+  <h3 id="terminus">Terminus</h3>
+  <p><a href="https://github.com/godaddy/terminus">Terminus</a>
+    is an open-source project that adds health checks and graceful shutdown to
+    your application to eliminate the need to write boilerplate code. You just
+    provide the cleanup logic for graceful shutdowns and the health check logic
+    for health checks, and terminus handles the rest.</p>
+  <p>Install terminus as follows:</p>
+  <pre><code class="language-console">$ npm i @godaddy/terminus --save
+    </code></pre>
+  <p>Here’s a basic template that illustrates using terminus. For more
+    information, see
+    <a
+      href="https://github.com/godaddy/terminus"
+    >https://github.com/godaddy/terminus</a>.</p>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      http
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'http'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      express
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'express'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      <span class="token punctuation">{</span>
+      createTerminus
+      <span class="token punctuation">}</span>
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span
+        class="token string"
+      >'@godaddy/terminus'</span><span class="token punctuation">)</span>
+
+      <span class="token keyword">const</span>
+      app
+      <span class="token operator">=</span>
+      <span class="token function">express<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token keyword"
+      >get</span><span class="token punctuation">(</span><span
+        class="token string"
+      >'/'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span
+        class="token function"
+      >send<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'ok'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token keyword">const</span>
+      server
+      <span class="token operator">=</span>
+      http<span class="token punctuation">.</span><span
+        class="token function"
+      >createServer<span class="token punctuation">(</span></span>app<span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token keyword">function</span>
+      onSignal
+      <span class="token punctuation">(</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'server is starting cleanup'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token comment" spellcheck="true">// start cleanup of
+        resource, like databases or file descriptors
+      </span><span class="token punctuation">}</span>
+
+      async
+      <span class="token keyword">function</span>
+      onHealthCheck
+      <span class="token punctuation">(</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// checks if the system is
+        healthy, like the db connection is live
+      </span>
+      <span class="token comment" spellcheck="true">// resolves, if health,
+        rejects if not
+      </span><span class="token punctuation">}</span>
+
+      <span class="token function">createTerminus<span
+          class="token punctuation"
+        >(</span></span>server<span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+      signal<span class="token punctuation">:</span>
+      <span class="token string">'SIGINT'</span><span
+        class="token punctuation"
+      >,</span>
+      healthChecks<span class="token punctuation">:</span>
+      <span class="token punctuation">{</span>
+      <span class="token string">'/healthcheck'</span><span
+        class="token punctuation"
+      >:</span>
+      onHealthCheck
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >,</span>
+      onSignal
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      server<span class="token punctuation">.</span><span
+        class="token function"
+      >listen<span class="token punctuation">(</span></span><span
+        class="token number"
+      >3000</span><span class="token punctuation">)</span>
+    </code></pre>
+  <h3 id="lightship">Lightship</h3>
+  <p><a href="https://github.com/gajus/lightship">Lightship</a>
+    is an open-source project that adds health, readiness and liveness checks to
+    your application. Lightship is a standalone HTTP-service that runs as a
+    separate HTTP service; this allows having health-readiness-liveness HTTP
+    endpoints without exposing them on the public interface.</p>
+  <p>Install Lightship as follows:</p>
+  <pre><code class="language-console">$ npm install lightship
+    </code></pre>
+  <p>Basic template that illustrates using Lightship:</p>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      http
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'http'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      express
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'express'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      <span class="token punctuation">{</span>
+      createLightship
+      <span class="token punctuation">}</span>
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'lightship'</span><span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token comment" spellcheck="true">// Lightship will start a
+        HTTP service on port 9000.
+      </span><span class="token keyword">const</span>
+      lightship
+      <span class="token operator">=</span>
+      <span class="token function">createLightship<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+
+      <span class="token keyword">const</span>
+      app
+      <span class="token operator">=</span>
+      <span class="token function">express<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token keyword"
+      >get</span><span class="token punctuation">(</span><span
+        class="token string"
+      >'/'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span
+        class="token function"
+      >send<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'ok'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >listen<span class="token punctuation">(</span></span><span
+        class="token number"
+      >3000</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      lightship<span class="token punctuation">.</span><span
+        class="token function"
+      >signalReady<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token comment" spellcheck="true">// You can signal that the
+        service is not ready using `lightship.signalNotReady()`.
+      </span></code></pre>
+  <p><a href="https://github.com/gajus/lightship">Lightship documentation</a>
+    provides examples of the corresponding
+    <a
+      href="https://github.com/gajus/lightship#lightship-usage-kubernetes-container-probe-configuration"
+    >Kubernetes configuration</a>
+    and a complete example of integration with
+    <a
+      href="https://github.com/gajus/lightship#using-with-expressjs"
+    >Express.js</a>.
+  </p>
+  <h3 id="http-terminator">http-terminator</h3>
+  <p><a href="https://github.com/gajus/http-terminator">http-terminator</a>
+    implements logic for gracefully terminating an express.js server.</p>
+  <p>Terminating a HTTP server in Node.js requires keeping track of all open
+    connections and signaling them that the server is shutting down.
+    http-terminator implements the logic for tracking all connections and their
+    termination upon a timeout. http-terminator also ensures graceful
+    communication of the server intention to shutdown to any clients that are
+    currently receiving response from this server.</p>
+  <p>Install http-terminator as follows:</p>
+  <pre><code class="language-console">$ npm install http-terminator
+    </code></pre>
+  <p>Basic template that illustrates using http-terminator:</p>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      express
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'express'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      <span class="token punctuation">{</span>
+      createHttpTerminator
+      <span class="token punctuation">}</span>
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'http-terminator'</span><span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token keyword">const</span>
+      app
+      <span class="token operator">=</span>
+      <span class="token function">express<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+
+      <span class="token keyword">const</span>
+      server
+      <span class="token operator">=</span>
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >listen<span class="token punctuation">(</span></span><span
+        class="token number"
+      >3000</span><span class="token punctuation">)</span>
+
+      <span class="token keyword">const</span>
+      httpTerminator
+      <span class="token operator">=</span>
+      <span class="token function">createHttpTerminator<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">{</span>
+      server
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token keyword"
+      >get</span><span class="token punctuation">(</span><span
+        class="token string"
+      >'/'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span
+        class="token function"
+      >send<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'ok'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token comment" spellcheck="true">// A server will terminate
+        after invoking `httpTerminator.terminate()`.
+      </span><span class="token comment" spellcheck="true">// Note: Timeout is
+        used for illustration of delayed termination purposes only.
+      </span><span class="token function">setTimeout<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">(</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      httpTerminator<span class="token punctuation">.</span><span
+        class="token function"
+      >terminate<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token number">1000</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <p><a href="https://github.com/gajus/http-terminator">http-terminator
+      documentation</a>
+    provides API documentation and comparison to other existing third-party
+    solutions.</p>
+  <h3 id="express-actuator">express-actuator</h3>
+  <p><a href="https://github.com/rcruzper/express-actuator">express-actuator</a>
+    is a middleware to add endpoints to help you monitor and manage
+    applications.</p>
+  <p>Install express-actuator as follows:</p>
+  <pre><code class="language-console">$ npm install --save express-actuator
+    </code></pre>
+  <p>Basic template that illustrates using express-actuator:</p>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      express
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'express'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      actuator
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span
+        class="token string"
+      >'express-actuator'</span><span class="token punctuation">)</span>
+
+      <span class="token keyword">const</span>
+      app
+      <span class="token operator">=</span>
+      <span class="token function">express<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >use<span class="token punctuation">(</span></span><span
+        class="token function"
+      >actuator<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >listen<span class="token punctuation">(</span></span><span
+        class="token number"
+      >3000</span><span class="token punctuation">)</span>
+    </code></pre>
+  <p>The
+    <a href="https://github.com/rcruzper/express-actuator">express-actuator
+      documentation</a>
+    provides different options for customization.</p>
+</div>

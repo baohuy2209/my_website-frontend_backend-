@@ -1,0 +1,81 @@
+.container-login {
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-quantity {
+  border-left: 0;
+  border-right: 0;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  cursor: text;
+  border-radius: 0;
+}
+
+.checkbox-select-all-options {
+  width: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.shopee-rating-stars {
+  display: inline-block;
+  position: relative;
+}
+
+.shopee-rating-stars__stars {
+  display: flex;
+}
+
+.shopee-rating-stars__star-wrapper {
+  position: relative;
+  margin-right: 1px;
+}
+
+.shopee-rating-stars__lit {
+  overflow: hidden;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.theme--ofs .shopee-rating-stars__primary-star {
+  color: #d0011b;
+  stroke: #d0011b;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+.shopee-rating-stars__primary-star {
+  color: #ee4d2d;
+  stroke: #ee4d2d;
+  display: block;
+  position: absolute;
+  left: 0;
+  overflow-x: hidden;
+}
+
+.shopee-svg-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  position: relative;
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.button-search {
+  margin-right: 4px;
+}

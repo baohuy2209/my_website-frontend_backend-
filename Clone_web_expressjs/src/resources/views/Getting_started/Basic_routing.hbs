@@ -1,0 +1,152 @@
+<div id="page-doc" markdown="1">
+  <h1 id="basic-routing">Basic routing</h1>
+  <p><em>Routing</em>
+    refers to determining how an application responds to a client request to a
+    particular endpoint, which is a URI (or path) and a specific HTTP request
+    method (GET, POST, and so on).</p>
+  <p>Each route can have one or more handler functions, which are executed when
+    the route is matched.</p>
+  <p>Route definition takes the following structure:</p>
+  <pre class="language-javascript"><code class="language-javascript">app<span
+        class="token punctuation"
+      >.</span><span class="token function">METHOD<span
+          class="token punctuation"
+        >(</span></span>PATH<span class="token punctuation">,</span>
+      HANDLER<span class="token punctuation">)</span>
+    </code></pre>
+  <p>Where:</p>
+  <ul>
+    <li><code>app</code> is an instance of <code>express</code>.</li>
+    <li><code>METHOD</code>
+      is an
+      <a
+        href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods"
+      >HTTP request method</a>, in lowercase.</li>
+    <li><code>PATH</code> is a path on the server.</li>
+    <li><code>HANDLER</code>
+      is the function executed when the route is matched.</li>
+  </ul>
+  <div class="doc-box doc-notice">
+    <p>This tutorial assumes that an instance of
+      <code>express</code>
+      named
+      <code>app</code>
+      is created and the server is running. If you are not familiar with
+      creating an app and starting it, see the
+      <a href="/en/starter/hello-world.html">Hello world example</a>.</p>
+  </div>
+  <p>The following examples illustrate defining simple routes.</p>
+  <p>Respond with <code>Hello World!</code> on the homepage:</p>
+  <pre class="language-javascript"><code class="language-javascript">app<span
+        class="token punctuation"
+      >.</span><span class="token keyword">get</span><span
+        class="token punctuation"
+      >(</span><span class="token string">'/'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span
+        class="token function"
+      >send<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'Hello World!'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <p>Respond to POST request on the root route (<code>/</code>), the
+    application’s home page:</p>
+  <pre class="language-javascript"><code class="language-javascript">app<span
+        class="token punctuation"
+      >.</span><span class="token function">post<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'/'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span
+        class="token function"
+      >send<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'Got a POST request'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <p>Respond to a PUT request to the <code>/user</code> route:</p>
+  <pre class="language-javascript"><code class="language-javascript">app<span
+        class="token punctuation"
+      >.</span><span class="token function">put<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'/user'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span
+        class="token function"
+      >send<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'Got a PUT request at /user'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <p>Respond to a DELETE request to the <code>/user</code> route:</p>
+  <pre class="language-javascript"><code class="language-javascript">app<span
+        class="token punctuation"
+      >.</span><span class="token keyword">delete</span><span
+        class="token punctuation"
+      >(</span><span class="token string">'/user'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span
+        class="token function"
+      >send<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'Got a DELETE request at /user'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <p>For more details about routing, see the
+    <a href="/en/guide/routing.html">routing guide</a>.</p>
+  <h3
+    id="previous-express-application-generator-next-serving-static-files-in-express-"
+  ><a href="/en/starter/generator.html">Previous: Express application generator
+    </a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/en/starter/static-files.html">Next:
+      Serving static files in Express
+    </a></h3>
+</div>
