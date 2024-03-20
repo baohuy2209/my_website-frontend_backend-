@@ -1,0 +1,187 @@
+<div id="page-doc" markdown="1">
+  <h1 id="developing-template-engines-for-express">Developing template engines
+    for Express</h1>
+  <p>Use the
+    <code>app.engine(ext, callback)</code>
+    method to create your own template engine.
+    <code>ext</code>
+    refers to the file extension, and
+    <code>callback</code>
+    is the template engine function, which accepts the following items as
+    parameters: the location of the file, the options object, and the callback
+    function.</p>
+  <p>The following code is an example of implementing a very simple template
+    engine for rendering
+    <code>.ntl</code>
+    files.</p>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      fs
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'fs'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token comment" spellcheck="true">// this engine requires the
+        fs module
+      </span>app<span class="token punctuation">.</span><span
+        class="token function"
+      >engine<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'ntl'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>filePath<span
+        class="token punctuation"
+      >,</span>
+      options<span class="token punctuation">,</span>
+      callback<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// define the template
+        engine
+      </span>
+      fs<span class="token punctuation">.</span><span
+        class="token function"
+      >readFile<span class="token punctuation">(</span></span>filePath<span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      content<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">return</span>
+      <span class="token function">callback<span
+          class="token punctuation"
+        >(</span></span>err<span class="token punctuation">)</span>
+      <span class="token comment" spellcheck="true">// this is an extremely
+        simple template engine
+      </span>
+      <span class="token keyword">const</span>
+      rendered
+      <span class="token operator">=</span>
+      content<span class="token punctuation">.</span><span
+        class="token function"
+      >toString<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">.</span><span
+        class="token function"
+      >replace<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'#title#'</span><span class="token punctuation">,</span>
+      `<span class="token operator">&lt;</span>title<span
+        class="token operator"
+      >&gt;</span>$<span class="token punctuation">{</span>options<span
+        class="token punctuation"
+      >.</span>title<span class="token punctuation">}</span><span
+        class="token operator"
+      >&lt;</span><span class="token operator">/</span>title<span
+        class="token operator"
+      >&gt;</span>`<span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span
+        class="token function"
+      >replace<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'#message#'</span><span class="token punctuation">,</span>
+      `<span class="token operator">&lt;</span>h1<span
+        class="token operator"
+      >&gt;</span>$<span class="token punctuation">{</span>options<span
+        class="token punctuation"
+      >.</span>message<span class="token punctuation">}</span><span
+        class="token operator"
+      >&lt;</span><span class="token operator">/</span>h1<span
+        class="token operator"
+      >&gt;</span>`<span class="token punctuation">)</span>
+      <span class="token keyword">return</span>
+      <span class="token function">callback<span
+          class="token punctuation"
+        >(</span></span><span class="token keyword">null</span><span
+        class="token punctuation"
+      >,</span>
+      rendered<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+      app<span class="token punctuation">.</span><span
+        class="token keyword"
+      >set</span><span class="token punctuation">(</span><span
+        class="token string"
+      >'views'</span><span class="token punctuation">,</span>
+      <span class="token string">'./views'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token comment" spellcheck="true">// specify the views
+        directory
+      </span>app<span class="token punctuation">.</span><span
+        class="token keyword"
+      >set</span><span class="token punctuation">(</span><span
+        class="token string"
+      >'view engine'</span><span class="token punctuation">,</span>
+      <span class="token string">'ntl'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token comment" spellcheck="true">// register the template
+        engine
+      </span></code></pre>
+  <p>Your app will now be able to render
+    <code>.ntl</code>
+    files. Create a file named
+    <code>index.ntl</code>
+    in the
+    <code>views</code>
+    directory with the following content.</p>
+  <pre><code class="language-text">#title# #message#
+    </code></pre>
+  <p>Then, create the following route in your app.</p>
+  <pre class="language-javascript"><code class="language-javascript">app<span
+        class="token punctuation"
+      >.</span><span class="token keyword">get</span><span
+        class="token punctuation"
+      >(</span><span class="token string">'/'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span
+        class="token function"
+      >render<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'index'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+      title<span class="token punctuation">:</span>
+      <span class="token string">'Hey'</span><span
+        class="token punctuation"
+      >,</span>
+      message<span class="token punctuation">:</span>
+      <span class="token string">'Hello there!'</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <p>When you make a request to the home page,
+    <code>index.ntl</code>
+    will be rendered as HTML.</p>
+</div>

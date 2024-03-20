@@ -1,0 +1,1579 @@
+<div id="page-doc" markdown="1">
+  <h1 id="database-integration">Database integration</h1>
+  <p>Adding the capability to connect databases to Express apps is just a matter
+    of loading an appropriate Node.js driver for the database in your app. This
+    document briefly explains how to add and use some of the most popular
+    Node.js modules for database systems in your Express app:</p>
+  <ul>
+    <li><a href="#cassandra">Cassandra</a></li>
+    <li><a href="#couchbase">Couchbase</a></li>
+    <li><a href="#couchdb">CouchDB</a></li>
+    <li><a href="#leveldb">LevelDB</a></li>
+    <li><a href="#mysql">MySQL</a></li>
+    <li><a href="#mongodb">MongoDB</a></li>
+    <li><a href="#neo4j">Neo4j</a></li>
+    <li><a href="#oracle">Oracle</a></li>
+    <li><a href="#postgresql">PostgreSQL</a></li>
+    <li><a href="#redis">Redis</a></li>
+    <li><a href="#sql-server">SQL Server</a></li>
+    <li><a href="#sqlite">SQLite</a></li>
+    <li><a href="#elasticsearch">Elasticsearch</a></li>
+  </ul>
+  <div class="doc-box doc-notice">
+    <p>These database drivers are among many that are available. For other
+      options, search on the
+      <a href="https://www.npmjs.com/">npm</a>
+      site.</p>
+  </div>
+  <h2 id="cassandra">Cassandra</h2>
+  <p><strong>Module</strong>:
+    <a href="https://github.com/datastax/nodejs-driver">cassandra-driver</a></p>
+  <h3 id="installation">Installation</h3>
+  <pre><code class="language-console">$ npm install cassandra-driver
+    </code></pre>
+  <h3 id="example">Example</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      cassandra
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span
+        class="token string"
+      >'cassandra-driver'</span><span class="token punctuation">)</span>
+      <span class="token keyword">const</span>
+      client
+      <span class="token operator">=</span>
+      <span class="token keyword">new</span>
+      <span class="token class-name">cassandra<span
+          class="token punctuation"
+        >.</span>Client</span><span class="token punctuation">(</span><span
+        class="token punctuation"
+      >{</span>
+      contactPoints<span class="token punctuation">:</span>
+      <span class="token punctuation">[</span><span
+        class="token string"
+      >'localhost'</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      client<span class="token punctuation">.</span><span
+        class="token function"
+      >execute<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'select key from system.local'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      result<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">throw</span>
+      err console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>result<span
+        class="token punctuation"
+      >.</span>rows<span class="token punctuation">[</span><span
+        class="token number"
+      >0</span><span class="token punctuation">]</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <h2 id="couchbase">Couchbase</h2>
+  <p><strong>Module</strong>:
+    <a href="https://github.com/couchbase/couchnode">couchnode</a></p>
+  <h3 id="installation-1">Installation</h3>
+  <pre><code class="language-console">$ npm install couchbase
+    </code></pre>
+  <h3 id="example-1">Example</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      couchbase
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'couchbase'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      bucket
+      <span class="token operator">=</span>
+      <span class="token punctuation">(</span><span
+        class="token keyword"
+      >new</span>
+      <span class="token class-name">couchbase<span
+          class="token punctuation"
+        >.</span>Cluster</span><span class="token punctuation">(</span><span
+        class="token string"
+      >'http://localhost:8091'</span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">)</span><span
+        class="token punctuation"
+      >.</span><span class="token function">openBucket<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'bucketName'</span><span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token comment" spellcheck="true">// add a document to a
+        bucket
+      </span>bucket<span class="token punctuation">.</span><span
+        class="token function"
+      >insert<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'document-key'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+      name<span class="token punctuation">:</span>
+      <span class="token string">'Matt'</span><span
+        class="token punctuation"
+      >,</span>
+      shoeSize<span class="token punctuation">:</span>
+      <span class="token number">13</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      result<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">else</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>result<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token comment" spellcheck="true">// get all documents with
+        shoe size 13
+      </span><span class="token keyword">const</span>
+      n1ql
+      <span class="token operator">=</span>
+      <span class="token string">'SELECT d.* FROM `bucketName` d WHERE shoeSize
+        = $1'</span>
+      <span class="token keyword">const</span>
+      query
+      <span class="token operator">=</span>
+      N1qlQuery<span class="token punctuation">.</span><span
+        class="token function"
+      >fromString<span class="token punctuation">(</span></span>n1ql<span
+        class="token punctuation"
+      >)</span>
+      bucket<span class="token punctuation">.</span><span
+        class="token function"
+      >query<span class="token punctuation">(</span></span>query<span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">[</span><span
+        class="token number"
+      >13</span><span class="token punctuation">]</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      result<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">else</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>result<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <h2 id="couchdb">CouchDB</h2>
+  <p><strong>Module</strong>:
+    <a href="https://github.com/dscape/nano">nano</a></p>
+  <h3 id="installation-2">Installation</h3>
+  <pre><code class="language-console">$ npm install nano
+    </code></pre>
+  <h3 id="example-2">Example</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      nano
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'nano'</span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">(</span><span
+        class="token string"
+      >'http://localhost:5984'</span><span class="token punctuation">)</span>
+      nano<span class="token punctuation">.</span>db<span
+        class="token punctuation"
+      >.</span><span class="token function">create<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'books'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      books
+      <span class="token operator">=</span>
+      nano<span class="token punctuation">.</span>db<span
+        class="token punctuation"
+      >.</span><span class="token function">use<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'books'</span><span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token comment" spellcheck="true">// Insert a book document in
+        the books database
+      </span>books<span class="token punctuation">.</span><span
+        class="token function"
+      >insert<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >{</span>
+      name<span class="token punctuation">:</span>
+      <span class="token string">'The Art of war'</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token keyword">null</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      body<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">else</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>body<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token comment" spellcheck="true">// Get a list of all books
+      </span>books<span class="token punctuation">.</span><span
+        class="token function"
+      >list<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >(</span>err<span class="token punctuation">,</span>
+      body<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">else</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>body<span
+        class="token punctuation"
+      >.</span>rows<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <h2 id="leveldb">LevelDB</h2>
+  <p><strong>Module</strong>:
+    <a href="https://github.com/rvagg/node-levelup">levelup</a></p>
+  <h3 id="installation-3">Installation</h3>
+  <pre><code class="language-console">$ npm install level levelup leveldown
+    </code></pre>
+  <h3 id="example-3">Example</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      levelup
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'levelup'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      db
+      <span class="token operator">=</span>
+      <span class="token function">levelup<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'./mydb'</span><span
+        class="token punctuation"
+      >)</span>
+
+      db<span class="token punctuation">.</span><span
+        class="token function"
+      >put<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'name'</span><span class="token punctuation">,</span>
+      <span class="token string">'LevelUP'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">return</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'Ooops!'</span><span class="token punctuation">,</span>
+      err<span class="token punctuation">)</span>
+
+      db<span class="token punctuation">.</span><span
+        class="token keyword"
+      >get</span><span class="token punctuation">(</span><span
+        class="token string"
+      >'name'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      value<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">return</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'Ooops!'</span><span class="token punctuation">,</span>
+      err<span class="token punctuation">)</span>
+
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>`name<span
+        class="token operator"
+      >=</span>$<span class="token punctuation">{</span>value<span
+        class="token punctuation"
+      >}</span>`<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <h2 id="mysql">MySQL</h2>
+  <p><strong>Module</strong>:
+    <a href="https://github.com/felixge/node-mysql/">mysql</a></p>
+  <h3 id="installation-4">Installation</h3>
+  <pre><code class="language-console">$ npm install mysql
+    </code></pre>
+  <h3 id="example-4">Example</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      mysql
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'mysql'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      connection
+      <span class="token operator">=</span>
+      mysql<span class="token punctuation">.</span><span
+        class="token function"
+      >createConnection<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >{</span>
+      host<span class="token punctuation">:</span>
+      <span class="token string">'localhost'</span><span
+        class="token punctuation"
+      >,</span>
+      user<span class="token punctuation">:</span>
+      <span class="token string">'dbuser'</span><span
+        class="token punctuation"
+      >,</span>
+      password<span class="token punctuation">:</span>
+      <span class="token string">'s3kreee7'</span><span
+        class="token punctuation"
+      >,</span>
+      database<span class="token punctuation">:</span>
+      <span class="token string">'my_db'</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      connection<span class="token punctuation">.</span><span
+        class="token function"
+      >connect<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+
+      connection<span class="token punctuation">.</span><span
+        class="token function"
+      >query<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'SELECT 1 + 1 AS solution'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      rows<span class="token punctuation">,</span>
+      fields<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">throw</span>
+      err console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'The solution is: '</span><span class="token punctuation">,</span>
+      rows<span class="token punctuation">[</span><span
+        class="token number"
+      >0</span><span class="token punctuation">]</span><span
+        class="token punctuation"
+      >.</span>solution<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      connection<span class="token punctuation">.</span><span
+        class="token function"
+      >end<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <h2 id="mongodb">MongoDB</h2>
+  <p><strong>Module</strong>:
+    <a href="https://github.com/mongodb/node-mongodb-native">mongodb</a></p>
+  <h3 id="installation-5">Installation</h3>
+  <pre><code class="language-console">$ npm install mongodb
+    </code></pre>
+  <h3 id="example-v2">Example (v2.*)</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      MongoClient
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'mongodb'</span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">.</span>MongoClient MongoClient<span
+        class="token punctuation"
+      >.</span><span class="token function">connect<span
+          class="token punctuation"
+        >(</span></span><span
+        class="token string"
+      >'mongodb://localhost:27017/animals'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      db<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">throw</span>
+      err db<span class="token punctuation">.</span><span
+        class="token function"
+      >collection<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'mammals'</span><span class="token punctuation">)</span><span
+        class="token punctuation"
+      >.</span><span class="token function">find<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span><span
+        class="token punctuation"
+      >.</span><span class="token function">toArray<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      result<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">throw</span>
+      err console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>result<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <h3 id="example-v3">Example (v3.*)</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      MongoClient
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'mongodb'</span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">.</span>MongoClient MongoClient<span
+        class="token punctuation"
+      >.</span><span class="token function">connect<span
+          class="token punctuation"
+        >(</span></span><span
+        class="token string"
+      >'mongodb://localhost:27017/animals'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      client<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">throw</span>
+      err
+
+      <span class="token keyword">const</span>
+      db
+      <span class="token operator">=</span>
+      client<span class="token punctuation">.</span><span
+        class="token function"
+      >db<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'animals'</span><span class="token punctuation">)</span>
+
+      db<span class="token punctuation">.</span><span
+        class="token function"
+      >collection<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'mammals'</span><span class="token punctuation">)</span><span
+        class="token punctuation"
+      >.</span><span class="token function">find<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span><span
+        class="token punctuation"
+      >.</span><span class="token function">toArray<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      result<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">throw</span>
+      err console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>result<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <p>If you want an object model driver for MongoDB, look at
+    <a href="https://github.com/LearnBoost/mongoose">Mongoose</a>.</p>
+  <h2 id="neo4j">Neo4j</h2>
+  <p><strong>Module</strong>:
+    <a
+      href="https://github.com/neo4j/neo4j-javascript-driver"
+    >neo4j-driver</a></p>
+  <h3 id="installation-6">Installation</h3>
+  <pre><code class="language-console">$ npm install neo4j-driver
+    </code></pre>
+  <h3 id="example-5">Example</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      neo4j
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'neo4j-driver'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      driver
+      <span class="token operator">=</span>
+      neo4j<span class="token punctuation">.</span><span
+        class="token function"
+      >driver<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'neo4j://localhost:7687'</span><span class="token punctuation">,</span>
+      neo4j<span class="token punctuation">.</span>auth<span
+        class="token punctuation"
+      >.</span><span class="token function">basic<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'neo4j'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token string">'letmein'</span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">)</span>
+
+      <span class="token keyword">const</span>
+      session
+      <span class="token operator">=</span>
+      driver<span class="token punctuation">.</span><span
+        class="token function"
+      >session<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+
+      session<span class="token punctuation">.</span><span
+        class="token function"
+      >readTransaction<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >(</span>tx<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">return</span>
+      tx<span class="token punctuation">.</span><span
+        class="token function"
+      >run<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'MATCH (n) RETURN count(n) AS count'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">.</span><span
+        class="token function"
+      >then<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >(</span>res<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>res<span
+        class="token punctuation"
+      >.</span>records<span class="token punctuation">[</span><span
+        class="token number"
+      >0</span><span class="token punctuation">]</span><span
+        class="token punctuation"
+      >.</span><span class="token keyword">get</span><span
+        class="token punctuation"
+      >(</span><span class="token string">'count'</span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">.</span><span
+        class="token keyword"
+      >catch</span><span class="token punctuation">(</span><span
+        class="token punctuation"
+      >(</span>error<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>error<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <h2 id="oracle">Oracle</h2>
+  <p><strong>Module</strong>:
+    <a href="https://github.com/oracle/node-oracledb">oracledb</a></p>
+  <h3 id="installation-7">Installation</h3>
+  <p>NOTE:
+    <a href="https://github.com/oracle/node-oracledb#-installation">See
+      installation prerequisites</a>.</p>
+  <pre><code class="language-console">$ npm install oracledb
+    </code></pre>
+  <h3 id="example-6">Example</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      oracledb
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'oracledb'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      config
+      <span class="token operator">=</span>
+      <span class="token punctuation">{</span>
+      user<span class="token punctuation">:</span>
+      <span class="token string">'&lt;your db user&gt;'</span><span
+        class="token punctuation"
+      >,</span>
+      password<span class="token punctuation">:</span>
+      <span class="token string">'&lt;your db password&gt;'</span><span
+        class="token punctuation"
+      >,</span>
+      connectString<span class="token punctuation">:</span>
+      <span class="token string">'localhost:1521/orcl'</span>
+      <span class="token punctuation">}</span>
+
+      async
+      <span class="token keyword">function</span>
+      getEmployee
+      <span class="token punctuation">(</span>empId<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">let</span>
+      conn
+
+      <span class="token keyword">try</span>
+      <span class="token punctuation">{</span>
+      conn
+      <span class="token operator">=</span>
+      await oracledb<span class="token punctuation">.</span><span
+        class="token function"
+      >getConnection<span class="token punctuation">(</span></span>config<span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token keyword">const</span>
+      result
+      <span class="token operator">=</span>
+      await conn<span class="token punctuation">.</span><span
+        class="token function"
+      >execute<span class="token punctuation">(</span></span>
+      <span class="token string">'select * from employees where employee_id =
+        :id'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span>empId<span
+        class="token punctuation"
+      >]</span>
+      <span class="token punctuation">)</span>
+
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>result<span
+        class="token punctuation"
+      >.</span>rows<span class="token punctuation">[</span><span
+        class="token number"
+      >0</span><span class="token punctuation">]</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">catch</span>
+      <span class="token punctuation">(</span><span
+        class="token class-name"
+      >err</span><span class="token punctuation">)</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'Ouch!'</span><span class="token punctuation">,</span>
+      err<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">finally</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>conn<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// conn assignment worked,
+        need to close
+      </span>
+      await conn<span class="token punctuation">.</span><span
+        class="token function"
+      >close<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token function">getEmployee<span
+          class="token punctuation"
+        >(</span></span><span class="token number">101</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <h2 id="postgresql">PostgreSQL</h2>
+  <p><strong>Module</strong>:
+    <a href="https://github.com/vitaly-t/pg-promise">pg-promise</a></p>
+  <h3 id="installation-8">Installation</h3>
+  <pre><code class="language-console">$ npm install pg-promise
+    </code></pre>
+  <h3 id="example-7">Example</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      pgp
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'pg-promise'</span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">(</span><span
+        class="token comment"
+        spellcheck="true"
+      >/* options */</span><span class="token punctuation">)</span>
+      <span class="token keyword">const</span>
+      db
+      <span class="token operator">=</span>
+      <span class="token function">pgp<span
+          class="token punctuation"
+        >(</span></span><span
+        class="token string"
+      >'postgres://username:password@host:port/database'</span><span
+        class="token punctuation"
+      >)</span>
+
+      db<span class="token punctuation">.</span><span
+        class="token function"
+      >one<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'SELECT $1 AS value'</span><span class="token punctuation">,</span>
+      <span class="token number">123</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">.</span><span
+        class="token function"
+      >then<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >(</span>data<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'DATA:'</span><span class="token punctuation">,</span>
+      data<span class="token punctuation">.</span>value<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">.</span><span
+        class="token keyword"
+      >catch</span><span class="token punctuation">(</span><span
+        class="token punctuation"
+      >(</span>error<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'ERROR:'</span><span class="token punctuation">,</span>
+      error<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <h2 id="redis">Redis</h2>
+  <p><strong>Module</strong>:
+    <a href="https://github.com/mranney/node_redis">redis</a></p>
+  <h3 id="installation-9">Installation</h3>
+  <pre><code class="language-console">$ npm install redis
+    </code></pre>
+  <h3 id="example-8">Example</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      redis
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'redis'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      client
+      <span class="token operator">=</span>
+      redis<span class="token punctuation">.</span><span
+        class="token function"
+      >createClient<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+
+      client<span class="token punctuation">.</span><span
+        class="token function"
+      >on<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'error'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>`Error $<span
+        class="token punctuation"
+      >{</span>err<span class="token punctuation">}</span>`<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      client<span class="token punctuation">.</span><span
+        class="token keyword"
+      >set</span><span class="token punctuation">(</span><span
+        class="token string"
+      >'string key'</span><span class="token punctuation">,</span>
+      <span class="token string">'string val'</span><span
+        class="token punctuation"
+      >,</span>
+      redis<span class="token punctuation">.</span>print<span
+        class="token punctuation"
+      >)</span>
+      client<span class="token punctuation">.</span><span
+        class="token function"
+      >hset<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'hash key'</span><span class="token punctuation">,</span>
+      <span class="token string">'hashtest 1'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token string">'some value'</span><span
+        class="token punctuation"
+      >,</span>
+      redis<span class="token punctuation">.</span>print<span
+        class="token punctuation"
+      >)</span>
+      client<span class="token punctuation">.</span><span
+        class="token function"
+      >hset<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >[</span><span class="token string">'hash key'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token string">'hashtest 2'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token string">'some other value'</span><span
+        class="token punctuation"
+      >]</span><span class="token punctuation">,</span>
+      redis<span class="token punctuation">.</span>print<span
+        class="token punctuation"
+      >)</span>
+
+      client<span class="token punctuation">.</span><span
+        class="token function"
+      >hkeys<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'hash key'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      replies<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>`$<span
+        class="token punctuation"
+      >{</span>replies<span class="token punctuation">.</span>length<span
+        class="token punctuation"
+      >}</span>
+      replies<span class="token punctuation">:</span>`<span
+        class="token punctuation"
+      >)</span>
+
+      replies<span class="token punctuation">.</span><span
+        class="token function"
+      >forEach<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >(</span>reply<span class="token punctuation">,</span>
+      i<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>` $<span
+        class="token punctuation"
+      >{</span>i<span class="token punctuation">}</span><span
+        class="token punctuation"
+      >:</span>
+      $<span class="token punctuation">{</span>reply<span
+        class="token punctuation"
+      >}</span>`<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      client<span class="token punctuation">.</span><span
+        class="token function"
+      >quit<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <h2 id="sql-server">SQL Server</h2>
+  <p><strong>Module</strong>:
+    <a href="https://github.com/tediousjs/tedious">tedious</a></p>
+  <h3 id="installation-10">Installation</h3>
+  <pre><code class="language-console">$ npm install tedious
+    </code></pre>
+  <h3 id="example-9">Example</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      Connection
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'tedious'</span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">.</span>Connection
+      <span class="token keyword">const</span>
+      Request
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'tedious'</span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">.</span>Request
+
+      <span class="token keyword">const</span>
+      config
+      <span class="token operator">=</span>
+      <span class="token punctuation">{</span>
+      server<span class="token punctuation">:</span>
+      <span class="token string">'localhost'</span><span
+        class="token punctuation"
+      >,</span>
+      authentication<span class="token punctuation">:</span>
+      <span class="token punctuation">{</span>
+      type<span class="token punctuation">:</span>
+      <span class="token string">'default'</span><span
+        class="token punctuation"
+      >,</span>
+      options<span class="token punctuation">:</span>
+      <span class="token punctuation">{</span>
+      userName<span class="token punctuation">:</span>
+      <span class="token string">'your_username'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token comment" spellcheck="true">// update me
+      </span>
+      password<span class="token punctuation">:</span>
+      <span class="token string">'your_password'</span>
+      <span class="token comment" spellcheck="true">// update me
+      </span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">const</span>
+      connection
+      <span class="token operator">=</span>
+      <span class="token keyword">new</span>
+      <span class="token class-name">Connection</span><span
+        class="token punctuation"
+      >(</span>config<span class="token punctuation">)</span>
+
+      connection<span class="token punctuation">.</span><span
+        class="token function"
+      >on<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'connect'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">else</span>
+      <span class="token punctuation">{</span>
+      <span class="token function">executeStatement<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token keyword">function</span>
+      executeStatement
+      <span class="token punctuation">(</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      request
+      <span class="token operator">=</span>
+      <span class="token keyword">new</span>
+      <span class="token class-name">Request</span><span
+        class="token punctuation"
+      >(</span><span class="token string">"select 123, 'hello world'"</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      rowCount<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>err<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">else</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>`$<span
+        class="token punctuation"
+      >{</span>rowCount<span class="token punctuation">}</span>
+      rows`<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      connection<span class="token punctuation">.</span><span
+        class="token function"
+      >close<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      request<span class="token punctuation">.</span><span
+        class="token function"
+      >on<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'row'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>columns<span
+        class="token punctuation"
+      >)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      columns<span class="token punctuation">.</span><span
+        class="token function"
+      >forEach<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >(</span>column<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">if</span>
+      <span class="token punctuation">(</span>column<span
+        class="token punctuation"
+      >.</span>value
+      <span class="token operator">===</span>
+      <span class="token keyword">null</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'NULL'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">else</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>column<span
+        class="token punctuation"
+      >.</span>value<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      connection<span class="token punctuation">.</span><span
+        class="token function"
+      >execSql<span class="token punctuation">(</span></span>request<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+    </code></pre>
+  <h2 id="sqlite">SQLite</h2>
+  <p><strong>Module</strong>:
+    <a href="https://github.com/mapbox/node-sqlite3">sqlite3</a></p>
+  <h3 id="installation-11">Installation</h3>
+  <pre><code class="language-console">$ npm install sqlite3
+    </code></pre>
+  <h3 id="example-10">Example</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      sqlite3
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'sqlite3'</span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">.</span><span
+        class="token function"
+      >verbose<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      db
+      <span class="token operator">=</span>
+      <span class="token keyword">new</span>
+      <span class="token class-name">sqlite3<span
+          class="token punctuation"
+        >.</span>Database</span><span class="token punctuation">(</span><span
+        class="token string"
+      >':memory:'</span><span class="token punctuation">)</span>
+
+      db<span class="token punctuation">.</span><span
+        class="token function"
+      >serialize<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >(</span><span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      db<span class="token punctuation">.</span><span
+        class="token function"
+      >run<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'CREATE TABLE lorem (info TEXT)'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      stmt
+      <span class="token operator">=</span>
+      db<span class="token punctuation">.</span><span
+        class="token function"
+      >prepare<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'INSERT INTO lorem VALUES (?)'</span><span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token keyword">for</span>
+      <span class="token punctuation">(</span><span
+        class="token keyword"
+      >let</span>
+      i
+      <span class="token operator">=</span>
+      <span class="token number">0</span><span
+        class="token punctuation"
+      >;</span>
+      i
+      <span class="token operator">&lt;</span>
+      <span class="token number">10</span><span
+        class="token punctuation"
+      >;</span>
+      i<span class="token operator">++</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      stmt<span class="token punctuation">.</span><span
+        class="token function"
+      >run<span class="token punctuation">(</span></span>`Ipsum $<span
+        class="token punctuation"
+      >{</span>i<span class="token punctuation">}</span>`<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+
+      stmt<span class="token punctuation">.</span><span
+        class="token function"
+      >finalize<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+
+      db<span class="token punctuation">.</span><span
+        class="token function"
+      >each<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'SELECT rowid AS id, info FROM lorem'</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>err<span
+        class="token punctuation"
+      >,</span>
+      row<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span>`$<span
+        class="token punctuation"
+      >{</span>row<span class="token punctuation">.</span>id<span
+        class="token punctuation"
+      >}</span><span class="token punctuation">:</span>
+      $<span class="token punctuation">{</span>row<span
+        class="token punctuation"
+      >.</span>info<span class="token punctuation">}</span>`<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      db<span class="token punctuation">.</span><span
+        class="token function"
+      >close<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+  <h2 id="elasticsearch">Elasticsearch</h2>
+  <p><strong>Module</strong>:
+    <a href="https://github.com/elastic/elasticsearch-js">elasticsearch</a></p>
+  <h3 id="installation-12">Installation</h3>
+  <pre><code class="language-console">$ npm install elasticsearch
+    </code></pre>
+  <h3 id="example-11">Example</h3>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      elasticsearch
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'elasticsearch'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      client
+      <span class="token operator">=</span>
+      elasticsearch<span class="token punctuation">.</span><span
+        class="token function"
+      >Client<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >{</span>
+      host<span class="token punctuation">:</span>
+      <span class="token string">'localhost:9200'</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      client<span class="token punctuation">.</span><span
+        class="token function"
+      >search<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >{</span>
+      index<span class="token punctuation">:</span>
+      <span class="token string">'books'</span><span
+        class="token punctuation"
+      >,</span>
+      type<span class="token punctuation">:</span>
+      <span class="token string">'book'</span><span
+        class="token punctuation"
+      >,</span>
+      body<span class="token punctuation">:</span>
+      <span class="token punctuation">{</span>
+      query<span class="token punctuation">:</span>
+      <span class="token punctuation">{</span>
+      multi_match<span class="token punctuation">:</span>
+      <span class="token punctuation">{</span>
+      query<span class="token punctuation">:</span>
+      <span class="token string">'express js'</span><span
+        class="token punctuation"
+      >,</span>
+      fields<span class="token punctuation">:</span>
+      <span class="token punctuation">[</span><span
+        class="token string"
+      >'title'</span><span class="token punctuation">,</span>
+      <span class="token string">'description'</span><span
+        class="token punctuation"
+      >]</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">.</span><span
+        class="token function"
+      >then<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >(</span>response<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">const</span>
+      hits
+      <span class="token operator">=</span>
+      response<span class="token punctuation">.</span>hits<span
+        class="token punctuation"
+      >.</span>hits
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >,</span>
+      <span class="token punctuation">(</span>error<span
+        class="token punctuation"
+      >)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >trace<span class="token punctuation">(</span></span>error<span
+        class="token punctuation"
+      >.</span>message<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+    </code></pre>
+</div>

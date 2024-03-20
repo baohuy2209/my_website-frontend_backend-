@@ -1,0 +1,596 @@
+<div id="page-doc" markdown="1">
+  <h1 id="writing-middleware-for-use-in-express-apps">Writing middleware for use
+    in Express apps</h1>
+  <h2>Overview</h2>
+  <p><em>Middleware</em>
+    functions are functions that have access to the
+    <a href="/en/4x/api.html#req">request object</a>
+    (<code>req</code>), the
+    <a href="/en/4x/api.html#res">response object</a>
+    (<code>res</code>), and the
+    <code>next</code>
+    function in the application’s request-response cycle. The
+    <code>next</code>
+    function is a function in the Express router which, when invoked, executes
+    the middleware succeeding the current middleware.</p>
+  <p>Middleware functions can perform the following tasks:</p>
+  <ul>
+    <li>Execute any code.</li>
+    <li>Make changes to the request and the response objects.</li>
+    <li>End the request-response cycle.</li>
+    <li>Call the next middleware in the stack.</li>
+  </ul>
+  <p>If the current middleware function does not end the request-response cycle,
+    it must call
+    <code>next()</code>
+    to pass control to the next middleware function. Otherwise, the request will
+    be left hanging.</p>
+  <p>The following figure shows the elements of a middleware function call:</p>
+  <table id="mw-fig">
+    <tbody><tr><td id="mw-fig-imgcell">
+          <img src="/images/express-mw.png" id="mw-fig-img" />
+        </td>
+        <td class="mw-fig-callouts">
+          <div class="callout" id="callout1">HTTP method for which the
+            middleware function applies.</div>
+          <div class="callout" id="callout2">Path (route) for which the
+            middleware function applies.</div>
+          <div class="callout" id="callout3">The middleware function.</div>
+          <div class="callout" id="callout4">Callback argument to the middleware
+            function, called "next" by convention.</div>
+          <div class="callout" id="callout5">HTTP
+            <a href="/en/4x/api.html#res">response</a>
+            argument to the middleware function, called "res" by convention.</div>
+          <div class="callout" id="callout6">HTTP
+            <a href="/en/4x/api.html#req">request</a>
+            argument to the middleware function, called "req" by convention.</div>
+        </td></tr>
+    </tbody></table>
+  <p>Starting with Express 5, middleware functions that return a Promise will
+    call
+    <code>next(value)</code>
+    when they reject or throw an error.
+    <code>next</code>
+    will be called with either the rejected value or the thrown Error.</p>
+  <h2>Example</h2>
+  <p>Here is an example of a simple “Hello World” Express application. The
+    remainder of this article will define and add three middleware functions to
+    the application: one called
+    <code>myLogger</code>
+    that prints a simple log message, one called
+    <code>requestTime</code>
+    that displays the timestamp of the HTTP request, and one called
+    <code>validateCookies</code>
+    that validates incoming cookies.</p>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      express
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'express'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      app
+      <span class="token operator">=</span>
+      <span class="token function">express<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token keyword"
+      >get</span><span class="token punctuation">(</span><span
+        class="token string"
+      >'/'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span
+        class="token function"
+      >send<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'Hello World!'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >listen<span class="token punctuation">(</span></span><span
+        class="token number"
+      >3000</span><span class="token punctuation">)</span>
+    </code></pre>
+  <h3>Middleware function myLogger</h3>
+  <p>Here is a simple example of a middleware function called “myLogger”. This
+    function just prints “LOGGED” when a request to the app passes through it.
+    The middleware function is assigned to a variable named
+    <code>myLogger</code>.</p>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      myLogger
+      <span class="token operator">=</span>
+      <span class="token keyword">function</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">,</span>
+      next<span class="token punctuation">)</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'LOGGED'</span><span class="token punctuation">)</span>
+      <span class="token function">next<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    </code></pre>
+  <div class="doc-box doc-notice">
+    <p>Notice the call above to
+      <code>next()</code>. Calling this function invokes the next middleware
+      function in the app. The
+      <code>next()</code>
+      function is not a part of the Node.js or Express API, but is the third
+      argument that is passed to the middleware function. The
+      <code>next()</code>
+      function could be named anything, but by convention it is always named
+      “next”. To avoid confusion, always use this convention.</p>
+  </div>
+  <p>To load the middleware function, call
+    <code>app.use()</code>, specifying the middleware function. For example, the
+    following code loads the
+    <code>myLogger</code>
+    middleware function before the route to the root path (/).</p>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      express
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'express'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      app
+      <span class="token operator">=</span>
+      <span class="token function">express<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+
+      <span class="token keyword">const</span>
+      myLogger
+      <span class="token operator">=</span>
+      <span class="token keyword">function</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">,</span>
+      next<span class="token punctuation">)</span>
+      <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span
+        class="token function"
+      >log<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'LOGGED'</span><span class="token punctuation">)</span>
+      <span class="token function">next<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >use<span class="token punctuation">(</span></span>myLogger<span
+        class="token punctuation"
+      >)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token keyword"
+      >get</span><span class="token punctuation">(</span><span
+        class="token string"
+      >'/'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span
+        class="token function"
+      >send<span class="token punctuation">(</span></span><span
+        class="token string"
+      >'Hello World!'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >listen<span class="token punctuation">(</span></span><span
+        class="token number"
+      >3000</span><span class="token punctuation">)</span>
+    </code></pre>
+  <p>Every time the app receives a request, it prints the message “LOGGED” to
+    the terminal.</p>
+  <p>The order of middleware loading is important: middleware functions that are
+    loaded first are also executed first.</p>
+  <p>If
+    <code>myLogger</code>
+    is loaded after the route to the root path, the request never reaches it and
+    the app doesn’t print “LOGGED”, because the route handler of the root path
+    terminates the request-response cycle.</p>
+  <p>The middleware function
+    <code>myLogger</code>
+    simply prints a message, then passes on the request to the next middleware
+    function in the stack by calling the
+    <code>next()</code>
+    function.</p>
+  <h3>Middleware function requestTime</h3>
+  <p>Next, we’ll create a middleware function called “requestTime” and add a
+    property called
+    <code>requestTime</code>
+    to the request object.</p>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      requestTime
+      <span class="token operator">=</span>
+      <span class="token keyword">function</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">,</span>
+      next<span class="token punctuation">)</span>
+      <span class="token punctuation">{</span>
+      req<span class="token punctuation">.</span>requestTime
+      <span class="token operator">=</span>
+      Date<span class="token punctuation">.</span><span
+        class="token function"
+      >now<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token function">next<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    </code></pre>
+  <p>The app now uses the
+    <code>requestTime</code>
+    middleware function. Also, the callback function of the root path route uses
+    the property that the middleware function adds to
+    <code>req</code>
+    (the request object).</p>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      express
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'express'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      app
+      <span class="token operator">=</span>
+      <span class="token function">express<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+
+      <span class="token keyword">const</span>
+      requestTime
+      <span class="token operator">=</span>
+      <span class="token keyword">function</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">,</span>
+      next<span class="token punctuation">)</span>
+      <span class="token punctuation">{</span>
+      req<span class="token punctuation">.</span>requestTime
+      <span class="token operator">=</span>
+      Date<span class="token punctuation">.</span><span
+        class="token function"
+      >now<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token function">next<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >use<span class="token punctuation">(</span></span>requestTime<span
+        class="token punctuation"
+      >)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token keyword"
+      >get</span><span class="token punctuation">(</span><span
+        class="token string"
+      >'/'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">let</span>
+      responseText
+      <span class="token operator">=</span>
+      <span class="token string">'Hello World!&lt;br&gt;'</span>
+      responseText
+      <span class="token operator">+</span><span class="token operator">=</span>
+      `<span class="token operator">&lt;</span>small<span
+        class="token operator"
+      >&gt;</span>Requested at<span class="token punctuation">:</span>
+      $<span class="token punctuation">{</span>req<span
+        class="token punctuation"
+      >.</span>requestTime<span class="token punctuation">}</span><span
+        class="token operator"
+      >&lt;</span><span class="token operator">/</span>small<span
+        class="token operator"
+      >&gt;</span>` res<span class="token punctuation">.</span><span
+        class="token function"
+      >send<span class="token punctuation">(</span></span>responseText<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >listen<span class="token punctuation">(</span></span><span
+        class="token number"
+      >3000</span><span class="token punctuation">)</span>
+    </code></pre>
+  <p>When you make a request to the root of the app, the app now displays the
+    timestamp of your request in the browser.</p>
+  <h3>Middleware function validateCookies</h3>
+  <p>Finally, we’ll create a middleware function that validates incoming cookies
+    and sends a 400 response if cookies are invalid.</p>
+  <p>Here’s an example function that validates cookies with an external async
+    service.</p>
+  <pre class="language-javascript"><code class="language-javascript">async
+      <span class="token keyword">function</span>
+      cookieValidator
+      <span class="token punctuation">(</span>cookies<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">try</span>
+      <span class="token punctuation">{</span>
+      await
+      <span class="token function">externallyValidateCookie<span
+          class="token punctuation"
+        >(</span></span>cookies<span
+        class="token punctuation"
+      >.</span>testCookie<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">catch</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span>
+      <span class="token keyword">new</span>
+      <span class="token class-name">Error</span><span
+        class="token punctuation"
+      >(</span><span class="token string">'Invalid cookies'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    </code></pre>
+  <p>Here we use the
+    <a href="/resources/middleware/cookie-parser.html"><code
+      >cookie-parser</code></a>
+    middleware to parse incoming cookies off the
+    <code>req</code>
+    object and pass them to our
+    <code>cookieValidator</code>
+    function. The
+    <code>validateCookies</code>
+    middleware returns a Promise that upon rejection will automatically trigger
+    our error handler.</p>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      express
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'express'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      cookieParser
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span class="token string">'cookie-parser'</span><span
+        class="token punctuation"
+      >)</span>
+      <span class="token keyword">const</span>
+      cookieValidator
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span
+        class="token string"
+      >'./cookieValidator'</span><span class="token punctuation">)</span>
+
+      <span class="token keyword">const</span>
+      app
+      <span class="token operator">=</span>
+      <span class="token function">express<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+
+      async
+      <span class="token keyword">function</span>
+      validateCookies
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">,</span>
+      next<span class="token punctuation">)</span>
+      <span class="token punctuation">{</span>
+      await
+      <span class="token function">cookieValidator<span
+          class="token punctuation"
+        >(</span></span>req<span class="token punctuation">.</span>cookies<span
+        class="token punctuation"
+      >)</span>
+      <span class="token function">next<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >use<span class="token punctuation">(</span></span><span
+        class="token function"
+      >cookieParser<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >use<span class="token punctuation">(</span></span>validateCookies<span
+        class="token punctuation"
+      >)</span>
+
+      <span class="token comment" spellcheck="true">// error handler
+      </span>app<span class="token punctuation">.</span><span
+        class="token function"
+      >use<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >(</span>err<span class="token punctuation">,</span>
+      req<span class="token punctuation">,</span>
+      res<span class="token punctuation">,</span>
+      next<span class="token punctuation">)</span>
+      <span class="token operator">=</span><span
+        class="token operator"
+      >&gt;</span>
+      <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span
+        class="token function"
+      >status<span class="token punctuation">(</span></span><span
+        class="token number"
+      >400</span><span class="token punctuation">)</span><span
+        class="token punctuation"
+      >.</span><span class="token function">send<span
+          class="token punctuation"
+        >(</span></span>err<span class="token punctuation">.</span>message<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >listen<span class="token punctuation">(</span></span><span
+        class="token number"
+      >3000</span><span class="token punctuation">)</span>
+    </code></pre>
+  <div class="doc-box doc-notice">
+    <p>Note how
+      <code>next()</code>
+      is called after
+      <code>await cookieValidator(req.cookies)</code>. This ensures that if
+      <code>cookieValidator</code>
+      resolves, the next middleware in the stack will get called. If you pass
+      anything to the
+      <code>next()</code>
+      function (except the string
+      <code>'route'</code>
+      or
+      <code>'router'</code>), Express regards the current request as being an
+      error and will skip any remaining non-error handling routing and
+      middleware functions.</p>
+  </div>
+  <p>Because you have access to the request object, the response object, the
+    next middleware function in the stack, and the whole Node.js API, the
+    possibilities with middleware functions are endless.</p>
+  <p>For more information about Express middleware, see:
+    <a href="/en/guide/using-middleware.html">Using Express middleware</a>.</p>
+  <h2>Configurable middleware</h2>
+  <p>If you need your middleware to be configurable, export a function which
+    accepts an options object or other parameters, which, then returns the
+    middleware implementation based on the input parameters.</p>
+  <p>File: <code>my-middleware.js</code></p>
+  <pre class="language-javascript"><code class="language-javascript">module<span
+        class="token punctuation"
+      >.</span>exports
+      <span class="token operator">=</span>
+      <span class="token keyword">function</span>
+      <span class="token punctuation">(</span>options<span
+        class="token punctuation"
+      >)</span>
+      <span class="token punctuation">{</span>
+      <span class="token keyword">return</span>
+      <span class="token keyword">function</span>
+      <span class="token punctuation">(</span>req<span
+        class="token punctuation"
+      >,</span>
+      res<span class="token punctuation">,</span>
+      next<span class="token punctuation">)</span>
+      <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// Implement the middleware
+        function based on the options object
+      </span>
+      <span class="token function">next<span
+          class="token punctuation"
+        >(</span></span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    </code></pre>
+  <p>The middleware can now be used as shown below.</p>
+  <pre class="language-javascript"><code class="language-javascript"><span
+        class="token keyword"
+      >const</span>
+      mw
+      <span class="token operator">=</span>
+      <span class="token function">require<span
+          class="token punctuation"
+        >(</span></span><span
+        class="token string"
+      >'./my-middleware.js'</span><span class="token punctuation">)</span>
+
+      app<span class="token punctuation">.</span><span
+        class="token function"
+      >use<span class="token punctuation">(</span></span><span
+        class="token function"
+      >mw<span class="token punctuation">(</span></span><span
+        class="token punctuation"
+      >{</span>
+      option1<span class="token punctuation">:</span>
+      <span class="token string">'1'</span><span
+        class="token punctuation"
+      >,</span>
+      option2<span class="token punctuation">:</span>
+      <span class="token string">'2'</span>
+      <span class="token punctuation">}</span><span
+        class="token punctuation"
+      >)</span><span class="token punctuation">)</span>
+    </code></pre>
+  <p>Refer to
+    <a href="https://github.com/expressjs/cookie-session">cookie-session</a>
+    and
+    <a href="https://github.com/expressjs/compression">compression</a>
+    for examples of configurable middleware.</p>
+</div>

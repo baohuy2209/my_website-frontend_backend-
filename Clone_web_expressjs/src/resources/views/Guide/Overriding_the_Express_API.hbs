@@ -1,0 +1,185 @@
+<div id="page-doc" markdown="1">
+  <div id="page-doc">
+    <h1 id="overriding-the-express-api">Overriding the Express API</h1>
+    <p>The Express API consists of various methods and properties on the request
+      and response objects. These are inherited by prototype. There are two
+      extension points for the Express API:</p>
+    <ol>
+      <li>The global prototypes at
+        <code>express.request</code>
+        and
+        <code>express.response</code>.</li>
+      <li>App-specific prototypes at
+        <code>app.request</code>
+        and
+        <code>app.response</code>.</li>
+    </ol>
+    <p>Altering the global prototypes will affect all loaded Express apps in the
+      same process. If desired, alterations can be made app-specific by only
+      altering the app-specific prototypes after creating a new app.</p>
+    <h2 id="methods">Methods</h2>
+    <p>You can override the signature and behavior of existing methods with your
+      own, by assigning a custom function.</p>
+    <p>Following is an example of overriding the behavior of
+      <a href="/4x/api.html#res.sendStatus">res.sendStatus</a>.</p>
+    <pre class="language-javascript"><code class="language-javascript">app<span
+          class="token punctuation"
+        >.</span>response<span class="token punctuation">.</span>sendStatus
+        <span class="token operator">=</span>
+        <span class="token keyword">function</span>
+        <span class="token punctuation">(</span>statusCode<span
+          class="token punctuation"
+        >,</span>
+        type<span class="token punctuation">,</span>
+        message<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// code is intentionally
+          kept simple for demonstration purpose
+        </span>
+        <span class="token keyword">return</span>
+        <span class="token keyword">this</span><span
+          class="token punctuation"
+        >.</span><span class="token function">contentType<span
+            class="token punctuation"
+          >(</span></span>type<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span
+          class="token function"
+        >status<span class="token punctuation">(</span></span>statusCode<span
+          class="token punctuation"
+        >)</span>
+        <span class="token punctuation">.</span><span
+          class="token function"
+        >send<span class="token punctuation">(</span></span>message<span
+          class="token punctuation"
+        >)</span>
+        <span class="token punctuation">}</span>
+      </code></pre>
+    <p>The above implementation completely changes the original signature of
+      <code>res.sendStatus</code>. It now accepts a status code, encoding type,
+      and the message to be sent to the client.</p>
+    <p>The overridden method may now be used this way:</p>
+    <pre class="language-javascript"><code class="language-javascript">res<span
+          class="token punctuation"
+        >.</span><span class="token function">sendStatus<span
+            class="token punctuation"
+          >(</span></span><span class="token number">404</span><span
+          class="token punctuation"
+        >,</span>
+        <span class="token string">'application/json'</span><span
+          class="token punctuation"
+        >,</span>
+        <span class="token string">'{"error":"resource not found"}'</span><span
+          class="token punctuation"
+        >)</span>
+      </code></pre>
+    <h2 id="properties">Properties</h2>
+    <p>Properties in the Express API are either:</p>
+    <ol>
+      <li>Assigned properties (ex:
+        <code>req.baseUrl</code>,
+        <code>req.originalUrl</code>)</li>
+      <li>Defined as getters (ex:
+        <code>req.secure</code>,
+        <code>req.ip</code>)</li>
+    </ol>
+    <p>Since properties under category 1 are dynamically assigned on the
+      <code>request</code>
+      and
+      <code>response</code>
+      objects in the context of the current request-response cycle, their
+      behavior cannot be overridden.</p>
+    <p>Properties under category 2 can be overwritten using the Express API
+      extensions API.</p>
+    <p>The following code rewrites how the value of
+      <code>req.ip</code>
+      is to be derived. Now, it simply returns the value of the
+      <code>Client-IP</code>
+      request header.</p>
+    <pre class="language-javascript"><code
+        class="language-javascript"
+      >Object<span class="token punctuation">.</span><span
+          class="token function"
+        >defineProperty<span class="token punctuation">(</span></span>app<span
+          class="token punctuation"
+        >.</span>request<span class="token punctuation">,</span>
+        <span class="token string">'ip'</span><span
+          class="token punctuation"
+        >,</span>
+        <span class="token punctuation">{</span>
+        configurable<span class="token punctuation">:</span>
+        <span class="token keyword">true</span><span
+          class="token punctuation"
+        >,</span>
+        enumerable<span class="token punctuation">:</span>
+        <span class="token keyword">true</span><span
+          class="token punctuation"
+        >,</span>
+        <span class="token keyword">get</span>
+        <span class="token punctuation">(</span><span
+          class="token punctuation"
+        >)</span>
+        <span class="token punctuation">{</span>
+        <span class="token keyword">return</span>
+        <span class="token keyword">this</span><span
+          class="token punctuation"
+        >.</span><span class="token keyword">get</span><span
+          class="token punctuation"
+        >(</span><span class="token string">'Client-IP'</span><span
+          class="token punctuation"
+        >)</span>
+        <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span
+          class="token punctuation"
+        >)</span>
+      </code></pre>
+    <h2 id="prototype">Prototype</h2>
+    <p>In order to provide the Express.js API, the request/response objects
+      passed to Express.js (via
+      <code>app(req, res)</code>, for example) need to inherit from the same
+      prototype chain. By default this is
+      <code>http.IncomingRequest.prototype</code>
+      for the request and
+      <code>http.ServerResponse.prototype</code>
+      for the response.</p>
+    <p>Unless necessary, it is recommended that this be done only at the
+      application level, rather than globally. Also, take care that the
+      prototype that is being used matches the functionality as closely as
+      possible to the default prototypes.</p>
+    <pre class="language-javascript"><code class="language-javascript"><span
+          class="token comment"
+          spellcheck="true"
+        >// Use FakeRequest and FakeResponse in place of http.IncomingRequest
+          and http.ServerResponse
+        </span><span class="token comment" spellcheck="true">// for the given
+          app reference
+        </span>Object<span class="token punctuation">.</span><span
+          class="token function"
+        >setPrototypeOf<span
+            class="token punctuation"
+          >(</span></span>Object<span class="token punctuation">.</span><span
+          class="token function"
+        >getPrototypeOf<span class="token punctuation">(</span></span>app<span
+          class="token punctuation"
+        >.</span>request<span class="token punctuation">)</span><span
+          class="token punctuation"
+        >,</span>
+        FakeRequest<span class="token punctuation">.</span>prototype<span
+          class="token punctuation"
+        >)</span>
+        Object<span class="token punctuation">.</span><span
+          class="token function"
+        >setPrototypeOf<span
+            class="token punctuation"
+          >(</span></span>Object<span class="token punctuation">.</span><span
+          class="token function"
+        >getPrototypeOf<span class="token punctuation">(</span></span>app<span
+          class="token punctuation"
+        >.</span>response<span class="token punctuation">)</span><span
+          class="token punctuation"
+        >,</span>
+        FakeResponse<span class="token punctuation">.</span>prototype<span
+          class="token punctuation"
+        >)</span>
+      </code></pre>
+  </div>
+</div>
