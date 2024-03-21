@@ -32,7 +32,7 @@ Book.query,
   });
 mongoose.plugin(slug);
 Book.plugin(mongooseDelete, {
-  deleted: False,
+  deleted: false,
   deleteAt: true,
   overrideMethods: "all",
 });

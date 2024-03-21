@@ -4,7 +4,7 @@
   "description": "This website describe about ExpressJs framework and add some new feature to new website",
   "main": "index.js",
   "scripts": {
-    "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
+    "watch": "node-sass --watch ./src/resources/scss/ --output ./src/public/css",
     "start": "nodemon --inspect ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

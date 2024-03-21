@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const advtopicController = require("../app/controllers/Advanced_topics_Controller.js");
+const advtopicController = require("../app/controllers/Advanced_topics_Controllers.js");
 
 router.get("/TemplateEngines", advtopicController.Template_engines);
 router.get("/ProcessManages", advtopicController.Process_managers);

@@ -8,7 +8,7 @@ const route = require("./routes/index.js");
 const db = require("./config/db/index.js");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
-const SortMiddleware = require("./app/middlewares/SortMiddleware.js");
+const SortMiddleware = require("./app/middleware/SortMiddleware.js");
 const cors = require("cors");
 mongoose.set("strictQuery", false);
 
