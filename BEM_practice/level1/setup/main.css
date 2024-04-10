@@ -1,0 +1,59 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans;
+  background-color: #f4f4f5;
+}
+body > div {
+  margin: auto;
+}
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: 12px 48px;
+  border-radius: 50px;
+  cursor: pointer;
+  min-width: 120px;
+  transition: opacity 0.2s ease;
+}
+.btn:hover {
+  opacity: 0.6;
+}
+/* css cho hai btn đứng cạnh nhau */
+.btn + .btn {
+  margin-left: 12px;
+}
+.btn--success {
+  background-color: #71be34;
+}
+.btn--warn {
+  background-color: #ffb702;
+}
+.btn--danger {
+  background-color: #ff623d;
+}
+/* nút không bấm được */
+.btn--disabled {
+  opacity: 0.3 !important;
+  cursor: default;
+}
+.btn--size-s {
+  padding: 8px 40px;
+}
+.btn--size-m {
+  padding: 12px 48px;
+}
+.btn--size-l {
+  padding: 16px 56px;
+}

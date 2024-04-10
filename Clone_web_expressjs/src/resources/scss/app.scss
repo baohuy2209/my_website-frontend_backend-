@@ -1,17 +1,20 @@
+body {
+  margin-top: 54px;
+}
+.header {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  text-align: center;
+}
+
 .container-login {
   width: 300px;
   align-items: center;
   justify-content: center;
-}
-
-.input-quantity {
-  border-left: 0;
-  border-right: 0;
-  font-size: 12px;
-  font-weight: 400;
-  text-align: center;
-  cursor: text;
-  border-radius: 0;
 }
 
 .checkbox-select-all-options {
@@ -20,67 +23,59 @@
   margin-right: 10px;
 }
 
-.shopee-rating-stars {
-  display: inline-block;
-  position: relative;
-}
-
-.shopee-rating-stars__stars {
-  display: flex;
-}
-
-.shopee-rating-stars__star-wrapper {
-  position: relative;
-  margin-right: 1px;
-}
-
-.shopee-rating-stars__lit {
-  overflow: hidden;
-  position: absolute;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: 1;
-}
-
-.theme--ofs .shopee-rating-stars__primary-star {
-  color: #d0011b;
-  stroke: #d0011b;
-}
-
-svg:not(:root) {
-  overflow: hidden;
-}
-
-.shopee-rating-stars__primary-star {
-  color: #ee4d2d;
-  stroke: #ee4d2d;
-  display: block;
-  position: absolute;
-  left: 0;
-  overflow-x: hidden;
-}
-
-.shopee-svg-icon {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  fill: currentColor;
-  position: relative;
-}
-
 .avatar {
   width: 28px;
   height: 28px;
   border-radius: 50%;
   margin-right: 4px;
 }
-
-.button-search {
+.btn-search-web {
+  color: #000;
+  font-size: 16px;
   margin-right: 4px;
 }
-.footer-website {
-  align-items: center;
+.btn-search-web:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+.avatar-user {
+  float: right;
+  position: relative;
+}
+.avatar-user .subnav {
+  display: none;
+  position: absolute;
+  list-style: none;
+  width: 200px;
+  left: -160px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.avatar-user .subnav li {
+  width: 100%;
+  margin: 0 8px;
   text-align: center;
+}
+.avatar-user .subnav li a {
+  color: rgba(0, 0, 0, 0.7);
+  text-decoration: none;
+}
+.avatar-user:hover .subnav {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+.avatar-user .subnav li:hover {
+  background-color: #ccc;
+}
+.footer-website {
+  height: auto;
+  width: 100%;
+  text-align: center;
+  margin-top: 120px;
+}
+.form-signup {
+  text-align: center;
+  text-decoration: none;
+  opacity: 0.6;
 }

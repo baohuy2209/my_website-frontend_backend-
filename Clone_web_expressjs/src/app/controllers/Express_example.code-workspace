@@ -1,0 +1,33 @@
+{
+  "folders": [
+	{
+		"name": "Express_example",
+		"path": "../../../../Express_example"
+	},
+	{
+		"name": "Clone_web_expressjs",
+		"path": "../../.."
+	},
+	{
+		"name": "Brainware",
+		"path": "../../../../../../../Brainware"
+	},
+	{
+		"name": "javascript",
+		"path": "../../../../../javascript"
+	},
+	{
+		"name": "my_website-frontend_backend-",
+		"path": "../../../.."
+	},
+	{
+		"path": "../../../../../website_the_band"
+	},
+	{
+		"path": "../../../../../../../my-todo-app"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "my_website-frontend_backend-"
+  }
+}

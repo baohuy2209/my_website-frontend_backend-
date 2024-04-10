@@ -1,0 +1,11 @@
+{
+  "name": "my_programming_website",
+  "version": "1.0.0",
+  "description": "This website use MERN ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nguyen Bao Huy",
+  "license": "ISC"
+}

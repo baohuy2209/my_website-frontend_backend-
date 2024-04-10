@@ -3,13 +3,13 @@ const { multipleMongooseToObject } = require("../../util/mongoose.js");
 const { mongooseToObject } = require("../../util/mongoose.js");
 class CourseController {
   create_new_course(req, res) {
-    res.render("./Courses/create_course.hbs");
+    res.render("./courses/create_course.hbs");
   }
 
   show_course(req, res, next) {
     Course.find({})
       .then((courses) => {
-        res.render("./Courses/courses.hbs", {
+        res.render("./courses/courses.hbs", {
           courses: multipleMongooseToObject(courses),
         });
       })
@@ -18,7 +18,7 @@ class CourseController {
   show_detail_course(req, res, next) {
     Course.findOne({ slug: req.params.slug })
       .then((course) => {
-        res.render("./Courses/show_detail_course", {
+        res.render("./courses/show_detail_course", {
           course: mongooseToObject(course),
         });
       })
@@ -37,7 +37,7 @@ class CourseController {
   edit_course(req, res, next) {
     Course.findById(req.params.id)
       .then((course) =>
-        res.render("./Courses/edit_course", {
+        res.render("./courses/edit_course", {
           course: mongooseToObject(course),
         })
       )

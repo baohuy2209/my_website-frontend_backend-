@@ -11,7 +11,7 @@ const Book = new Schema(
     Rating: { type: Number, min: 0, max: 5 },
     Number_book_selled: { type: Number, min: 0 },
     Number_book_selling: { type: Number, min: 0 },
-    Description: { type: String, maxLength: 1000000 },
+    Description: { type: String },
     Image: { type: String, required: true },
     slug: { type: String, slug: "Name", unique: true },
     Number_consider: { type: Number, min: 0 },

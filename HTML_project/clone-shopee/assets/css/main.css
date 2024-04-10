@@ -1,0 +1,60 @@
+.header {
+  background-image: linear-gradient(-180deg, #f53d2d, #f63);
+  height: 120px;
+}
+.header__navbar {
+  display: flex;
+  justify-content: space-between;
+}
+.header__navbar-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 4px;
+}
+.header__navbar-item {
+  margin: 0 8px;
+  position: relative;
+}
+.header__navbar-item-link,
+.header__navbar-item {
+  display: inline-block;
+  font-size: 1.5rem;
+  color: var(--white-color);
+  text-decoration: none;
+  font-weight: 300;
+}
+.header__navbar-item-link:hover,
+.header__navbar-item:hover {
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+/* border separate */
+.header__navbar-item--separate::after {
+  content: "";
+  /* vị trí nằm trong khối */
+  display: block;
+  /* ===================== */
+  /* vị trí theo thẻ header__navbar-item */
+  position: absolute;
+  /* ===================== */
+  width: 1px;
+  height: 14px;
+  /* màu vạch chia */
+  background-color: #fb9086;
+  /* ============= */
+  /* tọa độ */
+  right: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  /* ======= */
+}
+.facebook,
+.instagram {
+  display: inline-block;
+  margin-left: 4px;
+  margin-right: 2px;
+}
+.header__navbar-title--no-pointer:hover {
+  cursor: text;
+  color: var(--white-color);
+}

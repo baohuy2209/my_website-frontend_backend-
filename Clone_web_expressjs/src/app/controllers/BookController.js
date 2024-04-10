@@ -3,12 +3,12 @@ const { multipleMongooseToObject } = require("../../util/mongoose.js");
 const { mongooseToObject } = require("../../util/mongoose.js");
 class BookController {
   create_book(req, res) {
-    res.render("./Book/create_book");
+    res.render("./book/create_book");
   }
   show_book(req, res, next) {
     Book.find({})
       .then((books) => {
-        res.render("./Book/book", {
+        res.render("./book/book", {
           books: multipleMongooseToObject(books),
         });
       })
@@ -20,7 +20,7 @@ class BookController {
     const book = new Book(format);
     book
       .save()
-      .then(() => res.redirect("/me/stored/book"))
+      .then(() => res.redirect("/me/stored/books"))
       .catch((error) => {
         next(error);
       });
@@ -28,7 +28,7 @@ class BookController {
   show_detail_book(req, res, next) {
     Book.findOne({ slug: req.params.slug })
       .then((book) => {
-        res.render("./Book/show_detail_book", {
+        res.render("./book/show_detail_book", {
           book: mongooseToObject(book),
         });
       })
@@ -37,7 +37,7 @@ class BookController {
   edit_book(req, res, next) {
     Book.findById(req.params.id)
       .then((book) =>
-        res.render("./Book/edit_book", {
+        res.render("./book/edit_book", {
           book: mongooseToObject(book),
         })
       )

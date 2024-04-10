@@ -1,0 +1,25 @@
+{
+  "name": "auth",
+  "version": "1.0.0",
+  "description": "Their frameworks: Express, bcryptjs, jsonwebtoken, mongoose, mongoDB",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect index.js",
+    "watch": "node-sass --watch resources/scss/app.scss public/css/app.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nguyễn Bảo Huy",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.5.0",
+    "mongoose": "^6.10.0",
+    "node-sass": "^9.0.0",
+    "nodemon": "^3.1.0"
+  }
+}

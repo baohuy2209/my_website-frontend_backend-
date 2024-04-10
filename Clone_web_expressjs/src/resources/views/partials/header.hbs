@@ -1,11 +1,11 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/home">Document web</a>
+<header class="header">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-body-tertiary">
+    <a class="navbar-brand text-dark mx-4" href="/home">Document web</a>
     <button
       class="navbar-toggler"
       type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent"
       aria-expanded="false"
       aria-label="Toggle navigation"
@@ -17,7 +17,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle text-dark"
             href="#"
             id="navbarDropdown"
             role="button"
@@ -49,7 +49,7 @@
         </li>
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle text-dark"
             href="#"
             id="navbarDropdown"
             role="button"
@@ -88,7 +88,7 @@
 
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle text-dark"
             href="#"
             id="navbarDropdown"
             role="button"
@@ -109,7 +109,7 @@
 
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle text-dark"
             href="#"
             id="navbarDropdown"
             role="button"
@@ -149,7 +149,7 @@
 
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle text-dark"
             href="#"
             id="navbarDropdown"
             role="button"
@@ -186,14 +186,26 @@
               Change Log</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/book_reference">Book reference</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/courses">Course reference</a>
-        </li>
-        <li class="nav-item">
-
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle text-dark"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Reference
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a
+              class="nav-link text-dark dropdown-item"
+              href="/book_reference"
+            >Book reference</a>
+            <a class="nav-link text-dark dropdown-item" href="/courses">Course
+              reference</a>
+          </div>
         </li>
         <li class="nav-item">
           <form class="form-inline my-2 my-lg-0">
@@ -203,57 +215,54 @@
               placeholder="Search"
               aria-label="Search"
             />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-              <div class="button-search">
-                <a href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    color="white"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-search"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </button>
+            <div class="btn-search-web">
+              <a class="nav-link text-dark">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-search"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+                  />
+                </svg>
+              </a>
+            </div>
           </form>
         </li>
       </ul>
-      <div class="dropdown mr-auto">
-        <a
-          class="dropdown-toggle"
-          href="#"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
+      <div class="avatar-user">
+        <a href="">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-chevron-down"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
+            />
+          </svg>
           <img
             class="avatar"
-            src="https://thuthuatnhanh.com/wp-content/uploads/2019/08/avatar-kiem-va-anh-hung.jpg"
+            src="https://i.pinimg.com/236x/3f/14/84/3f1484ebe84f35a40c3161f8bb54c70c.jpg"
           />
+
         </a>
-        <ul class="dropdown-menu">
-          <li><a
-              class="dropdown-item"
+        <ul class="subnav bg-light list-group list-group-flush">
+          <li class="list-group-item"><a
               href="/book_reference/create_new_book"
-            >Post book</a></li>
-          <li><a class="dropdown-item" href="/me/stored/books">My reference book</a></li>
-          <li>
-            <hr class="dropdown-divider" />
-          </li>
-          <li><a class="dropdown-item" href="/courses/create_new_course">Post
-              course</a></li>
-          <li><a class="dropdown-item" href="/me/stored/courses">My course</a></li>
-          <li>
-            <hr class="dropdown-divider" />
-          </li>
-          <li><a class="dropdown-item" href="#">Log out</a></li>
+            >Create new book</a></li>
+          <li class="list-group-item"><a href="/me/stored/books">My reference
+              book</a></li>
+          <li class="list-group-item"><a href="">Create new course</a></li>
+          <li class="list-group-item"><a href="">My course</a></li>
         </ul>
       </div>
     </div>
