@@ -1,0 +1,20 @@
+{
+  "name": "nodejs_mongodb_rest_crud_api_example",
+  "version": "1.0.0",
+  "description": "This website use Nodejs, MongoDB to build a CRUD Rest Example ",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect ./index.js",
+    "watch": "node-sass --watch resources/scss/app.scss public/css/app.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nguyen Bao Huy",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.5.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.0"
+  }
+}
