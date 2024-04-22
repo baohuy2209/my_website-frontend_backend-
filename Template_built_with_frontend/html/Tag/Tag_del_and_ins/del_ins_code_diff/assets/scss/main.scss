@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono");
+
+$red: rgb(200, 50, 50);
+$green: rgb(50, 200, 50);
+
+//** THE THINGS
+//
+//## Common del and ins code
+del,
+ins {
+  position: relative;
+  // text-decoration: none;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    overflow: hidden;
+    width: 9999px;
+    height: 100%;
+    content: "";
+  }
+  &::before {
+    right: 0;
+  }
+  &::after {
+    left: 100%;
+  }
+}
+//## del
+del {
+  background-color: rgba($red, 0.6);
+
+  &::before,
+  &::after {
+    background-color: rgba($red, 0.3);
+  }
+}
+//## ins
+ins {
+  background-color: rgba($green, 0.6);
+
+  &::before,
+  &::after {
+    background-color: rgba($green, 0.3);
+  }
+}
+
+//** OTHER STUFF
+//
+// Frame
+html {
+  background-color: #2f2f39;
+}
+body {
+  margin: 20px 0;
+}
+//## Code
+pre {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding-left: 4em;
+  overflow: hidden;
+  counter-reset: line-numbers;
+}
+code {
+  margin: 0;
+  font: 1em/1.35 "IBM Plex Mono", monospace;
+}
+//## New Line
+.line {
+  &::before {
+    position: absolute;
+    right: calc(100% - 2em);
+    color: #999;
+    counter-increment: line-numbers;
+    content: counter(line-numbers);
+  }
+
+  &.del {
+    &::before {
+      content: initial;
+    }
+  }
+}
+//## Selector - ID
+.si {
+  color: brown;
+}
+//## Selector - Class
+.sc {
+  color: white;
+}
+//## Selector - Element
+.se {
+  color: red;
+}
+//## Pseudo-selector
+.ps {
+  color: salmon;
+}
+//## Punctuation
+.p {
+  color: white;
+}
+//## Declaration Property
+.dp {
+  color: white;
+}
+//## Declaration Value
+.dv {
+  color: orange;
+}
+//## Declaration Value (Unit)
+.dvu {
+  color: red;
+}
+//## Declaration Value (String)
+.dvs {
+  color: turquoise;
+}
+//## Variable
+.v {
+  color: salmon;
+}
+//## Comment
+.c {
+  color: #999;
+  font-style: italic;
+}

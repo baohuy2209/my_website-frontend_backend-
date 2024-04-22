@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:400");
+del:before, del:after,
+ins:before,
+ins:after {
+  clip-path: inset(100%);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+del:before {
+  content: " [deletion start] ";
+}
+del:after {
+  content: " [deletion end] ";
+}
+
+ins:before {
+  content: " [insertion start] ";
+}
+ins:after {
+  content: " [insertion end] ";
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.m-message {
+  font-family: Raleway, sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.5em;
+}
+
+.a-modification {
+  text-decoration: none;
+  display: inline-block;
+  background-repeat: no-repeat;
+}
+.a-modification.-lineThrough {
+  background-position: left center;
+  background-size: 100% 0.1em;
+  position: absolute;
+  transform: translateY(-1em);
+  font-size: 0.8em;
+  opacity: 0.5;
+  background-image: linear-gradient(to top, currentColor, currentColor);
+  transition: background-size 0.4s ease-in-out;
+}
+.a-modification.-lineThrough:hover {
+  background-size: 0 0.1em;
+}
+.a-modification.-underlined {
+  background-position: center bottom;
+  background-size: 0% 0.1em, 100% 0.1em;
+  transition: background-size 0.4s ease-in-out;
+  background-image: linear-gradient(to top, green, green), linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+}
+.a-modification.-lineThrough:hover + .a-modification.-underlined {
+  background-size: 100% 0.1em;
+}
+
+/*# sourceMappingURL=main.css.map */

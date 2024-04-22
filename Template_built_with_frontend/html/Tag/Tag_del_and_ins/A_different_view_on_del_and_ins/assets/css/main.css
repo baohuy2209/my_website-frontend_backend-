@@ -1,0 +1,92 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  height: 100vh;
+  font-size: 10px;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #2224bf, #ac7);
+  color: #fff;
+  font-family: "Lato", sans-serif;
+  font-size: 4rem;
+  font-weight: 300;
+}
+body del {
+  color: darkred;
+  font-size: 0;
+  font-style: italic;
+  text-decoration: none;
+}
+body del::before {
+  font-size: 0;
+  content: "- ";
+}
+body ins {
+  color: greenyellow;
+  cursor: pointer;
+  border: 2px solid greenyellow;
+  padding: 2px 12px 2px 12px;
+  border-radius: 28px;
+  text-decoration: none;
+}
+body ins::before {
+  font-size: 0;
+  content: "+ ";
+}
+body ins::before:hover {
+  animation: typing 4s;
+  animation-fill-mode: forwards;
+}
+body ins:focus {
+  outline: none;
+}
+body ins:focus::before {
+  animation: typing 4s;
+  animation-fill-mode: forwards;
+}
+body ins:focus + del {
+  animation: before-setup 4s;
+  animation-fill-mode: forwards;
+}
+body ins:focus + del::before {
+  animation: typing 4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes typing {
+  0% {
+    font-size: 0;
+  }
+  100% {
+    font-size: 4rem;
+  }
+}
+@keyframes before-setup {
+  0% {
+    font-size: 0;
+    border: 2px solid darkred;
+    padding: 2px 12px 2px 12px;
+    border-radius: 28px;
+  }
+  100% {
+    font-size: 4rem;
+    border: 2px solid darkred;
+    padding: 2px 12px 2px 12px;
+    border-radius: 28px;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

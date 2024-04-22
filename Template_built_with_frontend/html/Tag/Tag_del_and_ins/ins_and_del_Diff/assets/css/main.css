@@ -1,0 +1,297 @@
+/* Reset */
+* {
+  box-sizing: inherit;
+}
+[hidden] {
+  display: none !important;
+}
+a,
+abbr,
+del,
+ins {
+  text-decoration: none;
+}
+a,
+mark {
+  color: inherit;
+}
+abbr,
+button,
+fieldset,
+img,
+hr,
+table {
+  border: 0;
+}
+address,
+b,
+button,
+caption,
+cite,
+code,
+dfn,
+em,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+i,
+input,
+pre,
+select,
+small,
+strong,
+sub,
+sup,
+textarea,
+th,
+var {
+  font: inherit;
+}
+blockquote,
+body,
+button,
+dd,
+div,
+dl,
+dt,
+fieldset,
+figure,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+input,
+legend,
+li,
+ol,
+p,
+pre,
+td,
+textarea,
+th,
+ul {
+  margin: 0;
+  padding: 0;
+}
+button,
+mark {
+  background: none;
+}
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+button {
+  border-radius: 0;
+}
+canvas,
+iframe,
+img,
+svg,
+video {
+  max-width: 100%;
+}
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  min-height: 100vh;
+  position: relative;
+  text-align: center;
+}
+main {
+  display: block;
+}
+ol,
+ul {
+  list-style: none;
+}
+sup,
+sub {
+  line-height: 0;
+}
+svg {
+  max-height: 100%;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+template {
+  display: none;
+}
+textarea {
+  resize: vertical;
+}
+
+body {
+  align-content: center;
+  align-items: center;
+  background-color: #333130;
+  background-image: linear-gradient(to top right, #0abc7e, #333130 40%);
+  color: #666b69;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  justify-content: space-around;
+}
+
+.VersionControl {
+  background: #fff;
+  box-shadow: 0 1em 1em -0.5em rgba(0, 0, 0, 0.5);
+  counter-reset: diff1 diff2;
+  display: block;
+  font-family: "Source Code Pro", Menlo, Consolas, Monaco, monospace;
+  font-size: 1.2em;
+  height: 90vh;
+  line-height: 1.8;
+  overflow: auto;
+  padding: 3em 0;
+  text-align: left;
+  width: 90vw;
+}
+
+.VersionControl > li {
+  display: flex;
+}
+
+.VersionControl > li > del,
+.VersionControl > li > div,
+.VersionControl > li > ins {
+  display: block;
+  min-height: 1.8em;
+  padding-left: 4em;
+  padding-right: 1em;
+  position: relative;
+  tab-size: 4;
+  text-indent: 1em;
+  white-space: pre-wrap;
+  width: 50%;
+  word-wrap: break-word;
+}
+
+.VersionControl > li > div:before,
+.VersionControl > li > del:before,
+.VersionControl > li > ins:before {
+  bottom: 0;
+  color: lightgray;
+  left: 0;
+  padding-right: 0.4em;
+  position: absolute;
+  text-align: right;
+  top: 0;
+  width: 3em;
+}
+
+.VersionControl > li > div + div:before,
+.VersionControl > li > ins:before {
+  content: counter(diff2);
+}
+
+.VersionControl > li > div,
+.VersionControl > li > del {
+  counter-increment: diff1;
+  user-select: none;
+}
+
+.VersionControl > li > div:before,
+.VersionControl > li > del:before {
+  content: counter(diff1);
+}
+
+.VersionControl > li > div + div,
+.VersionControl > li > ins {
+  counter-increment: diff2;
+  user-select: auto;
+}
+
+.VersionControl > li > del:after,
+.VersionControl > li > ins:after {
+  bottom: 0;
+  left: 3em;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 1em;
+}
+
+.VersionControl > li > del:after {
+  color: crimson;
+  content: "-";
+}
+
+.VersionControl > li > ins:after {
+  color: green;
+  content: "+";
+}
+
+.VersionControl > li > del {
+  background-color: rgb(251, 233, 235);
+  display: block;
+}
+
+.VersionControl > li > ins {
+  background-color: rgb(236, 253, 240);
+  display: block;
+  margin: 0 0 0 auto;
+}
+
+.VersionControl > li > del del {
+  background-color: rgb(250, 197, 205);
+  border-radius: 2px;
+}
+
+.VersionControl > li > ins ins {
+  background-color: rgb(199, 240, 210);
+  border-radius: 2px;
+}
+
+.VersionControl > li:hover {
+  background-color: blanchedalmond;
+}
+
+.VersionControl > li:hover > ins {
+  background-color: rgb(199, 240, 210);
+}
+
+.VersionControl > li:hover > del {
+  background-color: rgb(250, 197, 205);
+}
+
+.VersionControl .class {
+  color: limegreen;
+}
+
+.VersionControl .element {
+  color: mediumvioletred;
+}
+
+.VersionControl .value {
+  color: salmon;
+}
+
+.VersionControl .property {
+  color: dodgerblue;
+}
+
+.VersionControl .pseudo {
+  color: darkviolet;
+}
+
+.VersionControl .attribute {
+  color: sandybrown;
+}
+
+.VersionControl .comment {
+  color: lightslategray;
+}
+
+.VersionControl .color {
+  color: sienna;
+}

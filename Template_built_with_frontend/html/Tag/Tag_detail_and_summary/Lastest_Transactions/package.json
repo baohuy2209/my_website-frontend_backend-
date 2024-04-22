@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "sass": "^1.75.0"
+  },
+  "name": "lastest_transactions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nguyen Bao Huy",
+  "license": "ISC",
+  "description": ""
+}

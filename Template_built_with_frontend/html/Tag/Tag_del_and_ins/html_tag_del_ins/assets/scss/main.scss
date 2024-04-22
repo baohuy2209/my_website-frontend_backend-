@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css?family=Zilla+Slab|Zilla+Slab+Highlight");
+
+$ins: #84af9b;
+$del: #ff6b6b;
+
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Zilla Slab", serif;
+  font-size: 2em;
+  background: #efefef;
+  letter-spacing: -1px;
+}
+
+quote {
+  &::before {
+    content: "\201C";
+  }
+  &::after {
+    content: "\201D";
+  }
+}
+
+ins {
+  font-family: "Zilla Slab Highlight", cursive;
+  color: rgba($ins, 0.75);
+  cursor: help;
+  position: relative;
+
+  &::before {
+    content: "(correction)";
+    display: block;
+    pointer-events: none;
+    position: absolute;
+    font-family: "Zilla Slab", serif;
+    color: darken($ins, 10);
+    font-size: 0.5em;
+    transition: all 500ms ease;
+    top: -2em;
+    left: 0;
+    opacity: 0;
+  }
+
+  &:hover {
+    del {
+      max-width: 9em;
+    }
+
+    &::before {
+      opacity: 1;
+      top: -1.2em;
+    }
+  }
+
+  del {
+    color: rgba($del, 0.75);
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: bottom;
+    overflow: hidden;
+    transition: all 500ms ease;
+    max-width: 0;
+
+    &::before {
+      content: "\00a0";
+      visibility: hidden;
+    }
+  }
+}

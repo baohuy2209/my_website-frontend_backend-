@@ -1,0 +1,95 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+html {
+  height: 100vh;
+  font-size: 10px;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #2224bf, #ac7);
+  color: #fff;
+  font-family: "Lato", sans-serif;
+  font-size: 4rem;
+  font-weight: 300;
+
+  del {
+    color: darkred;
+    font-size: 0;
+    font-style: italic;
+    text-decoration: none;
+
+    &::before {
+      font-size: 0;
+      content: "- ";
+    }
+  }
+  ins {
+    color: greenyellow;
+    cursor: pointer;
+    border: 2px solid greenyellow;
+    padding: 2px 12px 2px 12px;
+    border-radius: 28px;
+    text-decoration: none;
+
+    &::before {
+      font-size: 0;
+      content: "+ ";
+      &:hover {
+        animation: typing 4s;
+        animation-fill-mode: forwards;
+      }
+    }
+
+    &:focus {
+      outline: none;
+
+      &::before {
+        animation: typing 4s;
+        animation-fill-mode: forwards;
+      }
+
+      & + del {
+        animation: before-setup 4s;
+        animation-fill-mode: forwards;
+
+        &::before {
+          animation: typing 4s;
+          animation-fill-mode: forwards;
+        }
+      }
+    }
+  }
+}
+// frame
+@keyframes typing {
+  0% {
+    font-size: 0;
+  }
+  100% {
+    font-size: 4rem;
+  }
+}
+// frame
+@keyframes before-setup {
+  0% {
+    font-size: 0;
+    border: 2px solid darkred;
+    padding: 2px 12px 2px 12px;
+    border-radius: 28px;
+  }
+  100% {
+    font-size: 4rem;
+    border: 2px solid darkred;
+    padding: 2px 12px 2px 12px;
+    border-radius: 28px;
+  }
+}

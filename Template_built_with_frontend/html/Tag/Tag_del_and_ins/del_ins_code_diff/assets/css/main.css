@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono");
+del,
+ins {
+  position: relative;
+}
+del::before, del::after,
+ins::before,
+ins::after {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  overflow: hidden;
+  width: 9999px;
+  height: 100%;
+  content: "";
+}
+del::before,
+ins::before {
+  right: 0;
+}
+del::after,
+ins::after {
+  left: 100%;
+}
+
+del {
+  background-color: rgba(200, 50, 50, 0.6);
+}
+del::before, del::after {
+  background-color: rgba(200, 50, 50, 0.3);
+}
+
+ins {
+  background-color: rgba(50, 200, 50, 0.6);
+}
+ins::before, ins::after {
+  background-color: rgba(50, 200, 50, 0.3);
+}
+
+html {
+  background-color: #2f2f39;
+}
+
+body {
+  margin: 20px 0;
+}
+
+pre {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding-left: 4em;
+  overflow: hidden;
+  counter-reset: line-numbers;
+}
+
+code {
+  margin: 0;
+  font: 1em/1.35 "IBM Plex Mono", monospace;
+}
+
+.line::before {
+  position: absolute;
+  right: calc(100% - 2em);
+  color: #999;
+  counter-increment: line-numbers;
+  content: counter(line-numbers);
+}
+.line.del::before {
+  content: initial;
+}
+
+.si {
+  color: brown;
+}
+
+.sc {
+  color: white;
+}
+
+.se {
+  color: red;
+}
+
+.ps {
+  color: salmon;
+}
+
+.p {
+  color: white;
+}
+
+.dp {
+  color: white;
+}
+
+.dv {
+  color: orange;
+}
+
+.dvu {
+  color: red;
+}
+
+.dvs {
+  color: turquoise;
+}
+
+.v {
+  color: salmon;
+}
+
+.c {
+  color: #999;
+  font-style: italic;
+}
+
+/*# sourceMappingURL=main.css.map */

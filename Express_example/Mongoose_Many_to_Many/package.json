@@ -1,0 +1,22 @@
+{
+  "name": "mongoose_many_to_many",
+  "version": "1.0.0",
+  "description": "This project is an examle about many to many relationship ",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --inspect ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Nguyen",
+    "Bao",
+    "Huy"
+  ],
+  "author": "Nguyen Bao Huy",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.3.2",
+    "nodemon": "^3.1.0"
+  }
+}

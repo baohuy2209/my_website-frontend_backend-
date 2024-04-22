@@ -1,0 +1,69 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+html {
+  min-height: 100vh;
+  font-size: 10px;
+}
+body {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #ecf0f1 50%, #bdc3c7);
+  color: rgba(52, 73, 94, 1);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 3.3rem;
+  font-weight: 200;
+  padding: 2em 3em;
+  line-height: 1.5;
+}
+ins,
+del {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0 0.3em;
+}
+ins {
+  background: #83d5a8;
+  height: auto;
+  border-radius: 0.3em;
+  display: inline;
+  -webkit-box-decoration-break: clone;
+  -o-box-decoration-break: clone;
+  box-decoration-break: clone;
+  margin-left: 0.07em;
+  margin-right: 0.07em;
+}
+del {
+  background: rgba(231, 76, 60, 0.5);
+  cursor: no-drop;
+  position: relative;
+  top: 0.2em;
+  height: 1.31em;
+  width: 0.4em;
+  line-height: 1.35;
+  overflow: hidden;
+  color: transparent;
+  margin: -0.4em 0.07em -0.05em 0.07em;
+  padding: 0 0 0.1em 0;
+  -webkit-box-decoration-break: clone;
+  -o-box-decoration-break: clone;
+  box-decoration-break: clone;
+  border-radius: 0.3em;
+  transition: padding-left ease 0.3s, padding-right ease 0.3s, color ease 0.15s;
+}
+del:hover {
+  width: auto;
+  color: #962e22;
+  display: inline;
+  padding: 0 0.35em 0em 0.35em;
+  line-height: unset;
+  position: unset;
+  top: unset;
+  height: unset;
+  transition: padding-left ease 0.3s, padding-right ease 0.3s, color ease 0.7s;
+}

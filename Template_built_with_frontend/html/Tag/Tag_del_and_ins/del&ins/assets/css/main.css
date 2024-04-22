@@ -1,0 +1,27 @@
+body {
+  font-family: "Roboto Mono", monospace;
+  font-size: 3em;
+  height: 100vh;
+  /* flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+p {
+  width: 30%;
+  text-align: center;
+}
+del {
+  text-decoration-color: red;
+}
+ins {
+  text-decoration: none;
+  font-family: "Caveat", cusive;
+  font-size: 1.5em;
+  color: red;
+  position: absolute;
+  /* spin the content which is used to replace */
+  transform: rotate(-10deg);
+  margin-left: -20px;
+  margin-top: -40px;
+}

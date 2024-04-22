@@ -1,0 +1,75 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+html {
+  height: 100vh;
+  font-size: 10px;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #7474bf, #348ac7);
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 3rem;
+  font-weight: 200;
+}
+span {
+  position: relative;
+}
+del {
+  text-decoration: none;
+  background: #f44336;
+  position: absolute;
+  font-size: 1.4rem;
+  bottom: -3.7rem;
+  padding: 0.5rem;
+  left: 50%;
+  filter: drop-shadow(0 0 0.2rem rgba(0, 0, 0, 0.3));
+  opacity: 0;
+  transform: translate(-50%, -1rem);
+  transition: all 0.15s ease-in;
+  &::after {
+    position: absolute;
+    content: "";
+    border: 0.5rem solid #f44336;
+    border-color: transparent transparent #f44336;
+    top: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &::before {
+    content: "Was: ";
+    white-space: nowrap;
+  }
+}
+ins {
+  cursor: help;
+  text-decoration: none;
+  padding: 2px 5px;
+  animation: fadeInIns 0.25s 1s ease-in forwards;
+  &:hover {
+    & + del {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+}
+
+/* //not really required, just for fading the green in first time */
+@keyframes fadeInIns {
+  from {
+    background: transparent;
+  }
+  to {
+    background: #6db723;
+  }
+}

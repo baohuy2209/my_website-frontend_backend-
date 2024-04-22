@@ -1,0 +1,15 @@
+{
+  "name": "a_different_view_on_del_and_ins",
+  "version": "1.0.0",
+  "description": "This project is talking about the difference between <del> and <tag> ",
+  "main": "index.js",
+  "scripts": {
+    "watch": "sass assets/scss/main.scss assets/css/main.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nguyễn Bảo",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.75.0"
+  }
+}
