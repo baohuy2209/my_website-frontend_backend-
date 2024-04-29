@@ -1,5 +1,6 @@
 const escapeHtml = require("escape-html");
 class register_controller {
+  // {GET} after signin
   authentication(req, res) {
     res.send(
       "hello, " +
@@ -8,14 +9,15 @@ class register_controller {
         '<a href = "/logout">Logout</a>'
     );
   }
+  // [GET] render form to sign up new account
   register_form(req, res) {
-    res.send(
-      '<form action="/login" method="post">' +
-        'Username: <input name="user"><br>' +
-        'Password: <input name="pass" type="password"><br>' +
-        '<input type="submit" text="Login"></form>'
-    );
+    res.render("form_signup");
   }
+  // [GET] render form to sign in
+  signin_form(req, res) {
+    res.render("form_login");
+  }
+  // [POST] login to new session
   register_login(req, res, next) {
     req.session.regenerate(function (err) {
       if (err) {
@@ -30,6 +32,7 @@ class register_controller {
       });
     });
   }
+  // [GET] exit session
   register_logout(req, res, next) {
     req.session.user = null;
     res.session.save(function (err) {

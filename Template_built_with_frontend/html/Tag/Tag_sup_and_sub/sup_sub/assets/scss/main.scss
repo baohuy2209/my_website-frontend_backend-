@@ -1,0 +1,45 @@
+$bg: #d33a2c;
+$text: #fff;
+
+body {
+  margin: 0;
+  height: calc(100vh - 20px);
+  font-size: 80px;
+  text-align: center;
+  background: $bg;
+  color: $text;
+  font-family: "Pacifico", sans-serif;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-font-smoothing: antialiased;
+  border: solid 10px #fff;
+}
+
+sub,
+sup {
+  font-size: 22px;
+  opacity: 0.8;
+}
+
+sub {
+  font-size: 36px;
+  animation: flash 2s infinite;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}

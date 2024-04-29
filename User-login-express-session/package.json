@@ -4,14 +4,23 @@
   "description": "example about user login by using express-session",
   "main": "index.js",
   "scripts": {
+    "watch": "node-sass --watch resources/scss/app.scss public/css/app.css",
     "start": "nodemon --inspect ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nguyen Bao Huy",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "cors": "^2.8.5",
     "express": "^4.18.3",
+    "express-handlebars": "^7.1.2",
     "express-session": "^1.18.0",
+    "mongoose": "^8.3.2",
+    "mongoose-delete": "^1.0.2",
+    "mongoose-slug-generator": "^1.0.4",
+    "morgan": "^1.10.0",
     "node-sass": "^9.0.0",
     "nodemon": "^3.1.0"
   }

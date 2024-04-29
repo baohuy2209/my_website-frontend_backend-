@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/main.css" />
+  </head>
+  <body>
+    <div id="info-container" class="info-container">
+      <div><i id="times" class="fas fa-times"></i></div>
+      <p id="info" class="info">
+        Hover (click for mobile) over the <code>sup</code> and
+        <code>sub</code> elements to reveal a tooltip.
+      </p>
+    </div>
+    <div class="card">
+      <p class="symbol">H<sub data-tooltip="Two atoms of hydrogen.">2</sub>O</p>
+      <p>
+        <strong>H<sub data-tooltip="Two atoms of hydrogen.">2</sub>O</strong> is
+        the chemical formula for water, ice or steam which consists of
+        <strong>two atoms of hydrogen</strong> and
+        <strong>one atom of oxygen</strong>.
+      </p>
+      <p>
+        Water is a <strong>transparent</strong>, <strong>tasteless</strong>,
+        <strong>odorless</strong>, and
+        <strong>nearly colorless</strong> chemical substance that is the main
+        constituent of Earth's streams, lakes, and oceans, and the fluids of
+        most living organisms.
+      </p>
+      <p>
+        Water covers <strong>71%</strong> of the Earth's surface.<sup
+          data-tooltip="1. CIA – The world factbook. Central Intelligence Agency. Retrieved 20 December 2008."
+          >1</sup
+        >
+        It is vital for all known forms of life.
+      </p>
+      <p class="footnote">
+        1.
+        <a
+          target="_blank"
+          href="https://www.cia.gov/library/publications/the-world-factbook/geos/xx.html#Geo"
+          >CIA – The world factbook. Central Intelligence Agency. Retrieved 20
+          December 2008</a
+        >
+      </p>
+      <!-- https://www.cia.gov/library/publications/the-world-factbook/geos/xx.html#Geo	 -->
+      <div class="element">
+        <a href="#"><i class="fas fa-arrow-left"></i></a>
+        <p class="element-name">Water</p>
+        <a href="#"><i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <script src="./assets/javascript/app.js"></script>
+  </body>
+</html>

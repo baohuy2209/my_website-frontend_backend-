@@ -1,0 +1,75 @@
+$wood: #dbc3a6;
+$olive: #4c4a35;
+
+body {
+  background: gray;
+  font-family: "Futura", Helvetica, Arial, sans-serif;
+  background: $olive;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+}
+
+.word {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.tile {
+  width: 5rem;
+  height: 5rem;
+  margin: 5px;
+  background-color: $wood;
+  background-image: url("https://i.pinimg.com/originals/2c/67/fb/2c67fb43d38ebe75ef01fd0a3367ba46.jpg");
+  box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tile.pb-tile {
+  transition: all 90ms ease-in-out;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.07);
+    box-shadow: 9px 9px 30px rgba(0, 0, 0, 0.2), 3px 3px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+.letter {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-weight: 700;
+  font-size: 275%;
+  position: relative;
+  color: darken($wood, 80%);
+  left: 5px;
+  line-height: 1;
+}
+
+sub,
+sup {
+  font-weight: 400;
+  font-size: 40%;
+}
+
+sup {
+  position: relative;
+  top: -8px;
+  left: 2px;
+}
