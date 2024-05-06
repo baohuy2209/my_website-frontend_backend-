@@ -1,0 +1,283 @@
+@charset "UTF-8";
+/* Reset */
+*:before,
+*:after {
+  content: "";
+}
+
+hr {
+  border: 0;
+  margin: 1.35em auto;
+  max-width: 100%;
+  background-position: 50%;
+  box-sizing: border-box;
+}
+
+.fade {
+  height: 1px;
+  color: red;
+  background-image: linear-gradient(90deg, rgba(255, 0, 0, 0), red 50%, rgba(255, 0, 0, 0) 100%);
+}
+
+.fade-2 {
+  border-width: 0 0 1px;
+  color: skyblue;
+  border-image: linear-gradient(90deg, rgba(135, 206, 235, 0), skyblue 50%, rgba(135, 206, 235, 0) 100%) 0 0 100%;
+  border-style: solid;
+}
+
+.dots {
+  color: orange;
+  border-width: 0 0 8px;
+  border-style: solid;
+  border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 1" width="8" height="4"><circle fill="orange" cx="1" cy="0.5" r="0.5"/></svg>') 0 0 100% repeat;
+  width: 216px;
+}
+
+.accessory {
+  height: 6px;
+  background-image: radial-gradient(closest-side, hsl(0, 0%, 50%), hsla(0, 0%, 50%, 0) 100%);
+  position: relative;
+}
+
+.accessory:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  background-color: hsl(0, 0%, 75%);
+  height: 12px;
+  width: 12px;
+  transform: rotate(45deg);
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 4px 0;
+  border: 4px solid hsla(0, 0%, 100%, 0.35);
+  background-clip: padding-box;
+  box-shadow: -10px 10px 0 hsla(0, 0%, 100%, 0.15), 10px -10px 0 hsla(0, 0%, 100%, 0.15);
+}
+
+.pill {
+  height: 0px;
+  border-radius: 2px;
+  color: teal;
+  border: 2px solid currentColor;
+  width: 80%;
+}
+
+.vertical-lines {
+  height: 10px;
+  color: orange;
+  background-image: linear-gradient(90deg, currentColor, currentColor 33.33%, transparent 33.33%, transparent 100%);
+  background-size: 3px 100%;
+  width: 60%;
+}
+
+.horizontal-lines {
+  height: 10px;
+  color: green;
+  background-image: linear-gradient(currentColor, currentColor 33.33%, transparent 33.33%, transparent 100%);
+  background-size: 100% 3px;
+  width: 40px;
+}
+
+.slash-1 {
+  height: 10px;
+  color: rebeccapurple;
+  background-image: linear-gradient(-45deg, transparent, transparent 25%, currentColor 25%, currentColor 50%, transparent 50%, transparent 75%, currentColor 75%);
+  background-size: 10px 10px;
+  width: 250px;
+}
+
+.slash-2 {
+  height: 8px;
+  color: darkmagenta;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="3px" height="3px" viewBox="0 0 3 3" fill="darkmagenta"><polygon points="0,0.5 0,1.5 1.5,3 2.5,3"/><polygon points="2.5,0 1.5,0 3,1.5 3,0.5"/></svg>');
+  background-size: 3px 3px;
+  width: 65%;
+}
+
+.slash-3 {
+  height: 10px;
+  background-image: linear-gradient(45deg, hsla(0, 0%, 5%, 0), hsla(0, 0%, 5%, 0) 33.33%, hsl(0, 0%, 5%) 33.33%, hsl(0, 0%, 5%) 66.67%, hsla(0, 0%, 5%, 0) 66.67%, hsla(0, 0%, 5%, 0) 100%);
+  background-size: 10px 100%;
+  width: 250px;
+}
+
+.bookends {
+  position: relative;
+  border-width: 5px;
+  border-color: hsl(0, 0%, 50%) transparent;
+  height: 11px;
+  border-style: double;
+  width: 20%;
+}
+
+.bookends:before,
+.bookends:after {
+  position: absolute;
+  bottom: -3.536px;
+  width: 7.071px;
+  height: 7.071px;
+  display: block;
+  border-width: 0 7.071px 7.071px 0;
+  border-color: hsl(0, 0%, 50%);
+  border-style: double;
+  box-sizing: border-box;
+}
+
+.bookends:before {
+  transform: translateZ(0) rotate(-45deg);
+  left: -21px;
+}
+
+.bookends:after {
+  transform: translateZ(0) rotate(135deg);
+  right: -21px;
+}
+
+.bookends-dots {
+  position: relative;
+  border-bottom: 1px solid hsla(0, 0%, 50%, 0.75);
+  width: 50%;
+}
+
+.bookends-dots:before,
+.bookends-dots:after {
+  position: absolute;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  display: block;
+  border-width: 0 1px 1px 0;
+  border-color: hsla(0, 0%, 50%, 0.75);
+  border-style: solid;
+  box-sizing: border-box;
+  border-radius: 100%;
+}
+
+.bookends-dots:before {
+  transform: translateZ(0) rotate(-45deg);
+  left: -10px;
+}
+
+.bookends-dots:after {
+  transform: translateZ(0) rotate(135deg);
+  right: -10px;
+}
+
+.flair {
+  width: 65%;
+  height: 30px;
+  border-style: solid;
+  border-color: hsla(0, 0%, 75%, 0.9);
+  border-width: 1px 0 0 0;
+  border-radius: 15px;
+}
+
+.flair:before {
+  display: block;
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: hsla(0, 0%, 75%, 0.9);
+  border-width: 0 0 1px 0;
+  border-radius: 15px;
+}
+
+/* Wave */
+.wave {
+  width: 35%;
+  border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 15" width="12" height="15"><path fill="none" stroke="hsla(0, 0%, 75%, 0.9)" stroke-width="3" d="M0,13.5c3,0,3-12,6-12s3,12,6,12"/></svg>') 0 0 100% repeat;
+  border-width: 0 0 15px;
+  border-style: solid;
+  position: relative;
+}
+
+.wave:before,
+.wave:after {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 30px;
+  background-color: hsl(0, 0%, 75%);
+  bottom: -22.5px;
+}
+
+.wave:before {
+  border-radius: 30px 0 0 30px;
+  left: -2px;
+}
+
+.wave:after {
+  border-radius: 0 30px 30px 0;
+  right: -2px;
+}
+
+/* Shine */
+.shine {
+  height: 20px;
+  width: 60%;
+  background-image: radial-gradient(farthest-side at 50% -50%, hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0));
+  position: relative;
+}
+
+.shine::before {
+  height: 1px;
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(90deg, hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 0.75) 50%, hsla(0, 0%, 0%, 0));
+}
+
+/* Charlie */
+.charlie {
+  position: relative;
+  font-size: 1.5em;
+  height: 1em;
+  border: 0;
+  -webkit-filter: drop-shadow(hsla(0, 0%, 0%, 0.75) 1px 3px 5px);
+  width: 75%;
+}
+
+.charlie:before,
+.charlie:after {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-size: 1em 100%;
+  height: inherit;
+}
+
+.charlie:before {
+  background-image: linear-gradient(315deg, hsla(0, 0%, 0%, 0.75) 25%, transparent 25%), linear-gradient(45deg, hsla(0, 0%, 0%, 0.75) 25%, transparent 25%);
+  background-position: 50%;
+  top: -0.5em;
+}
+
+.charlie:after {
+  background-image: linear-gradient(135deg, hsla(0, 0%, 0%, 0.75) 25%, transparent 25%), linear-gradient(225deg, hsla(0, 0%, 0%, 0.75) 25%, transparent 25%);
+  background-position: -webkit-calc(50% - 0.5em);
+  top: 0.5em;
+}
+
+.stars {
+  height: auto;
+  color: gold;
+  text-align: center;
+}
+.stars:after {
+  content: "★";
+  font-size: 2em;
+  text-shadow: -2em 0, -1em 0, 1em 0, 2em 0;
+}
+
+/* Background */
+html {
+  color: rgb(238, 238, 238);
+  background: #f0ebdc;
+}
+
+/*# sourceMappingURL=main.css.map */

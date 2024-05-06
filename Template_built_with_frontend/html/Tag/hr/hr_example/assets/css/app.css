@@ -1,0 +1,43 @@
+@import url(https://fonts.googleapis.com/css?family=Londrina+Shadow);
+@import url(https://fonts.googleapis.com/css?family=Enriqueta);
+
+body {
+  padding: 0.25rem;
+  max-width: 480px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+h1 {
+  font-family: "Londrina Shadow", arial, sans-serif;
+  font-size: 56px;
+  color: #77cc33;
+}
+
+p {
+  font-family: "Enriqueta", georgia, serif;
+  font-size: 1em;
+  line-height: 1.5em;
+  color: #444444;
+}
+
+hr {
+  position: relative;
+  background-color: none;
+  border: none;
+  height: 1px;
+  width: 100%;
+  margin: 45px auto;
+  text-align: center;
+}
+hr:after {
+  position: relative;
+  top: -0.8em;
+  font-size: 5em;
+  background: none;
+  display: inline-block;
+  color: #77cc33;
+  font-family: "Londrina Shadow";
+  line-height: 1;
+  content: ". . . . . . .";
+}

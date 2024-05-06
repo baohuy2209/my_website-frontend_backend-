@@ -1,0 +1,106 @@
+@import "compass/css3";
+@import url(https://fonts.googleapis.com/css?family=Megrim);
+
+html,
+body {
+  background: black;
+  font-family: Megrim, cursive;
+}
+
+hr {
+  height: 1px;
+  background: white;
+  border: none;
+  outline: none;
+  margin: 3em 3em 5em;
+  position: relative;
+
+  &:before {
+    content: attr(data-symbol);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    background: black;
+    color: white;
+    padding: 0.5em 3em;
+    @include transform(translate(-50%, -50%));
+  }
+}
+
+hr#one {
+  width: 50%;
+  margin: 3em auto;
+}
+
+hr#two {
+  @include background-image(linear-gradient(left, black, white));
+
+  &:before {
+    left: 90%;
+    width: 20%;
+    padding: 1em;
+    top: 1px;
+  }
+}
+
+hr#three {
+  @include background-image(linear-gradient(left, #3498db, #10d7af, #3498db));
+
+  &:before {
+    color: #10d7af;
+  }
+}
+
+hr#four {
+  &:before {
+    border: 1px solid white;
+  }
+}
+
+hr#five {
+  &:before {
+    font-size: 2em;
+    padding: 0.5em 1em;
+    font-weight: lighter;
+    font-family: Helvetica Neue;
+  }
+}
+
+hr#six {
+  background: black;
+  border-bottom: 1px dashed white;
+  &:before {
+    border: 1px dashed white;
+    border-radius: 20px;
+  }
+}
+
+hr#seven {
+  background: black;
+  border-bottom: 1px double white;
+  &:before {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+  }
+}
+
+hr#eight {
+  background: transparent;
+  border-bottom: 2px dashed white;
+  width: 40%;
+  margin: 0 auto;
+
+  &:before {
+    top: 3px;
+    left: 0;
+    padding-right: 2em;
+  }
+}
+
+hr#nine {
+  &:before {
+    border: 1px solid white;
+    padding: 1em 1.25em;
+    border-radius: 50%;
+  }
+}

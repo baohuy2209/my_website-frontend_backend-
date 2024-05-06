@@ -1,0 +1,203 @@
+@import "bourbon";
+
+@import url(https://fonts.googleapis.com/css?family=Merriweather:400,700,400italic);
+
+/* Try setting this to true :) */
+$dark: false;
+
+$bg: #fff;
+$pink: #f84ba2;
+$grey: #3a4145;
+$lightgrey: #ddd;
+
+@if $dark {
+  $bg: #31373a;
+  $pink: #4ba2f8;
+  $grey: #eee;
+  $lightgrey: #888;
+}
+
+html {
+  font-size: 70%;
+}
+
+body {
+  height: 100%;
+  max-height: 100%;
+  font-family: Merriweather, Georgia, serif;
+  font-size: 1.8rem;
+  line-height: 1.8em;
+  color: $grey;
+  background: $bg;
+  width: 100%;
+  opacity: 0;
+  @include animation(in 0.8s ease 1s forwards);
+}
+
+span {
+  content: "";
+  height: 5px;
+  position: fixed;
+  left: 0;
+  width: 0%;
+  background: $pink;
+}
+
+::selection {
+  color: #fff;
+  background: $pink;
+  text-shadow: none;
+}
+
+p {
+  margin: 1.6em 0;
+}
+
+hr {
+  margin: 2em 0;
+  text-align: center;
+  line-height: 1px;
+  height: 1px;
+  background: $lightgrey;
+  border: 15px solid $bg;
+  border-left: 0;
+  border-right: 0;
+  font-size: 1.5em;
+  &:after {
+    content: attr(txt);
+    color: $lightgrey;
+    display: inline;
+    background: $bg;
+    padding: 0.2em 0.5em;
+    border: 1px solid $bg;
+    border-radius: 100px;
+    transition: 0.3s ease all;
+  }
+  &:before {
+    position: absolute;
+    content: "";
+    background: transparent;
+    border-spacing: 10px;
+    margin-top: -24px;
+    @include transform(scale(0.5));
+    margin-left: 1px;
+    width: 49px;
+    height: 49px;
+    transition: 0.3s ease-out all;
+    border-radius: 100px;
+  }
+  &:not(.heart):hover {
+    &:after {
+      border: 1px solid $lightgrey;
+    }
+    &:before {
+      @include transform(scale(1));
+      background: $lightgrey;
+      transition: 3s cubic-bezier(0.5, -0.74, 0.79, 1.53) all;
+      @include animation(
+        out 0.3s cubic-bezier(0.5, -0.74, 0.79, 1.53) 3.2s forwards
+      );
+    }
+  }
+  &.heart:after {
+    color: $pink;
+    padding: 0.2em 0.4em;
+  }
+}
+
+article {
+  p:first-of-type:first-letter {
+    float: left;
+    font-size: 5.7rem;
+    line-height: 6.5rem;
+    margin: 0 10px 0 0;
+  }
+  p:not(:first-of-type) {
+    text-indent: 1.4em;
+  }
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 40px 11.14%;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+h4 {
+  color: $lightgrey;
+  font-size: 0.8em;
+  letter-spacing: 0.51px;
+  text-align: center;
+  margin: -1.7em auto 3em;
+  font-style: italic;
+}
+
+h2 {
+  font-size: 7.4rem;
+  font-weight: 600;
+  text-align: center;
+  font-size: 4.2rem;
+  line-height: 10rem;
+}
+
+@media only screen and (max-width: 700px) {
+  article {
+    p:first-of-type:first-letter {
+      font-size: 4.6rem;
+      line-height: 5.2rem;
+      margin: 0 10px 0 0;
+    }
+    font-size: 0.85em;
+    line-height: 1.7em;
+    margin-bottom: 30px;
+    padding: 8%;
+  }
+  h2 {
+    font-size: 3.5rem;
+    line-height: 3.5em;
+    letter-spacing: 0;
+  }
+  h4 {
+    letter-spacing: 0.3px;
+    margin: -2.7em auto 4em;
+  }
+}
+
+@media only screen and (max-width: 502px) {
+  article {
+    width: auto;
+    font-size: 0.8em;
+    line-height: 1.6em;
+    p:first-of-type:first-letter {
+      font-size: 4rem;
+      line-height: 4.5rem;
+      margin: 0 6px 0 0;
+    }
+  }
+  h2 {
+    font-size: 2.4rem;
+    line-height: 1.4em;
+    letter-spacing: 0;
+  }
+  h4 {
+    letter-spacing: 0;
+    margin: 0.4em auto 3em;
+  }
+}
+
+@include keyframes(in) {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@include keyframes(out) {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

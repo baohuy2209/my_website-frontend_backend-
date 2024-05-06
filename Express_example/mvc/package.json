@@ -1,0 +1,21 @@
+{
+  "name": "mvc",
+  "version": "1.0.0",
+  "description": "Example about mvc",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --inspect ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nguyen Bao Huy",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.18.0",
+    "method-override": "^3.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.0"
+  }
+}
