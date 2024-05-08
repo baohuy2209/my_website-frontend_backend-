@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,700");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #fff;
+  font-family: "Montserrat", sans-serif;
+  color: #262626;
+  font-size: 16px;
+}
+
+main {
+  max-width: 1000px;
+  background-color: #ffffff;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin: 0;
+    text-align: center;
+    padding: 2rem 5% 1rem 5%;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin: 0;
+    text-align: center;
+    padding: 0 5% 3rem 5%;
+  }
+
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 5% 5% 5%;
+
+    figure {
+      margin-bottom: 1rem;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: auto;
+        opacity: 1;
+        -webkit-transition: opacity 0.5s; /* For Safari 3.1 to 6.0 */
+        transition: opacity 0.5s;
+      }
+
+      img:hover {
+        opacity: 0.9;
+      }
+
+      figcaption {
+        padding: 10px;
+        line-height: 1.5;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        text-align: right;
+        color: #fff;
+        opacity: 0.7;
+
+        .fig-title {
+          font-weight: 700;
+        }
+        .fig-author {
+          font-weight: 300;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+
+  .more-container {
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 5%;
+    margin-bottom: 5%;
+  }
+  .more,
+  .more:link,
+  more:visited {
+    color: #262626;
+    font-weight: 700;
+    padding: 10px;
+    opacity: 0.5;
+    -webkit-transition: opacity 0.5s; /* For Safari 3.1 to 6.0 */
+    transition: opacity 0.5s;
+  }
+
+  .more:hover {
+    opacity: 1;
+  }
+}
+
+/* Media queries*/
+
+@media screen and (min-width: 701px) {
+  figure {
+    width: calc(33% - 0.5rem);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  figure {
+    width: calc(50% - 0.5rem);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  figure {
+    width: 100%;
+  }
+}

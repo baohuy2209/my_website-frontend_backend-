@@ -1,0 +1,42 @@
+article {
+  max-width: 500px;
+  margin: 2rem auto;
+  font: 1.5rem/1.5 system-ui;
+}
+figure {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  padding-bottom: 150px;
+  img {
+    max-width: 100%;
+    display: block;
+    margin-bottom: 120px;
+  }
+  img.top {
+    position: absolute;
+    top: 115px;
+    left: 0;
+  }
+  figcaption {
+    border: 5px solid #009688;
+    color: #009688;
+    text-transform: uppercase;
+    font-size: 3rem;
+    line-height: 1;
+    padding: 0.25rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    mix-blend-mode: color-dodge;
+    strong {
+      display: block;
+    }
+  }
+  + p {
+    padding-top: 20px;
+    margin-top: -280px;
+    background: white;
+    position: relative;
+  }
+}

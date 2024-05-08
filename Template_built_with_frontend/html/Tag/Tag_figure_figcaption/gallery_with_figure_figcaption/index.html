@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/app.css" />
+  </head>
+  <body>
+    <aside class="helper">Scroll sideways</aside>
+    <main>
+      <figure class="rellax">
+        <img src="https://source.unsplash.com/aiyBwbrWWlo" alt="Me coding" />
+        <figcaption class="rellax" data-rellax-speed="1">Me coding</figcaption>
+      </figure>
+      <figure class="rellax">
+        <img
+          src="https://source.unsplash.com/EaJm0ZfO84U"
+          alt="Bronte Beach, Australia"
+        />
+        <figcaption class="rellax" data-rellax-speed="1">
+          Bronte Beach, Australia
+        </figcaption>
+      </figure>
+      <figure class="rellax">
+        <img src="https://source.unsplash.com/e9rkZKjdlSc" alt="The moon" />
+        <figcaption class="rellax" data-rellax-speed="1">The moon</figcaption>
+      </figure>
+    </main>
+    <script src="https://cdn.rawgit.com/dixonandmoe/rellax/master/rellax.min.js"></script>
+    <script>
+      var rellax = new Rellax(".rellax", {
+        horizontal: true,
+        vertical: false,
+        speed: 1.5,
+      });
+    </script>
+  </body>
+</html>

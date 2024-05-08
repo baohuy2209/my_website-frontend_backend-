@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/app.css" />
+  </head>
+  <body>
+    <figure>
+      <svg
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <defs>
+          <filter id="outline" mask="url(#mask)">
+            <feFlood flood-color="#ecf0f1" result="base" />
+            <feMorphology in="SourceGraphic" operator="dilate" radius="10" />
+            <feComposite in="base" operator="in" />
+            <feBlend in="SourceGraphic" mode="normal" />
+            <feDropShadow stdDeviation="6" />
+          </filter>
+        </defs>
+      </svg>
+
+      <div class="img"></div>
+
+      <figcaption>
+        <span>The</span>
+        <span>Caucasian Shepherd </span>
+        <span
+          >is a large breed of dog that is popular in Russia, Armenia,
+          Azerbaijan, and Mexico. It is extremely popular in Georgia, which has
+          always been the principal region of penetration of Caucasian shepherd
+          dogs.</span
+        >
+      </figcaption>
+
+      <button></button>
+    </figure>
+    <script src="./assets/javascript/handle.js"></script>
+  </body>
+</html>

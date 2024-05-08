@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css?family=Amaranth");
+@import url("https://fonts.googleapis.com/css?family=Overpass");
+body {
+  background-color: #00a8ff;
+}
+.container,
+.image,
+.caption,
+.heading,
+.content,
+.images,
+.img2,
+.KC,
+.NA,
+.cap1,
+.cap2,
+.heading1,
+.heading2 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+}
+
+.container {
+  width: 338px;
+  height: 338px;
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: 10px 10px 10px rgba(14, 47, 68, 0.7);
+}
+.image {
+  border-radius: 50%;
+}
+.caption {
+  width: 100%;
+  background-color: rgba(14, 47, 68, 0.8);
+  opacity: 0;
+  transition: all 300ms ease;
+  z-index: 1;
+}
+.heading {
+  font-family: "Amaranth", sans-serif;
+  color: white;
+  text-align: center;
+  transform: scale(0);
+  top: 25px;
+  /*   transition:all 1000ms; */
+}
+.content {
+  color: white;
+  top: 50px;
+  margin-top: 10px;
+  font-size: 18px;
+  font-family: "Overpass", sans-serif;
+  margin-left: -10px;
+}
+.images {
+  width: 80%;
+  height: 50%;
+  top: 100px;
+  left: 5%;
+  border-radius: 10px;
+  background-color: red;
+}
+.KC > img {
+  width: 50%;
+  height: 100%;
+}
+.NA > img {
+  width: 50%;
+  height: 100%;
+  left: 50%;
+}
+.cap2 {
+  z-index: 1;
+  left: 50%;
+  text-align: center;
+  background-color: rgba(14, 47, 68, 0.8);
+  top: 70%;
+  transition: 300ms;
+  opacity: 1;
+}
+.cap1 {
+  opacity: 1;
+  top: 70%;
+  z-index: 1;
+  background-color: rgba(14, 47, 68, 0.8);
+  transition: all 300ms;
+}
+.heading1 {
+  top: 83%;
+  z-index: 1;
+  color: black;
+  text-align: center;
+  font-family: "Overpass", sans-serif;
+}
+.heading2 {
+  z-index: 1;
+  color: black;
+  text-align: center;
+  margin-top: 60px;
+  font-family: "Overpass", sans-serif;
+}

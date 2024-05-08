@@ -1,0 +1,114 @@
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+body {
+  background-color: cadetblue;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+figure {
+  font-family: Arial, sans-serif;
+  background-color: #e08e0b;
+  color: #976008;
+  position: relative;
+  float: left;
+  overflow: hidden;
+  margin: 10px 1%;
+  min-width: 220px;
+  max-width: 310px;
+  width: 100%;
+  text-align: left;
+  color: #000000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+figure * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+figure img {
+  vertical-align: top;
+  max-width: 100%;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+figure figcaption {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  bottom: 18px;
+  right: 18px;
+  display: block;
+  padding: 75px 20px 20px;
+}
+figure figcaption:before {
+  position: absolute;
+  min-width: 64px;
+  min-height: 64px;
+  top: 0%;
+  left: 0%;
+  bottom: 90%;
+  right: 90%;
+  content: "";
+  display: block;
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+  -webkit-transition-delay: 0.35s;
+  transition-delay: 0.35s;
+}
+figure p {
+  opacity: 0;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+  text-align: left;
+  margin: 0;
+  color: #976008;
+}
+figure i {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  font-size: 34px;
+  color: #000000;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 1;
+  color: #c87f0a;
+}
+figure a {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}
+figure:hover img {
+  opacity: 0.3;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+figure:hover figcaption:before {
+  right: 0%;
+  bottom: 0%;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+figure:hover p {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition-delay: 0.35s;
+  transition-delay: 0.35s;
+}
+figure:hover i {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/*# sourceMappingURL=app.css.map */
