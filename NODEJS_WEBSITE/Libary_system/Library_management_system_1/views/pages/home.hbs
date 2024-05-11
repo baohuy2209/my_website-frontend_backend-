@@ -1,0 +1,73 @@
+
+
+  
+    <h1>All Books</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">N.o</th>
+          <th scope="col">Book Name</th>
+          <th scope="col">Book Author</th>
+          <th scope="col">Book Pagest</th>
+          <th scope="col">Book Price</th>
+          <th scope="col">Book Availability</th>
+          <th scope="col">Issue</th>
+          <th scope="col">Return</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each books}}
+        <tr>
+          <th scope="row">1</th>
+          <td><%= element.bookName %></td>
+          <td><%= element.bookAuthor %></td>
+          <td><%= element.bookPages %></td>
+          <td><%= element.bookPrice %></td>
+          <td><%= element.bookState %></td>
+          <td>
+            <form action="/issue" method="post">
+              <input
+                type="text"
+                style="display: none"
+                name="bookName"
+                value="<%= element.bookName %>"
+              />
+              <button type="submit">Issue</button>
+            </form>
+          </td>
+          <td>
+            <form action="/return" method="post">
+              <input
+                type="text"
+                style="display: none"
+                name="bookName"
+                value="<%= element.bookName %>"
+              />
+              <button type="submit">Return</button>
+            </form>
+          </td>
+          <td>
+            <form action="/delete" method="post">
+              <input
+                type="text"
+                style="display: none"
+                name="bookName"
+                value="<%= element.bookName %>"
+              />
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <h1>Add Book</h1>
+    <form action="/" method="post">
+      <input type="text" placeholder="Book Name" name="bookName" />
+      <input type="text" placeholder="Book Author" name="bookAuthor" />
+      <input type="text" placeholder="Book Pages" name="bookPages" />
+      <input type="text" placeholder="Book Price" name="bookPrice" />
+      <button type="submit">Add</button>
+    </form>
+
