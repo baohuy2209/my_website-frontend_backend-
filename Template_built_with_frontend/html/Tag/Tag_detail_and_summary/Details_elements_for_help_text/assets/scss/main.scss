@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap");
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #edf2f7;
+  font-size: 16px;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #4a5568;
+  line-height: 1.45;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+p {
+  margin-bottom: 16px;
+}
+
+hr {
+  background: #edf2f7;
+  height: 1px;
+  border: 0;
+  margin: 24px 0 16px;
+}
+
+.panel {
+  width: 400px;
+  max-width: 90%;
+  margin: 100px auto 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 24px;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.form-group {
+  $summary-icon-size: 20px;
+  $form-control-height: 40px;
+
+  + #{&} {
+    margin-top: 16px;
+  }
+
+  .form-group-input-container {
+    position: relative;
+  }
+
+  .form-control {
+    height: $form-control-height;
+    width: 100%;
+    border-radius: 5px;
+    padding: 0 10px;
+    border: 1px solid #a0aec0;
+    font-size: 0.9rem;
+    color: #4a5568;
+    font-family: inherit;
+
+    &::-webkit-input-placeholder {
+      color: #a0aec0;
+    }
+    &::-moz-placeholder {
+      color: #a0aec0;
+    }
+    &:-ms-input-placeholder {
+      color: #a0aec0;
+    }
+    &:-moz-placeholder {
+      color: #a0aec0;
+    }
+  }
+
+  .form-group-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .form-group-help {
+    font-size: 0.875rem;
+    margin-top: 8px;
+    display: block;
+    color: #718096;
+  }
+
+  details {
+    summary {
+      width: $form-control-height;
+      height: $form-control-height;
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      outline: none;
+      color: #718096;
+      opacity: 0.5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 1;
+      }
+
+      svg {
+        width: $summary-icon-size;
+        height: $summary-icon-size;
+      }
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+    }
+  }
+}

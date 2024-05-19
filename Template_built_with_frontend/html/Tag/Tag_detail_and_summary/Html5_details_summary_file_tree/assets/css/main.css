@@ -1,0 +1,162 @@
+@charset "UTF-8";
+.container {
+  padding: 0 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 3rem;
+  display: inline-block;
+  color: #9796F0;
+  background: linear-gradient(to right, #783F8E, #9796F0 20%, #FBC7D4, #E36588);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card {
+  border-radius: 10px;
+  background: #FFF;
+  padding: 20px;
+  box-shadow: 4px 4px 12px 1px rgba(0, 0, 0, 0.2);
+  line-height: 1.5;
+}
+.card + .card {
+  margin-left: 20px;
+}
+.card-list {
+  display: flex;
+  flex: 1;
+}
+.card-title {
+  margin: 0 0 20px 0;
+  letter-spacing: 1px;
+}
+.card-description {
+  margin: 0;
+}
+.card-details .card-title {
+  color: #783F8E;
+}
+.card-summary .card-title {
+  color: #E36588;
+}
+@media (max-width: 500px) {
+  .card {
+    flex: 1;
+  }
+}
+
+.sample {
+  margin-top: 40px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.sample-title {
+  line-height: 2;
+  font-size: 0.75rem;
+  background: #738290;
+  color: #FFF;
+  padding: 0 20px;
+  letter-spacing: 1px;
+}
+.sample-code {
+  border-left: 2px dashed #E4F0D0;
+  border-right: 2px dashed #E4F0D0;
+  padding: 20px;
+  line-height: 1.5;
+}
+.sample-html {
+  padding: 20px;
+  background: #E4F0D0;
+}
+.sample-html-details[open] .sample-html-summary:before {
+  content: "🙀";
+  animation: cat 0.2s cubic-bezier(0.01, 0.29, 0.38, 2.37);
+}
+.sample-html-summary {
+  list-style-image: none;
+  cursor: pointer;
+  padding-left: 60px;
+  position: relative;
+}
+.sample-html-summary:before {
+  content: "😼";
+  position: absolute;
+  top: calc(50% - 18px);
+  left: 0;
+  font-size: 2rem;
+}
+.sample-html-summary:focus {
+  outline: none;
+}
+.sample-html-summary::-webkit-details-marker {
+  display: none;
+}
+
+.code, .sample-title {
+  font-family: "Fira Mono", monospace;
+}
+.code-details {
+  color: #783F8E;
+}
+.code-summary {
+  color: #E36588;
+}
+
+.speech {
+  display: inline-block;
+  margin: 20px 0 0 7px;
+  padding: 20px;
+  background: #FFF;
+  border-radius: 0 10px 10px 10px;
+  position: relative;
+  animation: speech 0.3s cubic-bezier(0.01, 0.29, 0.38, 2.37);
+  transform-origin: top left;
+}
+.speech:before {
+  content: "";
+  position: absolute;
+  border: 8px solid transparent;
+  top: -16px;
+  left: 0;
+  border-bottom-color: #FFF;
+}
+
+:root {
+  font-size: 16px;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: #FFFCF7;
+  color: #738290;
+  font-family: "Roboto", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+*:before, *:after {
+  box-sizing: inherit;
+}
+
+@keyframes speech {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes cat {
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

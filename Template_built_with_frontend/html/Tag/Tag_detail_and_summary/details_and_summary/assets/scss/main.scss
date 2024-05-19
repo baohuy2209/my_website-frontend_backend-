@@ -1,0 +1,39 @@
+main {
+  font-family: "Roboto";
+  background: url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)
+    fixed;
+  padding: 3em 0;
+
+  details {
+    color: black;
+    background-color: #98ff98;
+    padding: 1em;
+    margin: 0.5em;
+    border-radius: 1em;
+
+    summary {
+      padding: 0.5em;
+      border-radius: 1em;
+      outline: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+
+      .lx-avatar {
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+    }
+
+    &[open],
+    &:hover {
+      color: black;
+      background-color: #a1ffbd;
+    }
+  }
+}

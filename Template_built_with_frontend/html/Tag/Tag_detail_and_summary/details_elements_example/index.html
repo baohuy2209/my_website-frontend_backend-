@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/main.css"<
+  </head>
+  <body>
+    <details open>
+      <summary>Have you heard about <code>details</code>?</summary>
+      <p>
+        It's a pretty useful element that handles accordion / collapsed text
+        natively!
+      </p>
+    </details>
+
+    <details>
+      <summary>So how does it work?</summary>
+      <p>
+        You wrap a <code>details</code> element around any block of HTML
+        content. The browser will collapse that block of text until a user opens
+        the <code>details</code> block.
+      </p>
+      <p>
+        Once a user opens a <code>details</code> block, they'll be able to read
+        all that hidden content!
+      </p>
+      <p>
+        If you want the details block open by default, include the
+        <code>open</code> attribute on the opening tag:
+      </p>
+      <pre><code><​details open>...<​/details></code></pre>
+    </details>
+
+    <details>
+      <summary>But how do I set a custom title?</summary>
+      <p>That's pretty manageable too! Use the <code>summary</code> element.</p>
+      <p>
+        Put a <code>summary</code> at the beginning of your details element and
+        <b>Boom!</b> - you've got a custom title for your
+        <code>details</code> block.
+      </p>
+      <p>
+        No worries if you don't add a <code>summary</code>. The browser will put
+        the word "Details" in there for you. (After all, users need something to
+        click!)
+      </p>
+    </details>
+
+    <details>
+      <summary>That's cool, but what about styles?</summary>
+      <p>
+        Yes, you're covered there too! Style the <code>details</code> element
+        however you like. Give it a border, some padding, whatever.
+      </p>
+      <p>
+        The <code>summary</code> element is where the <code>▸</code> marker
+        lives. If you want to get rid of that, there is a prefixed
+        pseudo-element selector <code>::-webkit-details-marker</code>: set that
+        to <code>display: none</code> for WebKit browsers. In Firefox, it's much
+        simpler: set the <code>summary</code> to <code>display: block</code> or
+        <code>flex</code> (anything but the native
+        <code>display: list-item</code>) and you'll get rid of the
+        <code>▸</code> for you.
+      </p>
+    </details>
+
+    <details>
+      <summary>Ok, ok, but what about styling based on state?</summary>
+      <p>
+        Once again, <code>details</code> has got your back! When a
+        <code>details</code> block is open, it has the
+        <code>open</code> attribute that I mentioned earlier. To style it (or
+        its children) based on its state, use <code>details[open] { }</code>.
+      </p>
+      <p>
+        Note: there's no <code>closed</code> attribute: styles you apply by
+        "default" will be used on the closed state.
+      </p>
+    </details>
+
+    <details>
+      <summary>But this requires JavaScript, right?</summary>
+      <p>
+        Open the JS panel on this pen. Clean as a whistle! This is handled
+        totally by the browser.
+      </p>
+    </details>
+
+    <details>
+      <summary>What about accessibility? Is that the catch?</summary>
+      <p>
+        Sorry to disappoint you. Since these are native HTML elements, they
+        provide useful semantic information to screen readers.
+      </p>
+      <p>
+        Screen readers will typically read the <code>summary</code> for a
+        collapsed <code>details</code> block (and communicate that it's
+        collapsed). They'll also provide an interactive hook for users to open
+        the <code>details</code> block. If the <code>details</code> is already
+        expanded, they'll read the whole content.
+      </p>
+      <p>
+        I don't rely on assistive tech to read the web, so I'm probably not
+        aware of some limitations or drawbacks to using <code>details</code> and
+        <code>summary</code>, but I suspect their AX is at least as good as (if
+        not better than) most JavaScript-dependent accordion solutions.
+      </p>
+    </details>
+
+    <details>
+      <summary>Excellent! More information, please!</summary>
+      <p>
+        You bet! Here are some great resources on <code>details</code> &amp;
+        <code>summary</code>:
+      </p>
+      <ul>
+        <li>
+          MDN:
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details"
+            target="_blank"
+            rel="noopener"
+            >details</a
+          >,
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary"
+            target="_blank"
+            rel="noopener"
+            >summary</a
+          >
+        </li>
+        <li>
+          <a
+            href="http://html5 doctor.com/the-details-and-summary-elements/"
+            target="_blank"
+            rel="noopener"
+            >HTML5Doctor</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.scottohara.me/blog/2018/09/03/details-and-summary.html"
+            target="_blank"
+            rel="noopener"
+            >Scott O'Hara</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://blog.teamtreehouse.com/use-details-summary-elements"
+            target="_blank"
+            rel="noopener"
+            >Treehouse Blog</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://webdesign.tutsplus.com/tutorials/explaining-the-details-and-summary-elements--cms-21999"
+            target="_blank"
+            rel="noopener"
+            >Envato Tuts+</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://caniuse.com/#feat=details"
+            target="_blank"
+            rel="noopener"
+            >caniuse table for <code>details</code></a
+          >
+        </li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>But what about cross-browser compatibility?</summary>
+      <p>
+        Yeah, sorry. Here's some bad news. IE, Edge, and Opera Mini don't
+        currently support <code>details</code>/<code>summary</code> with native
+        open/close behavior (check out
+        <a
+          href="https://caniuse.com/#feat=details"
+          target="_blank"
+          rel="noopener"
+          >caniuse data for <code>details</code></a
+        >).
+      </p>
+      <p></p>
+      <p>
+        These browsers will show all your <code>details</code> elements
+        expanded. That's not the worst though: it's a bit of progressive
+        enhancement: if the browser doesn't support the native UI behavior, the
+        content will still be visible to users.
+      </p>
+      <p>
+        It's unlikey IE11 will be getting any updates on this front, but there's
+        hope for Edge! If this is important to you, please
+        <a
+          href="https://wpdev.uservoice.com/forums/257854-microsoft-edge-developer/suggestions/6261266-details-summary-elements"
+          target="_blank"
+          rel="noopener"
+          >cast a vote a vote for Edge to support <code>details</code>/<code
+            >summary</code
+          ></a
+        >. (Or just wait for Edge to use Chromium, I guess. 😕)
+      </p>
+      <p>
+        If you do need to have open/close behavior in IE11 (or any other
+        non-supporting browser), you'll probably need a polyfill. This
+        <a
+          href="https://www.smashingmagazine.com/2014/11/complete-polyfill-html5-details-element/"
+          target="_blank"
+          rel="noopener"
+          >Smashing Magazine <code>details</code> polyfill tutorial</a
+        >
+        looks like a good place to start.
+      </p>
+    </details>
+  </body>
+</html>

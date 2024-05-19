@@ -1,0 +1,45 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+        link(rel="stylesheet", href="./asssets/css/main.css")
+    body 
+        container
+            h2 Pre-Deployment Testing Status
+            details
+                summary.success UI Unit Tests
+                ul
+                li 
+                    div.success Test 1
+                    span.status succeeded
+                li
+                    div.success Test 2
+                    span.status succeeded
+            details
+                summary.warning API Unit Tests
+                ul
+                li 
+                    div.success Test 1
+                    span.status succeeded
+                li 
+                    div.warning Test 2
+                    span.status warning
+                    span.info info here about the warning status. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras imperdiet eros eu nisl maximus auctor. Aenean tempus ornare urna ultricies lacinia. Duis laoreet pharetra lectus eu maximus. Fusce ut ante convallis, placerat risus in, molestie diam. Nam vitae mollis massa, nec commodo purus
+                li
+                    div.success Test 3
+                    span.status succeeded
+            details(open)
+                summary.failure DB Unit Tests
+                ul
+                li 
+                    div.success Test 1
+                    span.status succeeded
+                li
+                    div.success Test 2
+                    span.status succeeded
+                li 
+                    div.failure Test 3
+                    span.status failure
+                    span.info info here about the failure status. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras imperdiet eros eu nisl maximus auctor. Aenean tempus ornare urna ultricies lacinia. Duis laoreet pharetra lectus eu maximus. Fusce ut ante convallis, placerat risus in, molestie diam. Nam vitae mollis massa, nec commodo purus

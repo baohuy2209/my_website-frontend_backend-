@@ -1,0 +1,16 @@
+{
+  "name": "unit-testing_results_panel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "sass assets/scss/main.scss assets/css/main.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nguyen Bao Huy",
+  "license": "ISC",
+  "dependencies": {
+    "pug": "^3.0.2",
+    "sass": "^1.77.1"
+  }
+}

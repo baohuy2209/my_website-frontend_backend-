@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/main.css" />
+  </head>
+  <body>
+    <div class="panel">
+      <h1>Use of &lt;details&gt; for help text</h1>
+      <p>
+        You can use the details element to provide additional information on
+        fields that new users might need help with.
+      </p>
+      <p>Click on the help icon to toggle the help text.</p>
+      <hr />
+      <form>
+        <div class="form-group">
+          <label for="participants" class="form-group-label">Name</label>
+          <div class="form-group-input-container">
+            <input
+              type="text"
+              id="participants"
+              class="form-control"
+              placeholder="e.g. Harry Potter"
+            />
+            <details>
+              <summary>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-help-circle"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+              </summary>
+              <small class="form-group-help">
+                The name that will be displayed in your public profile.
+              </small>
+            </details>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

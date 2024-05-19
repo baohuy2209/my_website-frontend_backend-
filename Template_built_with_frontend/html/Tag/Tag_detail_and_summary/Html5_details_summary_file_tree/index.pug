@@ -1,0 +1,46 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body 
+        .container
+        .title-container
+            h1.title.code &lt;details&gt; &amp; &lt;summary&gt;
+            
+        .card-list
+            .card
+                h3.card-title.code.code-details &lt;details&gt;
+                p.card-description works like an accordian - but without the need for script, supported by most major browsers (except IE & Edge)
+
+            .card
+                h3.card-title.code.code-summary &lt;summary&gt;
+                p.card-description To customize the title of 
+                    span.code &lt;details&gt;
+                    |  tag (of which would fallback to 'details' in most cases)
+
+        .sample
+            .sample-title code
+            .sample-code
+                .code 
+                    span.code-details &lt;details&gt;
+                    br
+                    | &nbsp;&nbsp;
+                    span.code-summary &lt;summary&gt;
+                    br
+                    | &nbsp;&nbsp;&nbsp;&nbsp;What did the cat says when the mouse got away?
+                    br
+                    | &nbsp;&nbsp;
+                    span.code-summary &lt;/summary&gt;
+                    br
+                    | &nbsp;&nbsp;You have got to be kitten me!
+                    br
+                    span.code-details &lt;/details&gt;
+
+            .sample-title output
+            .sample-html
+                details.sample-html-details
+                    summary.sample-html-summary What did the cat says when the mouse got away?
+                    .speech You have got to be kitten me!
+	

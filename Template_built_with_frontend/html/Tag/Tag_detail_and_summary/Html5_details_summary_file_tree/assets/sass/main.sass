@@ -1,0 +1,165 @@
+$purple: #9796F0
+$purple-dark: #783F8E
+$pink: #FBC7D4
+$pink-hot: #E36588
+$green-pale: #E4F0D0
+$grey: #738290
+$rice: #FFFCF7
+$white: #FFF
+$pad: 20px
+$ease-back: cubic-bezier(0.01, 0.29, 0.38, 2.37)
+
+@mixin mobile
+	@media (max-width: 500px)
+		@content
+	
+.container
+	padding: 0 $pad
+	max-width: 800px
+	margin: 0 auto
+
+.title
+	font-size: 3rem
+	display: inline-block
+	color: $purple
+	background: linear-gradient(to right, $purple-dark, $purple 20%, $pink, $pink-hot)
+	-webkit-background-clip: text
+	-webkit-text-fill-color: transparent
+	
+.card
+	border-radius: 10px
+	background: $white
+	padding: $pad
+	box-shadow: 4px 4px 12px 1px rgba(0, 0, 0, 0.2)
+	line-height: 1.5
+
+	& + &
+		margin-left: $pad
+
+	&-list
+		display: flex
+		flex: 1
+	
+	&-title
+		margin: 0 0 $pad 0
+		letter-spacing: 1px
+	
+	&-description
+		margin: 0
+	
+	&-details
+		.card-title
+			color: $purple-dark
+	
+	&-summary
+		.card-title
+			color: $pink-hot
+	
+	@include mobile
+		flex: 1
+
+.sample
+	margin-top: $pad * 2
+	border-radius: 10px
+	overflow: hidden
+
+	&-title
+		line-height: 2
+		font-size: 0.75rem
+		background: $grey
+		color: $white
+		padding: 0 $pad
+		letter-spacing: 1px 
+	
+		@extend .code
+
+	&-code
+		border-left: 2px dashed $green-pale
+		border-right: 2px dashed $green-pale
+		padding: $pad
+		line-height: 1.5
+	
+	&-html
+		padding: $pad
+		background: $green-pale
+	
+		&-details
+			&[open]
+				.sample-html-summary:before
+					content: '🙀'
+					animation: cat 0.2s $ease-back
+
+		&-summary
+			list-style-image: none
+			cursor: pointer
+			padding-left: $pad * 3
+			position: relative
+	
+			&:before
+				content: '😼'
+				position: absolute
+				top: calc(50% - 18px)
+				left: 0
+				font-size: 2rem
+	
+			&:focus
+				outline: none
+	
+			&::-webkit-details-marker
+				display: none
+			
+	
+.code
+	font-family: 'Fira Mono', monospace
+
+	&-details
+		color: $purple-dark
+	
+	&-summary
+		color: $pink-hot
+
+.speech
+	display: inline-block
+	margin: $pad 0 0 7px
+	padding: $pad
+	background: $white
+	border-radius: 0 10px 10px 10px
+	position: relative
+	animation: speech 0.3s $ease-back
+	transform-origin: top left
+
+	&:before
+		content: ''
+		position: absolute
+		border: 8px solid transparent
+		top: -16px
+		left: 0
+		border-bottom-color: $white
+	
+\:root
+	font-size: 16px
+
+html, body
+	width: 100%
+	height: 100%
+	display: flex
+	background: $rice
+	color: $grey
+	font-family: 'Roboto', sans-serif
+
+*
+	box-sizing: border-box
+	&:before, &:after
+		box-sizing: inherit
+
+@keyframes speech
+	from
+		opacity: 0
+		transform: scale(0.98)
+	to
+		opacity: 1
+		transform: none
+	
+@keyframes cat
+	50%
+		transform: scale(1.1)
