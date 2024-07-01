@@ -1,0 +1,11 @@
+import express from "express";
+const router = express.Router();
+import verifyjwt from "../../app/middleware/verifyToken";
+import AuthController from "../../app/controller/auth.controller";
+router.post("/register", AuthController.register);
+router.post("/login", AuthController.login);
+router.post("/logout", AuthController.logout);
+router.get("fetchProfile", AuthController.fetchProfile);
+router.post("/refresh", AuthController.refresh);
+router.get("/test", verifyjwt.verifyToken, AuthController.test);
+export default router;

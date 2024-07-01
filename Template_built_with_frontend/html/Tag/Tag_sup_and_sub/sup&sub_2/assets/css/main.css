@@ -1,0 +1,45 @@
+@import "https://fonts.googleapis.com/css?family=Roboto+Slab:300,400";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  font-family: "Roboto Slab", serif;
+}
+body {
+  background: #eceff1;
+}
+p {
+  font-size: 45px;
+  line-height: 1.8;
+  color: #455a64;
+  font-weight: 300;
+  text-align: center;
+  margin: 1.3em;
+}
+span {
+  font-size: 85px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+sup,
+sub {
+  font-size: 0.4em;
+  vertical-align: unset;
+  font-weight: 400;
+}
+sup {
+  bottom: 1em;
+}
+sub {
+  top: 0.2em;
+}
+sub.sum {
+  top: 0;
+}
+sup.sum {
+  bottom: 1.1em;
+}
+span:hover {
+  color: #e53935;
+}

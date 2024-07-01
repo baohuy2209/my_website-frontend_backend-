@@ -1,0 +1,16 @@
+{
+  "name": "css_typing_animation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "sass assets/scss/main.scss assets/css/main.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "scss": "^0.2.4"
+  }
+}

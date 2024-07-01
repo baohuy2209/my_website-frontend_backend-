@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css?family=Kalam");
+
+figure {
+  width: 85%;
+  border: 2px silver solid;
+  min-width: 250px;
+  background-color: white;
+
+  margin: 3% auto;
+  padding: 15px;
+}
+img {
+  width: 100%;
+  display: block;
+
+  box-shadow: 0px 0px 12px 3px silver;
+}
+
+body {
+  backgroud-color: #191919;
+  background-image: radial-gradient(#323232 0%, #3f3f3f 40%, #1c1c1c 150%),
+    linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(0, 0, 0, 0.25) 200%
+    );
+}
+figcaption {
+  font-family: "Kalam", cursive;
+  height: 2.5em;
+
+  font-size: 1.2em;
+
+  margin: 0;
+  padding: 5px;
+}
+.wiggle1 {
+  animation: wiggle1 0.4s;
+}
+.wiggle {
+  animation: wiggle 0.4s;
+}
+.wiggle2 {
+  animation: wiggle2 0.4s;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(3);
+  }
+
+  45% {
+    transform: rotate(-3deg);
+  }
+  85% {
+    transform: rotate(-1deg);
+  }
+
+  100% {
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes wiggle1 {
+  0% {
+    transform: rotate(-3);
+  }
+
+  45% {
+    transform: rotate(0deg);
+  }
+  85% {
+    transform: rotate(1deg);
+  }
+
+  100% {
+    transform: rotate(-1deg);
+  }
+}
+@keyframes wiggle2 {
+  0% {
+    transform: rotate(1);
+  }
+
+  45% {
+    transform: rotate(2deg);
+  }
+  85% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-1deg);
+  }
+}
+@media only screen and (min-width: 636px) and (max-width: 960px) {
+  figure {
+    width: 40%;
+    margin: 2%;
+    float: left;
+  }
+  figcaption {
+    font-size: 1.3em;
+  }
+}
+@media only screen and (min-width: 961px) {
+  figure {
+    width: 27%;
+    float: left;
+    margin: 1% 1%;
+  }
+  figcaption {
+    font-size: 1.4em;
+  }
+}

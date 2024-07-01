@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css?family=Kristi|Raleway:900");
+p {
+  display: flex;
+  justify-content: center;
+}
+
+.date {
+  position: relative;
+  font-size: 100px;
+  line-height: 100px;
+  font-weight: bold;
+  width: 1.5em;
+  height: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.7em;
+  margin-right: 0.6em;
+  color: #4eeab6;
+  font-family: "Raleway", sans-serif;
+  opacity: 0.5;
+  text-shadow: 0.04em 0.04em 0 #0b4a35;
+  transform: rotate(-8deg);
+  text-align: right;
+}
+.date:before {
+  content: "";
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  background-color: yellow;
+  border-radius: 50%;
+  display: block;
+  transform: translateX(0.3em);
+  z-index: -1;
+}
+.date sup {
+  position: absolute;
+  top: -0.2em;
+  right: -0.17em;
+  line-height: 1;
+  font-size: 1.5em;
+  font-weight: normal;
+  font-family: "Kristi", cursive;
+  color: red;
+  z-index: -1;
+  text-shadow: 0.017em 0.017em 0 #a00000;
+}
+
+/*# sourceMappingURL=main.css.map */

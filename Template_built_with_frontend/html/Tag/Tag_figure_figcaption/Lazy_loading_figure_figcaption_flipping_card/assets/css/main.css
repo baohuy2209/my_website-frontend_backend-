@@ -1,0 +1,157 @@
+body {
+  font-family: "Helvetica", sans-serif;
+  display: flex;
+  height: calc(100vh - 300px);
+  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/topography.png");
+  color: #444;
+  line-height: 1.6;
+  padding: 150px;
+  margin: 0;
+}
+
+figure {
+  margin: auto;
+  width: 900px;
+  position: relative;
+}
+
+.front,
+.back {
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+}
+
+.front {
+  transform: perspective(2000px) rotateY(0deg);
+  transition: all 0.3s linear;
+  position: relative;
+  backface-visibility: hidden;
+}
+
+.back {
+  transform: perspective(2000px) rotateY(180deg);
+  transition: all 0.3s linear;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+  backface-visibility: hidden;
+}
+
+.back__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  background: #fafafa;
+  border-bottom: 1px solid #eaeaea;
+  border-radius: 5px 5px 0 0;
+  padding: 0 40px;
+}
+
+.back__header button {
+  margin: auto 0;
+}
+
+.back p {
+  padding: 0 40px 40px 40px;
+}
+
+figure .image {
+  overflow: hidden;
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  border-radius: 2px;
+}
+
+figcaption {
+  padding: 10px 20px;
+  border-radius: 5px 5px 0 0;
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  left: 40%;
+  transition: 0.2s all linear 0s;
+}
+
+figure h4 {
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+figure h4 b {
+  align-self: start;
+  color: #444;
+  margin-left: 20px;
+  line-height: 20px;
+}
+
+figure .details {
+  height: 0;
+  overflow: hidden;
+  transition: 0.2s all linear 0s;
+}
+
+figure p {
+  margin: 0;
+  color: #777;
+}
+
+figure button {
+  cursor: pointer;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+
+figure button i {
+  margin-left: 1rem;
+}
+
+#show-back {
+  display: block;
+  margin-top: 10px;
+  background: #33ad11;
+}
+
+#show-front {
+  margin-top: auto;
+  background: #444;
+}
+@media screen and (min-width: 426px) and (max-width: 769px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  body {
+    font-size: 12px;
+  }
+  figcaption {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px 5px 0 0;
+    background: #fff;
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    left: 20px;
+  }
+}

@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css?family=Kristi|Raleway:900");
+
+html,
+body {
+  //background-image: url('data:image/svg+xml,%3Csvg width="52" height="26" viewBox="0 0 52 26" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.4"%3E%3Cpath d="M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+}
+
+p {
+  display: flex;
+  justify-content: center;
+}
+
+.date {
+  position: relative;
+  font-size: 100px;
+  line-height: 100px;
+  font-weight: bold;
+  width: 1.5em;
+  height: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //background-color:rgba(0,0,0,0.2);
+  margin-top: 0.7em;
+  margin-right: 0.6em;
+  color: #4eeab6;
+  font-family: "Raleway", sans-serif;
+  opacity: 0.5;
+  text-shadow: 0.04em 0.04em 0 #0b4a35;
+  transform: rotate(-8deg);
+  text-align: right;
+  &:before {
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    background-color: yellow;
+    border-radius: 50%;
+    display: block;
+    transform: translateX(0.3em);
+    z-index: -1;
+  }
+  sup {
+    position: absolute;
+    top: -0.2em;
+    right: -0.17em;
+    line-height: 1;
+    font-size: 1.5em;
+    font-weight: normal;
+    //font-family: 'Tangerine', cursive;
+    //font-family: 'Herr Von Muellerhoff', cursive;
+    font-family: "Kristi", cursive;
+    color: red;
+    z-index: -1;
+    text-shadow: 0.017em 0.017em 0 #a00000;
+  }
+}

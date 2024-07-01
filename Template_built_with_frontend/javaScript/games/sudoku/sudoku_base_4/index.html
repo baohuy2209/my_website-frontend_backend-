@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sudoku in a Base 4 instead of 3</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <script src="./assets/javascript/app.js"></script>
+    <h1>Sudoku in a Base 4 instead of 3</h1>
+    <p>
+      Instructions: click and hold on a box, let go on the number of your choice
+      and that will fill the square. Try to solve all 256!
+    </p>
+    <div id="wrapper"></div>
+    <span id="btns">
+      <button class="control" onclick="check()">check</button>
+      <button class="control" onclick="restart()">restart</button>
+      <button class="control" onclick="random()">random<br />(additive)</button>
+      <button class="control" onclick="random2()">random2</button>
+      <button class="control" onclick="solve()">solve<br />(greedy)</button>
+      <button class="control" onclick="solve2()">solve2</button>
+      <div id="counterWrapper">
+        <div id="solvedCount"></div>
+      </div>
+    </span>
+    <p>
+      A true Base 4 sudoku could be 16 layers of this, and you would have to
+      worry about the z dimension as well. This is just a slice of the true base
+      4 experience.
+    </p>
+    <p>
+      EDIT: I was mistaken^: base 3 sudoku is only 2d, so base 4 sudoku would be
+      2d as well. I just like the idea of 3d sudoku...
+    </p>
+    <div id="selection">
+      <span id="s1" onmouseup="chooseSelection(s1)">1</span>
+      <span id="s2" onmouseup="chooseSelection(s2)">2</span>
+      <span id="s3" onmouseup="chooseSelection(s3)">3</span>
+      <span id="s4" onmouseup="chooseSelection(s4)">4</span>
+      <div class="split"></div>
+      <span id="s5" onmouseup="chooseSelection(s5)">5</span>
+      <span id="s6" onmouseup="chooseSelection(s6)">6</span>
+      <span id="s7" onmouseup="chooseSelection(s7)">7</span>
+      <span id="s8" onmouseup="chooseSelection(s8)">8</span>
+      <div class="split"></div>
+      <span id="s9" onmouseup="chooseSelection(s9)">9</span>
+      <span id="s10" onmouseup="chooseSelection(s10)">10</span>
+      <span id="s11" onmouseup="chooseSelection(s11)">11</span>
+      <span id="s12" onmouseup="chooseSelection(s12)">12</span>
+      <div class="split"></div>
+      <span id="s13" onmouseup="chooseSelection(s13)">13</span>
+      <span id="s14" onmouseup="chooseSelection(s14)">14</span>
+      <span id="s15" onmouseup="chooseSelection(s15)">15</span>
+      <span id="s16" onmouseup="chooseSelection(s16)">16</span>
+      <!-- Add the rest of the spans here -->
+    </div>
+    <!-- Add your JavaScript functions and logic here -->
+  </body>
+</html>

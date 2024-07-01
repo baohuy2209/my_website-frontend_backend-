@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Oswald");
+
+.backgroundDiv {
+  background-image: url("https://bit.ly/2Ik2nrO");
+  background-size: cover;
+  display: block;
+  filter: blur(45px);
+  -webkit-filter: blur(45px);
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  transform: scale(1.1);
+}
+
+.centerDiv {
+  display: none;
+  position: fixed;
+  margin: 0 auto;
+  width: 480px;
+  height: 700px;
+  background-color: #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  z-index: 2;
+  left: 35vw;
+  top: 15vh;
+  -webkit-box-shadow: 2px 0px 21px -1px rgba(0, 0, 0, 0.76);
+  -moz-box-shadow: 2px 0px 21px -1px rgba(0, 0, 0, 0.76);
+  box-shadow: 2px 0px 21px -1px rgba(0, 0, 0, 0.76);
+  background: linear-gradient(270deg, #510f66, #9f209e, #00e0ff);
+  background-size: 600% 600%;
+  -webkit-animation: Invader 15s ease infinite;
+  -moz-animation: Invader 15s ease infinite;
+  animation: Invader 15s ease infinite;
+}
+
+@-webkit-keyframes Invader {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes Invader {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes Invader {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+imgDiv {
+}
+
+.zapMe {
+  width: 100%;
+  height: auto;
+}
+
+img {
+  border-radius: 5px;
+  box-shadow: 1px 5px 7px rgba(0, 0, 0, 0.5);
+}
+
+.caption {
+  font-family: "Oswald", sans-serif;
+  color: white;
+  margin-top: 15px;
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
+.credit {
+  float: right;
+  color: white;
+  top: 0;
+  margin-top: 25px;
+  font-family: "Open Sans Condensed", sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .centerDiv {
+    left: 25%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .centerDiv {
+    position: fixed;
+    margin: 0 auto;
+    width: 80%;
+    height: auto;
+    background-color: #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    z-index: 2;
+    left: 6%;
+    top: 2vh;
+  }
+  .credit {
+    float: left;
+    margin-top: 10px;
+  }
+}

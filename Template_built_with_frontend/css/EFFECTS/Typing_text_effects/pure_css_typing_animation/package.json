@@ -1,0 +1,16 @@
+{
+  "name": "pure_css_typing_animation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "sass assets/scss/main.scss assets/css/main.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nguyen Bao Huy",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.77.5",
+    "scss": "^0.2.4"
+  }
+}

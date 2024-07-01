@@ -1,0 +1,81 @@
+:root {
+  --green: #65f283;
+  --blue: #4ad9db;
+  --red: #f98ca4;
+  --orange: #f5b10b;
+  --mustard: #dac249;
+  --darkblue: #2f3e9c;
+  --darkred: #9e132c;
+  --purple: #6e1f58;
+  --outline: 2px;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(10deg, rgb(244, 235, 160) 43%, rgb(192, 250, 202) 43%);
+}
+
+h1 {
+  font-family: "CoreCircus", sans-serif;
+  text-transform: uppercase;
+  font-size: 16vw;
+  text-align: center;
+  line-height: 1;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  color: var(--red);
+  text-shadow: -1px -1px 0 var(--purple), 1px -1px 0 var(--purple), -1px 1px 0 var(--purple), 1px 1px 0 var(--purple), 1px 0px 0px var(--green), 0px 1px 0px var(--green), 2px 1px 0px var(--green), 1px 2px 0px var(--green), 3px 2px 0px var(--green), 2px 3px 0px var(--green), 4px 3px 0px var(--green), 3px 4px 0px var(--green), 5px 4px 0px var(--green), 3px 5px 0px var(--purple), 6px 5px 0px var(--purple), -1px 2px 0 black, 0 3px 0 var(--purple), 1px 4px 0 var(--purple), 2px 5px 0px var(--purple), 2px -1px 0 var(--purple), 3px 0 0 var(--purple), 4px 1px 0 var(--purple), 5px 2px 0px var(--purple), 6px 3px 0 var(--purple), 7px 4px 0 var(--purple), 10px 10px 4px var(--mustard);
+}
+h1:after, h1:before {
+  content: attr(data-heading);
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  width: 100%;
+  top: 0;
+  z-index: 5;
+}
+h1::before {
+  text-shadow: -1px -1px 0 var(--darkred), 1px -1px 0 var(--darkred), -1px 1px 0 var(--darkred), 1px 1px 0 var(--darkred), 1px 0px 0px var(--orange), 0px 1px 0px var(--orange), 2px 1px 0px var(--orange), 1px 2px 0px var(--orange), 3px 2px 0px var(--orange), 2px 3px 0px var(--orange), 4px 3px 0px var(--orange), 3px 4px 0px var(--orange), 5px 4px 0px var(--orange), 3px 5px 0px var(--darkred), 6px 5px 0px var(--darkred), -1px 2px 0 black, 0 3px 0 var(--darkred), 1px 4px 0 var(--darkred), 2px 5px 0px var(--darkred), 2px -1px 0 var(--darkred), 3px 0 0 var(--darkred), 4px 1px 0 var(--darkred), 5px 2px 0px var(--darkred), 6px 3px 0 var(--darkred), 7px 4px 0 var(--darkred), 10px 10px 4px rgba(106, 241, 119, 0.8);
+  color: var(--green);
+  height: 66%;
+}
+h1::after {
+  height: 33%;
+  color: var(--blue);
+  text-shadow: -1px -1px 0 var(--darkblue), 1px -1px 0 var(--darkblue), -1px 1px 0 var(--darkblue), 1px 1px 0 var(--darkblue), 1px 0px 0px var(--red), 0px 1px 0px var(--red), 2px 1px 0px var(--red), 1px 2px 0px var(--red), 3px 2px 0px var(--red), 2px 3px 0px var(--red), 4px 3px 0px var(--red), 3px 4px 0px var(--red), 5px 4px 0px var(--red), 3px 5px 0px var(--darkblue), 6px 5px 0px var(--darkblue), -1px 2px 0 black, 0 3px 0 var(--darkblue), 1px 4px 0 var(--darkblue), 2px 5px 0px var(--darkblue), 2px -1px 0 var(--darkblue), 3px 0 0 var(--darkblue), 4px 1px 0 var(--darkblue), 5px 2px 0px var(--darkblue), 6px 3px 0 var(--darkblue), 7px 4px 0 var(--darkblue);
+}
+
+/*
+ * Webfont: CoreCircus by S-Core
+ * URL: http://www.myfonts.com/fonts/s-core/core-circus/regular/
+ * Copyright: Copyright (c) 2013 by S-Core Co., Ltd.. All rights reserved.
+ * Licensed pageviews: 10,000
+*
+ * Webfont: CoreCircus2DDot1 by S-Core
+ * URL: http://www.myfonts.com/fonts/s-core/core-circus/dot1/
+ * Copyright: Copyright (c) 2013 by S-Core Co., Ltd.. All rights reserved.
+ * Licensed pageviews: 10,000
+*/
+@font-face {
+  font-family: "CoreCircus2DDot1";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.woff2") format("woff2"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.ttf") format("truetype");
+}
+@font-face {
+  font-family: "CoreCircus";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.woff2") format("woff2"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.ttf") format("truetype");
+}
+@font-face {
+  font-family: "CoreCircusPierrot4";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_13_0.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_13_0.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_13_0.woff2") format("woff2"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_13_0.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_13_0.ttf") format("truetype");
+}
+
+/*# sourceMappingURL=main.css.map */

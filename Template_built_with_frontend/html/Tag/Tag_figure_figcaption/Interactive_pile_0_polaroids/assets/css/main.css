@@ -1,0 +1,56 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+}
+.desk {
+  width: 110vw;
+  height: 110vh;
+  left: -5vw;
+  top: -5vh;
+  background: black url(https://source.unsplash.com/5fIoyoKlz7A/1600x900) no-repeat 50% 50%;
+  background-size: cover;
+  overflow: hidden;
+  position: fixed;
+  transition: filter 0.2s ease;
+}
+.photos {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.drag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+figure {
+  margin: 0;
+  padding: 2vmin;
+  background: white;
+  width: 30vmin;
+  border-radius: 0.5vmin;
+  box-shadow: 0 0 4vmin rgba(0, 0, 0, 0.75), 0 0 0.5vmin rgba(0, 0, 0, 0.5);
+  font-family: "Just Another Hand", cursive;
+  font-size: 4vmin;
+  position: absolute;
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
+}
+.active figure {
+  box-shadow: 5vmin 5vmin 4vmin rgba(0, 0, 0, 0.75), 0 0 2vmin rgba(0, 0, 0, 0.2);
+}
+figure img {
+  max-width: 100%;
+  pointer-events: none;
+}
+figure figcaption {
+  text-align: center;
+  pointer-events: none;
+}

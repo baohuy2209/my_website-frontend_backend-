@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/main.css" />
+  </head>
+  <body>
+    <!-- Reciept top-half -->
+    <div id="wrapper">
+      <div class="card">
+        <div class="icon"></div>
+        <h1>Voilà, order complete!</h1>
+        <p>Your subscription has been upgraded to Pro.</p>
+      </div>
+      <!-- Reciept bottom-half -->
+      <div class="card">
+        <ul>
+          <li>
+            <span>Plan</span>
+            <span>Pro</span>
+          </li>
+          <li>
+            <span>Start of billing cycle</span>
+            <span>July 4, 2023</span>
+          </li>
+          <li>
+            <span>First payment on</span>
+            <span>July 4, 2023</span>
+          </li>
+          <li>
+            <span>Amount due</span>
+            <span>$99</span>
+          </li>
+        </ul>
+      </div>
+      <!-- Reciept CTA -->
+      <div class="card">
+        <div class="cta-row">
+          <button class="secondary">Back to dashboard</button>
+          <button>Explore use cases</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Template -->
+    <a id="signature" href="https://x.com/pxlgrdnr" target="_blank">
+      planted by pxlgrdnr 🌱
+    </a>
+    <svg id="texture">
+      <filter id="noise">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency=".8"
+          numOctaves="5"
+          stitchTiles="stitch"
+        ></feTurbulence>
+        <feColorMatrix type="saturate" values="0"></feColorMatrix>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noise)"></rect></svg
+    ><a id="signature" href="https://x.com/pxlgrdnr" target="_blank">
+      planted by pxlgrdnr 🌱
+    </a>
+    <svg id="texture">
+      <filter id="noise">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency=".8"
+          numOctaves="5"
+          stitchTiles="stitch"
+        ></feTurbulence>
+        <feColorMatrix type="saturate" values="0"></feColorMatrix>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noise)"></rect>
+    </svg>
+  </body>
+</html>

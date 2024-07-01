@@ -1,0 +1,12 @@
+{
+  "name": "interactive_pile_0_polaroids",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "lessc assets/less/style.less assets/css/main.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nguyễn Bảo Huy",
+  "license": "ISC"
+}

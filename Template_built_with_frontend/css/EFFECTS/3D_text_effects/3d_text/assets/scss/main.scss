@@ -1,0 +1,65 @@
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Rationale);
+
+$angle: 25deg;
+$font: "Rationale", sans-serif;
+$width: 400px;
+$height: 90px;
+
+body {
+  background: #000 url(https://i.imgur.com/D3HiN8e.jpg) no-repeat center center
+    fixed;
+  background-size: cover;
+}
+
+h1 {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: $width;
+  height: $height;
+  margin: (-$height/2) (-$width/2);
+
+  text-align: center;
+  text-transform: uppercase;
+  font-family: $font;
+  font-size: 64px;
+  color: #fff;
+  line-height: 64px;
+
+  perspective: 150px;
+
+  span {
+    display: inline-block;
+    border: 2px solid #fff;
+    padding: 10px;
+  }
+
+  .left {
+    padding-right: 0;
+    border-right-width: 0;
+    transform: rotateY(-$angle) translateX(50%-(cos($angle) * 50%) +0.5);
+    //calculate distance that right side is moved on rotate, then move back (with slight overlap)
+  }
+
+  .right {
+    padding-left: 0;
+    border-left-width: 0;
+    transform: rotateY($angle) translateX(-50%+ (cos($angle) * 50%) - 0.5); //calculate distance that left side is moved on rotate, then move back (with slight overlap)
+  }
+
+  &:hover {
+    animation: anim 2s ease 0s infinite;
+  }
+}
+
+@keyframes anim {
+  25% {
+    perspective-origin: 50% 100%;
+  }
+  75% {
+    perspective-origin: 50% 0%;
+  }
+}

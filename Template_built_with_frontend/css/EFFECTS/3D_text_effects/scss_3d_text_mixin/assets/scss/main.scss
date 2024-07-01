@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css?family=Kanit:900");
+
+$LIGHTING_FLOOR: 1;
+$LIGHTING_CEIL: 2;
+$LIGHTING_FLAT: 3;
+
+@mixin text3d(
+  $primary,
+  $depth: 5,
+  $shadowsteps: 5,
+  $shadowincrementer: 3px,
+  $shadowopacity: 0.5,
+  $primaryshadowcolour: #000,
+  $lighting: $LIGHTING_CEIL
+) {
+  $predefinedShadows: (
+    0 0 5px rgba($primaryshadowcolour, 0.05),
+    0 -1px 3px rgba($primaryshadowcolour, 0.2),
+    0 3px 5px rgba($primaryshadowcolour, 0.2)
+  );
+  $value: ();
+  @for $i from 1 through $depth {
+    $num: $i + px;
+    $hueadjust: $i;
+    @if ($lighting == $LIGHTING_FLOOR) {
+      $hueadjust: ($i * 2 - $depth - 5) * 1%;
+    }
+    @elseif ($lighting == $LIGHTING_CEIL) {
+      $hueadjust: -($i * 2 + $depth - 10) * 1%;
+    }
+    @elseif ($lighting == $LIGHTING_FLAT) {
+      $hueadjust: -$depth * 1%;
+    }
+    $colour: adjust-color($primary, $lightness: $hueadjust);
+    $theShadow: 0 $num 0 $colour;
+    $value: append($value, $theShadow, comma);
+  }
+
+  @for $i from 1 through $shadowsteps {
+    @if ($i >= length($predefinedShadows)) {
+      $dist: $i * $shadowincrementer;
+      $value: append(
+        $value,
+        0 $dist $dist rgba($primaryshadowcolour, $shadowopacity)
+      );
+    } @else {
+      $value: append($value, nth($predefinedShadows, $i));
+    }
+  }
+
+  text-shadow: $value;
+}
+
+$primarycolour: rgb(230, 190, 190);
+
+body {
+  background: $primarycolour;
+}
+
+h1 {
+  color: #fff;
+  font-family: "Kanit";
+  font-size: 60px;
+  line-height: 1em;
+  margin: 0;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+
+  @include text3d(
+    adjust-color($primarycolour, $lightness: -8%),
+    $depth: 8,
+    $primaryshadowcolour:
+      adjust-color($primarycolour, $lightness: -10%, $saturation: +20%),
+    $shadowopacity: 0.3
+  );
+}

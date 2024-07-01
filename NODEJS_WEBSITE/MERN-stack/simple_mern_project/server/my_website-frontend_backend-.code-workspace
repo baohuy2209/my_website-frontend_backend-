@@ -1,0 +1,64 @@
+{
+  "folders": [
+	{
+		"path": "../../../.."
+	},
+	{
+		"path": "../../../../../javascript"
+	},
+	{
+		"path": "../../../../../3D_portfolio"
+	},
+	{
+		"path": "../../../../../30-Days-Of-Python"
+	},
+	{
+		"path": "../../../../../f8_blog_expressjs"
+	},
+	{
+		"path": "../../../../../doctors-appointment-booking-system"
+	},
+	{
+		"path": "../../../../../HTML-CSS-JavaScript-projects-for-beginners"
+	},
+	{
+		"path": "../../../../../mernProjectEcommerce"
+	},
+	{
+		"path": "../../../../../TypeScript-algorithm"
+	},
+	{
+		"path": "../../../../../TypeScriptExercises"
+	},
+	{
+		"path": "../../../../../typescript-exercises-2"
+	},
+	{
+		"path": "../../../../../typescript-tdd-exercises"
+	},
+	{
+		"path": "../../../../../typescript-workshop-exercises"
+	},
+	{
+		"path": "../../../../../modern_portfolio"
+	},
+	{
+		"path": "../../../../../projects"
+	},
+	{
+		"path": "../../../../../node_typescript_crud"
+	},
+	{
+		"path": "../../../../../../../OneDrive/Documents/GitHub/python"
+	},
+	{
+		"path": "../../../../../q"
+	},
+	{
+		"path": "../../../../../to-do-app"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "my_website-frontend_backend-"
+  }
+}

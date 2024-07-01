@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=, initial-scale=1.0")
+        title Document
+        link(rel ="", href="./assets/css/main.css")
+    body 
+        mixin _article(number_1, number_2, desc)
+            .row(class= 'row_' + number_1)
+                .number(class= 'number_' + number_1)
+                    h2= number_2
+                .desc(class= 'desc_' + desc)
+                    dl
+                        dt= desc
+                        dd Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec sodales ipsum. Donec sit amet mi ac risus commodo egestas.
+
+        .flexbox.title
+            h1 Responsive Stairs Diagram
+            dl
+                dt The Magical Of "ing"
+                dd Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec sodales ipsum. Donec sit amet mi ac risus commodo egestas.
+        .flexbox.stairs
+            +_article('1', '05', 'winning')
+            +_article('2', '04', 'working')
+            +_article('3', '03', 'searching')
+            +_article('4', '02', 'planning')
+            +_article('5', '01', 'timing')
+        |
+        |
+        a.me(href='https://codepen.io/uzcho_/pens/popular/?grid_type=list' target='_blank')
