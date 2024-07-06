@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Axios Requests example</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container my-3" style="max-width: 600px">
+      <!-- Heading Page -->
+      <h3>Axios Requests example</h3>
+
+      <div class="card mt-3">
+        <div class="card-header">Axios GET Request - BezKoder.com</div>
+        <div class="card-body">
+          <div class="input-group input-group-sm">
+            <button class="btn btn-sm btn-primary" onclick="getAllData()">
+              Get All
+            </button>
+
+            <input
+              type="text"
+              id="get-id"
+              class="form-control ml-2"
+              placeholder="Id"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-sm btn-primary" onclick="getDataById()">
+                Get by Id
+              </button>
+            </div>
+
+            <input
+              type="text"
+              id="get-title"
+              class="form-control ml-2"
+              placeholder="Title"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-sm btn-primary" onclick="getDataByTitle()">
+                Find By Title
+              </button>
+            </div>
+
+            <!-- Button Clear -->
+            <button
+              class="btn btn-sm btn-warning ml-2"
+              onclick="clearGetOutput()"
+            >
+              Clear
+            </button>
+          </div>
+
+          <div id="getResult"></div>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header">Axios POST Request - BezKoder.com</div>
+        <div class="card-body">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="post-title"
+              placeholder="Title"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="post-description"
+              placeholder="Description"
+            />
+          </div>
+          <button class="btn btn-sm btn-primary" onclick="postData()">
+            Post Data
+          </button>
+          <button class="btn btn-sm btn-warning" onclick="clearPostOutput()">
+            Clear
+          </button>
+
+          <div id="postResult"></div>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header">Axios PUT Request - BezKoder.com</div>
+        <div class="card-body">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="put-id"
+              placeholder="Id"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="put-title"
+              placeholder="Title"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="put-description"
+              placeholder="Description"
+            />
+          </div>
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="put-published"
+            />
+            <label class="form-check-label" for="put-published">Publish</label>
+          </div>
+          <div class="form-group mt-2">
+            <button class="btn btn-sm btn-primary" onclick="putData()">
+              Update Data
+            </button>
+            <button class="btn btn-sm btn-warning" onclick="clearPutOutput()">
+              Clear
+            </button>
+          </div>
+
+          <div id="putResult"></div>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header">Axios DELETE Request - BezKoder.com</div>
+        <div class="card-body">
+          <div class="input-group input-group-sm">
+            <button class="btn btn-sm btn-danger" onclick="deleteAllData()">
+              Delete All
+            </button>
+
+            <input
+              type="text"
+              id="delete-id"
+              class="form-control ml-2"
+              placeholder="Id"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-sm btn-danger" onclick="deleteDataById()">
+                Delete by Id
+              </button>
+            </div>
+
+            <button
+              class="btn btn-sm btn-warning ml-2"
+              onclick="clearDeleteOutput()"
+            >
+              Clear
+            </button>
+          </div>
+
+          <div id="deleteResult"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="./assets/javascript/main.js"></script>
+  </body>
+</html>
