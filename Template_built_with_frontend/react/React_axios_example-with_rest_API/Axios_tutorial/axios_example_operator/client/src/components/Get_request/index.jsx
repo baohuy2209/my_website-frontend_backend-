@@ -1,9 +1,18 @@
 import React from "react";
+import AxiosServer from "../../services/Axios.service";
 const get_request = () => {
-  const getAllData = () => {};
-  const getDataById = () => {};
-  const getDataByTitle = () => {};
-  const clearGetOutput = () => {};
+  const getAllData = () => {
+    AxiosServer.getAllData();
+  };
+  const getDataById = () => {
+    AxiosServer.getDataById();
+  };
+  const getDataByTitle = () => {
+    AxiosServer.getDataByTitle();
+  };
+  const clearGetOutput = () => {
+    AxiosServer.clearGetOutput();
+  };
   return (
     <div className="card mt-3">
       <div className="card-header">Axios GET Request</div>

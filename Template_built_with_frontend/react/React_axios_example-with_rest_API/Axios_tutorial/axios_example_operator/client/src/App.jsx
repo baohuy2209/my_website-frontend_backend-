@@ -8,9 +8,13 @@ function App() {
   return (
     <div className="container my-3" Style="max-width: 600px">
       <h3>Axios Requests Example</h3>
+      {/* GetRequest component */}
       <GetRequest />
+      {/* PostRequest component */}
       <PostRequest />
+      {/* PutRequest component */}
       <PutRequest />
+      {/* DeleteRequest conmponent */}
       <DeleteRequest />
     </div>
   );

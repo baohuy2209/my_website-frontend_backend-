@@ -4,7 +4,7 @@ async function getAllData() {
   let resultElement = document.getElementById("getResult");
   resultElement.innerHTML = "";
   try {
-    const res = await instance.get("tutorials");
+    const res = await instance.get("/tutorials");
 
     const result = {
       status: res.status + " - " + res.statusText,

@@ -1,7 +1,12 @@
 import React from "react";
+import AxiosService from "../../services/Axios.service";
 const put_request = () => {
-  const putData = () => {};
-  const clearPutOutput = () => {};
+  const putData = () => {
+    AxiosService.putData();
+  };
+  const clearPutOutput = () => {
+    AxiosService.clearGetOutput();
+  };
   return (
     <div className="card mt-3">
       <div className="card-header">Axios PUT request</div>
