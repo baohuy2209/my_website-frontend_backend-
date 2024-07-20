@@ -1,9 +1,10 @@
 import "./App.css";
-import AccordionExamplr from "./page/Accordions_page";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Breadcrumb from "./page/Breadcrumb/index";
 function App() {
   return (
     <>
-      <AccordionExamplr />
+      <Breadcrumb />
     </>
   );
 }

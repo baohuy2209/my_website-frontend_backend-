@@ -1,0 +1,7 @@
+i {
+  display: flex;
+  justify-items: end;
+  color: red;
+  margin-top: 7px;
+  cursor: pointer;
+}
