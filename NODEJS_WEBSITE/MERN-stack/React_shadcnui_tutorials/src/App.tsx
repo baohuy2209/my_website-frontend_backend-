@@ -1,10 +1,10 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Breadcrumb from "./page/Breadcrumb/index";
+import Button from "./page/Button/index";
 function App() {
   return (
     <>
-      <Breadcrumb />
+      <Button />
     </>
   );
 }

@@ -18,9 +18,11 @@ import {
 
 import * as React from "react";
 
-interface IDropdownProps {}
+interface IDropdownStyleDefaultProps {}
 
-const Dropdown: React.FunctionComponent<IDropdownProps> = () => {
+const DropdownStyleDefault: React.FunctionComponent<
+  IDropdownStyleDefaultProps
+> = () => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -54,4 +56,4 @@ const Dropdown: React.FunctionComponent<IDropdownProps> = () => {
   );
 };
 
-export default Dropdown;
+export default DropdownStyleDefault;

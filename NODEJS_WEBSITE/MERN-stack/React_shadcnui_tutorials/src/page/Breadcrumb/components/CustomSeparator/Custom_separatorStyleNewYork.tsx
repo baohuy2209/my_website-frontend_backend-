@@ -8,9 +8,11 @@ import {
   BreadcrumbSeparator,
 } from "../../../../components/ui/breadcrumb";
 import { SlashIcon } from "@radix-ui/react-icons";
-interface IStyleNewYorkProps {}
+interface ICustomSeparatorStyleNewYorkProps {}
 
-const StyleNewYork: React.FunctionComponent<IStyleNewYorkProps> = () => {
+const CustomSeparatorStyleNewYork: React.FunctionComponent<
+  ICustomSeparatorStyleNewYorkProps
+> = () => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -34,4 +36,4 @@ const StyleNewYork: React.FunctionComponent<IStyleNewYorkProps> = () => {
   );
 };
 
-export default StyleNewYork;
+export default CustomSeparatorStyleNewYork;

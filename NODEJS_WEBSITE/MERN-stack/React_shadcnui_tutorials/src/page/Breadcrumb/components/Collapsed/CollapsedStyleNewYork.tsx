@@ -9,9 +9,11 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "../../../../components/ui/breadcrumb";
-interface IStyleNewYorkProps {}
+interface ICollapsedStyleNewYorkProps {}
 
-const StyleNewYork: React.FunctionComponent<IStyleNewYorkProps> = () => {
+const CollapsedStyleNewYork: React.FunctionComponent<
+  ICollapsedStyleNewYorkProps
+> = () => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -39,4 +41,4 @@ const StyleNewYork: React.FunctionComponent<IStyleNewYorkProps> = () => {
   );
 };
 
-export default StyleNewYork;
+export default CollapsedStyleNewYork;

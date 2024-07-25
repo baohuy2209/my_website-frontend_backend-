@@ -8,9 +8,11 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "../../../../components/ui/breadcrumb";
-interface ICustomSeparatorProps {}
+interface ICustomSeparatorStyleDefaultProps {}
 
-const CustomSeparator: React.FunctionComponent<ICustomSeparatorProps> = () => {
+const CustomSeparatorStyleDefault: React.FunctionComponent<
+  ICustomSeparatorStyleDefaultProps
+> = () => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -29,12 +31,9 @@ const CustomSeparator: React.FunctionComponent<ICustomSeparatorProps> = () => {
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
         </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <Slash />
-        </BreadcrumbSeparator>
       </BreadcrumbList>
     </Breadcrumb>
   );
 };
 
-export default CustomSeparator;
+export default CustomSeparatorStyleDefault;

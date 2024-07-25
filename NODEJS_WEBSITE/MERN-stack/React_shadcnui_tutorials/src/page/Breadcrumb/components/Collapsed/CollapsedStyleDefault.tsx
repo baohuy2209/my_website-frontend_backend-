@@ -9,9 +9,11 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "../../../../components/ui/breadcrumb";
-interface IStyleDefaultProps {}
+interface ICollapsedStyleDefaultProps {}
 
-const StyleDefault: React.FunctionComponent<IStyleDefaultProps> = () => {
+const CollapsedStyleDefault: React.FunctionComponent<
+  ICollapsedStyleDefaultProps
+> = () => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -39,4 +41,4 @@ const StyleDefault: React.FunctionComponent<IStyleDefaultProps> = () => {
   );
 };
 
-export default StyleDefault;
+export default CollapsedStyleDefault;

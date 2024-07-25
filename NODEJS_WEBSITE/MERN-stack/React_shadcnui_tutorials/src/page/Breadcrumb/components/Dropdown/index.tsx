@@ -1,14 +1,14 @@
 import * as React from "react";
-import StyleDefault from "./DropdownStyleDefault";
-import StyleNewYork from "./DropdownStyleNewYork";
+import DropdownStyleDefault from "./DropdownStyleDefault";
+import DropdownStyleNewYork from "./DropdownStyleNewYork";
 interface IDropdownProps {}
 
 const Dropdown: React.FunctionComponent<IDropdownProps> = () => {
   return (
     <div>
-      <StyleDefault />
+      <DropdownStyleDefault />
       <hr />
-      <StyleNewYork />
+      <DropdownStyleNewYork />
     </div>
   );
 };
