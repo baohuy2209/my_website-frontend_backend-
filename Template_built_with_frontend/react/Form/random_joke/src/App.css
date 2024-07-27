@@ -1,0 +1,34 @@
+body {
+  background-color: rgb(47, 97, 80);
+}
+.joke {
+  width: auto;
+  height: auto;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: beige;
+}
+h1 {
+  text-align: center;
+  color: beige;
+}
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #70a03a;
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.5s;
+}
+button:hover {
+  background-color: #c1f590;
+}
+button:active {
+  background-color: #297910;
+}
