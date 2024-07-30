@@ -1,0 +1,10 @@
+.faq_desc.show-description {
+  height: 2rem;
+  margin-bottom: 15px;
+}
+.faq_question-button::after {
+  transition: transform 30ms ease-out;
+}
+.font-weight-hold::after {
+  transform: rotate(720deg);
+}

@@ -1,0 +1,48 @@
+.faq {
+  width: 100%;
+  padding-top: 65px;
+  padding-bottom: 80px;
+  &_title {
+    margin: 0;
+    padding-bottom: 25px;
+  }
+
+  &_question {
+    max-width: 350px;
+    width: 100%;
+    border-bottom: 1px solid $light-grayish-blue;
+  }
+
+  &_question-button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    background-color: transparent;
+    padding: 0px;
+    cursor: pointer;
+
+    padding-top: 18px;
+    padding-bottom: 18px;
+
+    &::after {
+      content: url(../images/icon-arrow-down.svg); // set arrow at end of div have class faq_question-button
+      margin-right: 17px;
+      transform: rotate(90deg);
+    }
+    // handle when to hover on faq question
+    &:hover {
+      color: $soft-red;
+    }
+  }
+  // css for description of questions
+  &_desc {
+    margin-left: -40px;
+    padding-right: 17px;
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 0;
+    overflow: hidden;
+    transition: all 200ms ease-out;
+  }
+}

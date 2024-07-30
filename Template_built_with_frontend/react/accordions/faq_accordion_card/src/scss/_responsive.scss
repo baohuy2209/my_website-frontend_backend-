@@ -1,0 +1,50 @@
+@media only screen and (max-width: 800px) {
+}
+@media only screen and (max-width: 700px) {
+  .container {
+    padding: 105px;
+  }
+  .component {
+    max-width: 327px;
+    background-image: url(../images/bg-pattern-mobile.svg);
+    background-position: top;
+    flex-direction: column;
+  }
+  .illustration {
+    &_box {
+      display: none;
+    }
+    &_woman-desktop {
+      display: none;
+    }
+    &_woman-mobile {
+      display: block;
+      margin: 0 auto;
+      position: absolute;
+      top: -105px;
+      left: 12px;
+    }
+  }
+  .faq {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 132px;
+    padding-bottom: 48px;
+
+    &__question {
+      max-width: 279px;
+    }
+
+    &__question-button {
+      width: 279px;
+      font-size: 13px;
+      line-height: 13px;
+
+      &::after {
+        padding-right: 0px;
+      }
+    }
+  }
+}
