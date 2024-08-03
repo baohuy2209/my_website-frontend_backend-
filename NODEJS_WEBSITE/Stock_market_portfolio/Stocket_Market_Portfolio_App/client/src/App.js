@@ -15,7 +15,7 @@ function App() {
     axios
       .post("http://localhost:5000/api/watchlist")
       .then((response) => {
-        alert(response.data);
+        alert(response.data.message);
         setWatchlist([...watchlist, stock]);
       })
       .catch((error) => {

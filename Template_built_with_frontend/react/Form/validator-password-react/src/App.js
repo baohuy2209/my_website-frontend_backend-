@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import to variable validator to utilize the method in the package "validator"
 import validator from "validator";
 function App() {
   const [errorMessage, setErrorMessage] = useState("");

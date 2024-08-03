@@ -8,15 +8,16 @@ import {
   NavLink,
 } from "react-router-dom";
 import "./App.css";
-
+// Component [Stocks]
 const Stocks = ({ addToWatchlist }) => {
-  const [stocks, setStocks] = useState([]);
+  // addToWatchList is props
+  const [stocks, setStocks] = useState([]); // declare the stocks state to store the data and update data through setStocks method
 
   useEffect(() => {
     // Fetch stock data from the backend
     fetch("http://localhost:5000/api/stocks")
       .then((res) => res.json())
-      .then((data) => setStocks(data))
+      .then((data) => setStocks(data)) // store data into stocks state
       .catch((error) => console.error("Error fetching stocks:", error));
   }, []);
   console.log(setStocks, "Stocksdata");
@@ -31,6 +32,7 @@ const Stocks = ({ addToWatchlist }) => {
       <h1>Stock Market MERN App</h1>
       <h2>Stocks</h2>
       <ul>
+        {/* iterator of array stocks */}
         {stocks.map((stock) => (
           <li key={stock.symbol}>
             {stock.company} ({stock.symbol}) -
@@ -47,8 +49,9 @@ const Stocks = ({ addToWatchlist }) => {
     </div>
   );
 };
-
+// WatchList component
 const Watchlist = ({ watchlist }) => {
+  // watchlist is prop
   const getRandomColor = () => {
     const colors = ["#FF0000", "#00FF00"]; // Red and Green
     return colors[Math.floor(Math.random() * colors.length)];
