@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMutation } from "react-query";
 
-import apiClient from "./http-common";
+import apiClient from "../../http-common";
 
 function PostRequest() {
   const [postTitle, setPostTitle] = useState("");

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 
-import apiClient from "./http-common";
+import apiClient from "../../http-common";
 
 function GetRequest() {
   const [getId, setGetId] = useState("");
