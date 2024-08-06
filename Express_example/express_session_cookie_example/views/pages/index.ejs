@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Cookie</title>
   </head>
   <body>
     <h1>Home page</h1>
     <script>
-      document.cookie = "email=abc@gmail.com; max-age=5; secure";
+      const date = new Date();
+      date.setTime(Date.now() + 5000);
+      document.cookie = `email=abc@gmail.com; expires=${date.toUTCString()}; secure`;
     </script>
   </body>
 </html>
