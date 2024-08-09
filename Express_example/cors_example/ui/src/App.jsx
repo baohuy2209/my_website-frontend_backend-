@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 const baseAPI = "http://localhost:3000/api";
 function App() {
+  const [user, setUser] = useState(null);
   const [error, setError] = useState("");
   const [fields, setFields] = useState({
     email: "",
@@ -25,56 +26,66 @@ function App() {
         if (res.oke) {
           return res.json();
         }
-        throw Error(res.statusText);
+        throw res;
       })
       .then((user) => {
         console.log(user);
       })
       .catch((error) => {
-        if (error.status == 401) {
-          setError("Email or password is not valid");
+        if (error.status === 401) {
+          return setError("Email or password is not valid");
         }
-        setError("Error with no contact");
+        setError("Error with no context");
       });
   };
   useEffect(() => {
     fetch(`${baseAPI}/auth/me`, {
       credentials: "include",
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.oke) {
+          return res.json();
+        }
+        throw res;
+      })
       .then((me) => {
-        console.log(me);
-      });
+        setUser(me);
+      })
+      .catch(() => {});
   }, []);
   return (
     <>
-      <div>
-        <h1>Login</h1>
-        <form onSubmit={handleLogin}>
-          <label htmlFor="email">Email</label>
-          <br />
-          <input
-            type="email"
-            name="email"
-            value={fields.email}
-            onChange={setFieldValue}
-            id="email"
-          ></input>
-          <br />
-          <label htmlFor="password">Password</label>
-          <br />
-          <input
-            type="password"
-            name="password"
-            value={fields.password}
-            onChange={setFieldValue}
-            id="password"
-          ></input>
-          <br />
-          <button>Login</button>
-        </form>
-        {!!error && <p style={{ color: "red" }}>{error}</p>}
-      </div>
+      {user ? (
+        <p>Xin chao, {user.name}</p>
+      ) : (
+        <div>
+          <h1>Login</h1>
+          <form onSubmit={handleLogin}>
+            <label htmlFor="email">Email</label>
+            <br />
+            <input
+              type="email"
+              name="email"
+              value={fields.email}
+              onChange={setFieldValue}
+              id="email"
+            ></input>
+            <br />
+            <label htmlFor="password">Password</label>
+            <br />
+            <input
+              type="password"
+              name="password"
+              value={fields.password}
+              onChange={setFieldValue}
+              id="password"
+            ></input>
+            <br />
+            <button>Login</button>
+          </form>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+        </div>
+      )}
     </>
   );
 }
