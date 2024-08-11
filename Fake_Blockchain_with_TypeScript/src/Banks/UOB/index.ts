@@ -10,4 +10,5 @@ console.log(UOBBlockChain);
 for (let i = 0; i < dbUser.length; i++) {
   UOBBlockChain.addBlock(dbUser[i]);
 }
+console.log(UOBBlockChain); 
 export default UOBBlockChain;
