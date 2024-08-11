@@ -1,0 +1,53 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const dbUser = [
+    {
+        fullName: "Nguyen Thi Bao Trang",
+        age: 19,
+        email: "baotrang@gmail.com",
+        gender: "female",
+        phoneNumber: "234132514545",
+        dob: new Date("24-11-2005"),
+        dataFaceId: "EWT@#et234r!$t@#$T5hrgw",
+        dataFingerId: "RQT3453rtqrt%!53reWERy",
+        isGenesis: false,
+        history_transaction: [],
+    },
+    {
+        fullName: "Nguyen Truong Son",
+        age: 19,
+        email: "sontruong@gmail.com",
+        gender: "male",
+        phoneNumber: "23123214314165",
+        dob: new Date("24-11-2005"),
+        dataFaceId: "%!$%RTGQTRT#$TẺGFg",
+        dataFingerId: "RQT3453rtqrt%!53reWERy",
+        isGenesis: false,
+        history_transaction: [],
+    },
+    {
+        fullName: "Tran Xu Kin",
+        age: 19,
+        email: "kinxug@gmail.com",
+        gender: "male",
+        phoneNumber: "013043210502",
+        dob: new Date("06-05-2005"),
+        dataFaceId: "#$@#TRGHWE@$THGRrygw3$56treg5",
+        dataFingerId: "$#%Rtgq4t#$5tGY#@RGHwerGH",
+        isGenesis: false,
+        history_transaction: [],
+    },
+    {
+        fullName: "Nguyen Hoang Yen",
+        age: 19,
+        email: "hoangyen@gmail.com",
+        gender: "female",
+        phoneNumber: "315451312535",
+        dob: new Date("21-3-2005"),
+        dataFaceId: "QWE%!3245reqwQtg#$5$#re",
+        dataFingerId: "3%!$t31$tregq34TQrt43",
+        isGenesis: false,
+        history_transaction: [],
+    },
+];
+exports.default = dbUser;
