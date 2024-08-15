@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import Header from "./components/Header";
+import Accordion from "./components/Accordion";
 function App() {
+  const title = "Accordion App";
+  const hiddenTexts = [
+    {
+      label: "Button 1",
+      value: "Text of Accordion 1",
+    },
+    {
+      label: "Button 2",
+      value: "Text of Accordion 2",
+    },
+    {
+      label: "Button 3",
+      value: "Text of Accordion 3",
+    },
+    {
+      label: "Button 4",
+      value: "Text of Accordion ",
+    },
+  ];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header title={title} />
+      <Accordion hiddenTexts={hiddenTexts} />
     </div>
   );
 }
