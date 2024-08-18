@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const errorHandler = require("./middleware/errorHandler");
 const dotenv = require("dotenv");
+const methodOverride = require("method-override");
 dotenv.config();
 mongoose.Promise = global.Promise;
 const PORT = process.env.PORT || 3000;
@@ -18,7 +19,7 @@ const routes = require("./routes/index.routes");
 const users = require("./routes/users.routes");
 const employees = require("./routes/employees.routes");
 const app = express();
-
+app.use(methodOverride("_method")); // override method
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");

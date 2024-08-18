@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="page-title"><%= title %></h1>
+    <div id="list">
+      <form action="/create" method="post" accept-charset="utf-8">
+        <div class="item-new">
+          <input class="input" type="text" name="content" />
+        </div>
+      </form>
+      <% todos.forEach(function(todo) { %>
+      <div class="item">
+        <a
+          class="update-link"
+          href="/edit/<%= todo._id%>"
+          title="Update this todo item"
+          ><%= todo.content%></a
+        >
+        <a
+          class="del-btn"
+          href="/delete/<%= todo._id%>"
+          title="Delete this todo item"
+          >Delete</a
+        >
+      </div>
+      <% }) %>
+    </div>
+  </body>
+</html>
