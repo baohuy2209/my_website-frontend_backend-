@@ -1,0 +1,20 @@
+<div class="mt-4">
+  <div class="row">
+    <div class="col-lg-3 mb-5">
+      <button class="btn btn-primary mb-2">Study Now</button>
+      <div>Level : {{course.level}}</div>
+    </div>
+    <div class="col-lg-9">
+      <h2 class="name-course">{{course.name}}</h2>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/{{course.videoId}}"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+      <p class="mt-4">{{course.description}}</p>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,25 @@
 <div class="mt-4">
-  <div class="row">
-    <h1>Hello world</h1>
+  <di class="row">
+    {{#each courses}}
+        <div class="col-sm-6 col-lg-4 course_card">
+          <div class="card card-course-item">
+            <a href="/courses/{{this.slug}}">
+              <img
+                class="card-img-top"
+                src="{{this.image}}"
+                alt="{{this.name}}"
+              />
+            </a>
+            <div class="card-body">
+              <a href="/courses/{{this.slug}}">
+                <h5 class="card-title">{{this.name}}</h5>
+              </a>
+              <p class="card-text">{{this.description}}</p>
+              <a href="#" class="btn btn-primary">Register courses</a>
+            </div>
+          </div>
+        </div>
+
+    {{/each}}
   </div>
 </div>
