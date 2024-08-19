@@ -19,18 +19,15 @@ app.engine(
   "hbs",
   handlebars.engine({
     defaultLayout: "main",
-    extname: "hhs",
+    extname: ".hhs",
     helpers: {
       sum: (a, b) => a + b,
     },
   })
 );
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "resources", "views"));
+app.set("views", path.join(__dirname, "./resources/views"));
 route(app);
-app.get("/", (req, res) => {
-  res.send("Hello world");
-});
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
 });
