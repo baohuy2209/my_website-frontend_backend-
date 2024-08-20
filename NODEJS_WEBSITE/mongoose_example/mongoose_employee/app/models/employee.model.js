@@ -9,7 +9,7 @@ const Employee = new Schema(
     age: { type: Number, required: true },
     position: { type: String, required: true },
     salary: { type: Number, required: true },
-    phomenumber: { type: Number, required: true },
+    phonenumber: { type: String, required: true },
     slug: { type: String, slug: "name", unique: true },
     image: { type: String },
     dob: { type: Date, required: true },

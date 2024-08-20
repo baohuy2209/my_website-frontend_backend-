@@ -4,13 +4,20 @@
  * Module dependencies.
  */
 
-var express = require("../..");
+var express = require("express");
 var logger = require("morgan");
 var path = require("path");
 var app = express();
-
+const handlebars = require("express-handlebars");
 // log requests
 app.use(logger("dev"));
+app.engine(
+  "hbs",
+  handlebars.engine({
+    extname: ".hbs",
+  })
+);
+app.set("view engine", "hbs");
 
 // express on its own has no notion
 // of a "file". The express.static()
@@ -20,23 +27,19 @@ app.use(logger("dev"));
 // will look for "./public/js/app.js".
 
 app.use(express.static(path.join(__dirname, "public")));
-
-// if you wanted to "prefix" you may use
-// the mounting feature of Connect, for example
-// "GET /static/js/app.js" instead of "GET /js/app.js".
-// The mount-path "/static" is simply removed before
-// passing control to the express.static() middleware,
-// thus it serves the file correctly by ignoring "/static"
-app.use("/static", express.static(path.join(__dirname, "public")));
-
 // if for some reason you want to serve files from
 // several directories, you can use express.static()
 // multiple times! Here we're passing "./public/css",
 // this will allow "GET /style.css" instead of "GET /css/style.css":
 app.use(express.static(path.join(__dirname, "public", "css")));
-
-app.listen(3000);
-console.log("listening on port 3000");
+app.use(express.static(path.join(__dirname, "public", "image")));
+app.set("views", path.join(__dirname, "./resources/views"));
+app.get("/", (req, res) => {
+  res.render("index");
+});
+app.listen(3000, () => {
+  console.log(`Listening on http://localhost:3000`);
+});
 console.log("try:");
 console.log("  GET /hello.txt");
 console.log("  GET /js/app.js");
