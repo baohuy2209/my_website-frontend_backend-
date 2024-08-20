@@ -1,9 +1,15 @@
 class HomeController {
   // [GET] /
   index(req, res) {
-    res.render("home");
+    res.render("home/home");
   }
-  about(req, res) {}
-  contact_us(req, res) {}
+  // [GET] /about
+  about(req, res) {
+    res.render("home/about");
+  }
+  // [GET] /contact-us
+  contact_us(req, res) {
+    res.render("home/contact_us");
+  }
 }
 module.exports = new HomeController();
