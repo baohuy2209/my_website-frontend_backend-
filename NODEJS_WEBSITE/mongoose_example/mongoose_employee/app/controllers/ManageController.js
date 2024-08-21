@@ -1,12 +1,32 @@
 const Employee = require("../models/employee.model");
+const { multipleMongooseToObject } = require("../../util/mongoose");
 class ManageController {
   // [GET] /manage/stored/employee
   stored(req, res) {
-    res.render("manage_employee/stored_employee");
+    Promise.all([Employee.find({}), Employee.countDocumentsDeleted()])
+      .then(([employees, deletedCount]) => {
+        res.render("manage_employee/stored_employee", {
+          deletedCount,
+          employees: multipleMongooseToObject(employees),
+        });
+      })
+      .catch((err) => {
+        res.status(401);
+        throw new Error(err);
+      });
   }
   // [GET] /manage/trash/employee
   trash(req, res) {
-    res.render("manage_employee/trash_employee");
+    Employee.findDeleted()
+      .then((employees) => {
+        res.render("manage_employee/trash_employee", {
+          employees: multipleMongooseToObject(employees),
+        });
+      })
+      .catch((err) => {
+        res.status(403);
+        throw new Error(err);
+      });
   }
 }
 module.exports = new ManageController();

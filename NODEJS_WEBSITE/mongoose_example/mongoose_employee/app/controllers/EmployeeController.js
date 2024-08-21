@@ -1,4 +1,5 @@
 const Employee = require("../models/employee.model");
+const { mongooseToObject } = require("../../util/mongoose");
 class EmployeeController {
   // [GET] /employees/register
   create(req, res) {
@@ -44,18 +45,74 @@ class EmployeeController {
       });
   }
   // [GET] /employee/:id/edit
-  edit(req, res) {}
+  edit(req, res) {
+    Employee.findById(req.params.id)
+      .then((employee) => {
+        res.render("employees/edit", {
+          employee: mongooseToObject(employee),
+        });
+      })
+      .catch((err) => {
+        res.status(403);
+        throw new Error(err);
+      });
+  }
   // [PUT] /employee/:id
-  update(req, res) {}
+  update(req, res) {
+    Employee.findByIdAndUpdate(req.params.id)
+      .then((employee) => {
+        res.render("employees/show", {
+          employee: mongooseToObject(employee),
+        });
+      })
+      .catch((err) => {
+        res.status(403);
+        throw new Error(err);
+      });
+  }
   // [PATCH] /employee/:id/restore
-  restore(req, res) {}
+  restore(req, res) {
+    Employee.restore({ _id: req.params.id })
+      .then(() => {
+        res.redirect("back");
+      })
+      .catch((err) => {
+        res.status(500);
+        throw new Error(err);
+      });
+  }
   // [DELETE] /:id
-  destroy(req, res) {}
+  destroy(req, res) {
+    Employee.delete({ _id: req.params.id })
+      .then(() => res.redirect("back"))
+      .catch((err) => {
+        res.status(500);
+        throw new Error(err);
+      });
+  }
   // [DELETE] /:id/force
-  forceDestroy(req, res) {}
+  forceDestroy(req, res) {
+    Employee.deleteOne({ _id: req.params.id })
+      .then(() => {
+        res.redirect("back");
+      })
+      .catch((err) => {
+        res.status(500);
+        throw new Error(err);
+      });
+  }
   // [GET] /:slug
   showDetails(req, res) {
-    res.render("employees/show");
+    Employee.findOne({ slug: req.params.slug })
+      .then((employee) => {
+        res.render("employees/show", {
+          employee: mongooseToObject(employee),
+        });
+      })
+      .catch((err) => {
+        res.status(403);
+        throw new Error(err);
+      });
   }
 }
 module.exports = new EmployeeController();
