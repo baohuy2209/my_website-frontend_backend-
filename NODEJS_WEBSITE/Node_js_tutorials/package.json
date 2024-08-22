@@ -10,7 +10,19 @@
   "author": "Nguyen Bao Huy",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^4.1.2",
+    "cowsay": "^1.6.0",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "lodash": "^4.17.21",
+    "minimist": "^1.2.8",
+    "progress": "^2.0.3",
+    "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "axios": "^1.7.4"
+  },
+  "optionalDependencies": {
+    "colors": "^1.4.0"
   }
 }

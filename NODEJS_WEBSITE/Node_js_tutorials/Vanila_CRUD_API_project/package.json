@@ -1,0 +1,19 @@
+{
+  "name": "node-js-crud-api-project",
+  "version": "1.0.0",
+  "description": "This is vanilla node CRUD API project",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nguyen Bao huy",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5"
+  }
+}
