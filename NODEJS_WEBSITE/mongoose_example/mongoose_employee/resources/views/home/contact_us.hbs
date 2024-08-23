@@ -1,0 +1,84 @@
+<section class="get-in-touch">
+  <h1 class="title">Contact Us</h1>
+  <form class="contact-form row" method="POST" action="/api/about">
+    <div class="form-field col-lg-6">
+      <input
+        id="name"
+        name="name"
+        class="input-text js-input"
+        type="text"
+        required
+      />
+      <label class="label" for="name">Name</label>
+    </div>
+    <div class="form-field col-lg-6">
+      <input
+        id="email"
+        name="email"
+        class="input-text js-input"
+        type="email"
+        required
+      />
+      <label class="label" for="email">E-mail</label>
+    </div>
+    <div class="form-field col-lg-6">
+      <input
+        id="company"
+        name="company"
+        class="input-text js-input"
+        type="text"
+        required
+      />
+      <label class="label" for="company">Company Name</label>
+    </div>
+    <div class="form-field col-lg-6">
+      <input
+        id="phone"
+        name="phone"
+        class="input-text js-input"
+        type="text"
+        required
+      />
+      <label class="label" for="phone">Contact Number</label>
+    </div>
+    <div class="form-field col-lg-12">
+      <textarea
+        id="message"
+        name="message"
+        class="input-text js-input"
+        type="text"
+        required
+      ></textarea>
+      <label class="label" for="message">Message</label>
+    </div>
+    <div class="form-field col-lg-12">
+      <input class="submit-btn" type="submit" value="Submit" />
+    </div>
+  </form>
+</section>
+<style>
+  .get-in-touch { max-width: 800px; margin: 50px auto; position: relative; }
+  .get-in-touch .title { text-align: center; text-transform: uppercase;
+  letter-spacing: 3px; font-size: 3.2em; line-height: 48px; padding-bottom:
+  48px; color: #5AB2FF; background: #5AB2FF; background:
+  -moz-linear-gradient(left,#FFF9D0 0%,#5AB2FF 100%) !important; background:
+  -webkit-linear-gradient(left,#FFF9D0 0%,#5AB2FF 100%) !important; background:
+  linear-gradient(to right,#FFF9D0 0%,#5AB2FF 100%) !important;
+  -webkit-background-clip: text !important; -webkit-text-fill-color: transparent
+  !important; } .contact-form .form-field { position: relative; margin: 32px 0;
+  } .contact-form .input-text { display: block; width: 100%; height: 36px;
+  border-width: 0 0 2px 0; border-color: #5AB2FF; font-size: 18px; line-height:
+  26px; font-weight: 400; } .contact-form .input-text:focus { outline: none; }
+  .contact-form .input-text:focus + .label, .contact-form .input-text.not-empty
+  + .label { -webkit-transform: translateY(-24px); transform: translateY(-24px);
+  } .contact-form .label { position: absolute; left: 20px; bottom: 11px;
+  font-size: 18px; line-height: 26px; font-weight: 400; color: #5AB2FF; cursor:
+  text; transition: -webkit-transform .2s ease-in-out; transition: transform .2s
+  ease-in-out; transition: transform .2s ease-in-out, -webkit-transform .2s
+  ease-in-out; } .contact-form .submit-btn { display: inline-block;
+  background-color: #000; background-image:
+  linear-gradient(125deg,#FFF9D0,#064497); color: #fff; text-transform:
+  uppercase; letter-spacing: 2px; font-size: 16px; padding: 8px 16px; border:
+  none; width:200px; cursor: pointer; }
+
+</style>

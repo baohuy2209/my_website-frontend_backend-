@@ -1,0 +1,78 @@
+<div class="mt-4">
+  <div>
+    <h3>List deleted employees</h3>
+    <a href="/api/manage/stored/employee">Current employees</a>
+  </div>
+  <table class="table mt-4 mr-3 ml-3">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Name</th>
+        <th scope="col">Position</th>
+        <th scope="col" colspan="2">Code Resident</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each employees}}
+        <tr>
+          <th scope="row">{{sum @index 1}}</th>
+          <td>{{this.name}}</td>
+          <td>{{this.position}}</td>
+          <td>{{this.code_resident}}</td>
+          <td>
+            <a
+              href=""
+              data-id="{{this._id}}"
+              class="btn btn-link btn-restore"
+            >Restore</a>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-toggle="modal"
+              data-bs-target="#delete-employee-modal"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      {{else}}
+        <tr>'
+          <td colspan="5" class="text-center">
+            Empty rubbish
+            <a href="/api/manage/stored/employee">Add new employee</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<div id="delete-employee-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Fire Employee</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Do you want to fire the employee ?</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Cancel</button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          id="btn-delete-employee"
+        >Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

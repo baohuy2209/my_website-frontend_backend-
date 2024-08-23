@@ -32,5 +32,5 @@ app.set("views", path.join(__dirname, "./resources/views"));
 
 route(app);
 app.listen(PORT, () => {
-  console.log(`Listening on http://localhost:${PORT}`);
+  console.log(`Listening on http://localhost:${PORT}/api`);
 });

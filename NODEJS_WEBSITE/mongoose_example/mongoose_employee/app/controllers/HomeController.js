@@ -1,5 +1,6 @@
 const Employee = require("../models/employee.model");
 const { multipleMongooseToObject } = require("../../util/mongoose");
+const Contact = require("../models/contact.model");
 class HomeController {
   // [GET] /
   index(req, res) {
@@ -17,7 +18,19 @@ class HomeController {
   }
   // [GET] /about
   about(req, res) {
-    res.render("home/about");
+    res.render("home/weather");
+  }
+  // [POST] /about
+  getContact(req, res) {
+    const contact = new Contact(req.body);
+    contact
+      .save()
+      .then(() => res.redirect("back"))
+      .catch((err) => {
+        console.log(err);
+        res.status(500);
+        throw new Error(JSON.stringify(err));
+      });
   }
   // [GET] /contact-us
   contact_us(req, res) {

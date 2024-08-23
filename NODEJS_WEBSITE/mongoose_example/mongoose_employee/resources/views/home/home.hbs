@@ -4,7 +4,7 @@
       <div class="col-sm-6 col-lg-4">
 
         <div class="card" style="width: 18rem;">
-          <a href="/employee/{{this.slug}}">
+          <a href="/api/employee/{{this.slug}}">
             <img
               class="card-img-top"
               src="{{this.image}}"
@@ -13,11 +13,12 @@
             />
           </a>
           <div class="card-body">
-            <a href="/employee/{{this.slug}}">
+            <a href="/api/employee/{{this.slug}}">
               <h5 class="card-title">{{this.name}}</h5>
             </a>
             <p class="card-text">{{this.position}}</p>
-            <a href="#" class="btn btn-primary">Info details</a>
+            <a href="/api/employee/{{this.slug}}" class="btn btn-primary">Info
+              details</a>
           </div>
         </div>
       </div>
