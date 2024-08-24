@@ -1,0 +1,21 @@
+{
+  "name": "mongose_book",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nguyen Bao Huy",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-handlebars": "^8.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.3",
+    "mongoose-delete": "^1.0.2",
+    "mongoose-slug-generator": "^1.0.4"
+  }
+}

@@ -249,3 +249,7 @@ ul {
     line-height: 70px;
   }
 }
+.avatar {
+  width: 100%;
+  height: 200px;
+}

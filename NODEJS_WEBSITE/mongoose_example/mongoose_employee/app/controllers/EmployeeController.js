@@ -1,5 +1,6 @@
 const Employee = require("../models/employee.model");
 const { mongooseToObject } = require("../../util/mongoose");
+const imageDefault = require("../../constants/default_image/image");
 class EmployeeController {
   // [GET] /employees/register
   create(req, res) {
@@ -32,12 +33,12 @@ class EmployeeController {
     }
     const number_fixed = 100;
     var random_number = Math.floor((Math.random() * number_fixed) % 7);
-    req.body.image = `/image/avatar${random_number}`;
+    req.body.image = imageDefault[random_number];
     const new_employee = new Employee(req.body);
     new_employee
       .save()
       .then(() => {
-        res.redirect("/manage/stored/employee");
+        res.redirect("/api/manage/stored/employee");
       })
       .catch((err) => {
         res.status(500);

@@ -6,11 +6,11 @@ const path = require("path");
 dotenv.config();
 const PORT = process.env.PORT || 3001;
 const logger = require("morgan");
-const errrorHandler = require("./app/middleware/errorHandler");
 const db = require("./config/db/index");
 const route = require("./routes/index.routes");
 const mongoose = require("mongoose");
 const errorHandler = require("./app/middleware/errorHandler");
+const cookieSession = require("cookie-session");
 mongoose.set("strictQuery", false);
 db.connectDB();
 app.engine(
@@ -22,6 +22,14 @@ app.engine(
     },
   })
 );
+app.use(
+  cookieSession({
+    name: "bezkoder-session",
+    keys: [process.env.SECRET_COOKIE],
+    httpOnly: true,
+  })
+);
+app.use(errorHandler);
 app.use(logger("combined"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,5 +40,5 @@ app.set("views", path.join(__dirname, "./resources/views"));
 
 route(app);
 app.listen(PORT, () => {
-  console.log(`Listening on http://localhost:${PORT}/api`);
+  console.log(`Listening on http://localhost:${PORT}/login`);
 });

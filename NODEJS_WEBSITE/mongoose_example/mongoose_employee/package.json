@@ -19,10 +19,13 @@
     }
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-session": "^2.1.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-handlebars": "^8.0.1",
     "husky": "^9.1.4",
+    "jsonwebtoken": "^9.0.2",
     "lint-staged": "^15.2.9",
     "mongoose": "^6.10.0",
     "mongoose-delete": "^1.0.2",
