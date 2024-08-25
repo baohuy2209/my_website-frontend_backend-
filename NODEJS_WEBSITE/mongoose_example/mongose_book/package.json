@@ -4,7 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --watch ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky",
+    "lint-staged": "lint-staged"
   },
   "author": "Nguyen Bao Huy",
   "license": "ISC",
@@ -17,5 +20,18 @@
     "mongoose": "^8.5.3",
     "mongoose-delete": "^1.0.2",
     "mongoose-slug-generator": "^1.0.4"
+  },
+  "devDependencies": {
+    "husky": "^9.1.5",
+    "lint-staged": "^15.2.9",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.4"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint",
+      "npm run format",
+      "git add ."
+    ]
   }
 }
