@@ -6,14 +6,21 @@ const errorHandler = require("./app/middleware/errorHandler");
 const route = require("./routes/index.routes");
 const handlebars = require("express-handlebars");
 const path = require("path");
+const cookieSession = require("cookie-session");
+const { getAuthenticated } = require("./constants/isAuthenticated");
 app.set("view engine", "hbs");
+app.use(
+  cookieSession({
+    name: "baohuy",
+    keys: ["COOKIE-SECRET"],
+    httpOnly: true,
+  })
+);
 app.engine(
   "hbs",
   handlebars.engine({
     extname: ".hbs",
-    helper: {
-      sum: (a, b) => a + b,
-    },
+    helper: require("./helpers/helpers"),
   })
 );
 app.use(express.urlencoded({ extended: true }));
@@ -27,9 +34,7 @@ dotenv.config();
 db.connectDB();
 const PORT = process.env.PORT || 5001;
 route(app);
-app.get("/", (req, res) => {
-  res.send("Hello world");
-});
+
 app.listen(PORT, () => {
-  console.log(`Listening on http://localhost:${PORT}`);
+  console.log(`Listening on http://localhost:${PORT}/api/login`);
 });

@@ -1,0 +1,87 @@
+{{!-- {{#if (showNavbar)}} --}}
+
+<nav class="navbar navbar-expand-lg" style="background-color: #FFCACC">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/api/home">BHStore</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="/api/home"
+          >Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/home/contact_us">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Book
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Computer Programming</a></li>
+            <li><a class="dropdown-item" href="#">Educational Book</a></li>
+            <li><a class="dropdown-item" href="#">Another</a></li>
+            <li><a class="dropdown-item" href="/api/books/create">Create new
+                produect</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown float-end">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-caret-down"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659"
+              />
+            </svg>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Shopping cart</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a
+                class="dropdown-item"
+                href="/api/auth/signout"
+              >Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{{!-- {{/if}} --}}

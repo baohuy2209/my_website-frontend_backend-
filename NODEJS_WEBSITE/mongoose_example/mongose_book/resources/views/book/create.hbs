@@ -1,0 +1,180 @@
+<div class="container">
+  <div class="text-center mt-5">
+    <h1>Push new product</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-7 mx-auto">
+      <div class="card mt-2 mx-auto p-4 bg-light">
+        <div class="card-body bg-light">
+          <div class="container">
+            <form id="contact-form" role="form" method="POST" action="/api/books/create">
+              <div class="controls">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="name"></label>Name *</label>
+                      <input
+                        id="name"
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        placeholder="Please enter name's book"
+                        required="required"
+                        data-error="Name's book is required."
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="number_of_pages">N.O pages *</label>
+                      <input
+                        id="number_of_pages"
+                        type="text"
+                        name="number_of_pages"
+                        class="form-control"
+                        placeholder="Please enter N.O pages *"
+                        required="required"
+                        data-error="N.O pages is required."
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="author">Author *</label>
+                      <input
+                        id="author"
+                        type="text"
+                        name="author"
+                        class="form-control"
+                        placeholder="Please enter author of this book *"
+                        required="required"
+                        data-error="Author's book is required."
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="price">Price *</label>
+                      <input
+                        id="price"
+                        type="text"
+                        name="price"
+                        class="form-control"
+                        placeholder="Please enter author of this book *"
+                        required="required"
+                        data-error="Author's book is required."
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="description">Description *</label>
+                      <textarea
+                        id="description"
+                        name="description"
+                        class="form-control"
+                        placeholder="Write your description about this book here."
+                        rows="4"
+                        required="required"
+                        data-error="Please, leave us a description."
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="number_book_selled">N.O selled *</label>
+                    <input
+                        id="number_book_selled"
+                        type="text"
+                        name="number_book_selled"
+                        class="form-control"
+                        placeholder="Please enter N.O book selled *"
+                      />
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="number_book_selling">N.O selling *</label>
+                    <input
+                        id="number_book_selling"
+                        type="text"
+                        name="number_book_selling"
+                        class="form-control"
+                        placeholder="Please enter N.O book selling *"
+                      />
+                  </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                    <label for="image">Image *</label>
+                    <input
+                        id="image"
+                        type="text"
+                        name="image"
+                        class="form-control"
+                        placeholder="Please enter any image to illustrate *"
+                      />
+                  </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                    <label for="rating">Ratings *</label>
+                    <input
+                        id="rating"
+                        type="text"
+                        name="rating"
+                        class="form-control"
+                        placeholder="Please ratings*"
+                      />
+                  </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                    <label for="type">Type *</label>
+                    <select id="type" name="type" class="form-control" required="required" data-error="Please specify your need.">
+                                <option value="" selected disabled>Select your type</option>
+                                <option >programming_book</option>
+                                <option >educational_book</option>
+                                <option >another_type</option>
+                            </select>
+                  </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                    <label for="number_consider">N.O consider *</label>
+                    <input
+                        id="number_consider"
+                        type="text"
+                        name="number_consider"
+                        class="form-control"
+                        placeholder="Please enter considers"
+                      />
+                  </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <input
+                      type="submit"
+                      class="btn btn-send pt-2 btn-block mt-4"
+                      style="background: #FFC6C6"
+                      value="Create"
+                    />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

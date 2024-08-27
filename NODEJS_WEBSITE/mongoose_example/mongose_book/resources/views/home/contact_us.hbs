@@ -1,0 +1,78 @@
+<div class="container contact-form">
+  <div class="contact-image">
+    <img
+      src="https://image.ibb.co/kUagtU/rocket_contact.png"
+      alt="rocket_contact"
+    />
+  </div>
+  <form method="POST" action="/api/home/contact_us">
+    <h3>Give us your contact</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <input
+            type="text"
+            id="fullname"
+            name="fullname"
+            class="form-control"
+            placeholder="FullName *"
+            value=""
+          />
+        </div>
+        <div class="form-group mt-4">
+          <input
+            type="text"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="Your Email *"
+            value=""
+          />
+        </div>
+        <div class="form-group mt-4">
+          <input
+            type="text"
+            id="phonenumber"
+            name="phonenumber"
+            class="form-control"
+            placeholder="Your Phone Number *"
+            value=""
+          />
+        </div>
+        <div class="form-group input-group">
+          <button
+            type="submit"
+            name="btnSubmit"
+            class="btnContact mt-4"
+            style="border-radius: 1rem"
+          >
+            <a href="#" class="text-white text-decoration-none">Send your
+              contact</a>
+          </button>
+          <button
+            type="submit"
+            name="btnSubmit"
+            class="btn btn-secondary mt-4 mx-4"
+            style="border-radius: 1rem"
+          >
+            <a
+              href="/api/home/"
+              class="text-white text-decoration-none"
+            >Cancel</a>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <textarea
+            id="your_request"
+            name="your_request"
+            class="form-control"
+            placeholder="Your Message *"
+            style="width: 100%; height: 150px;"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
