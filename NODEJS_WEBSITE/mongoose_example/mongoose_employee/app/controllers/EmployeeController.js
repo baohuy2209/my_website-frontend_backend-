@@ -85,7 +85,7 @@ class EmployeeController {
   // [DELETE] /:id
   destroy(req, res) {
     Employee.delete({ _id: req.params.id })
-      .then(() => res.redirect("back"))
+      .then(() => res.redirect("/api/manage/stored/employee"))
       .catch((err) => {
         res.status(500);
         throw new Error(err);
