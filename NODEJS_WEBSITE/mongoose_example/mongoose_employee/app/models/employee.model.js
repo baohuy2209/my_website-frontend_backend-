@@ -21,6 +21,7 @@ const Employee = new Schema(
 );
 mongoose.plugin(slug);
 Employee.plugin(mongooseDelete, {
+  deleted: false,
   deletedAt: true,
   overrideMethods: "all",
 });
