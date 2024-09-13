@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const cors = require("cors");
+const routes = require("./routes/index.routes");
 const corsOptions = {
   origin: " http://localhost:5173",
   crendentials: true,
@@ -13,6 +14,7 @@ const PORT = process.env.PORT || 8080;
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+routes(app);
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
 });

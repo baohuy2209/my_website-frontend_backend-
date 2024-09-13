@@ -81,3 +81,4 @@ const AddTutorial = () => {
     </div>
   );
 };
+export default AddTutorial; 
