@@ -1,0 +1,32 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.register-form {
+  background-color: #f5f7f8;
+  padding: 30px;
+  border-radius: 10%;
+}
+.form-title h3 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 48px;
+}
+.field-register {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  float: left;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+.agree {
+  float: left;
+  margin-left: 3px;
+}
+.btn-form {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
