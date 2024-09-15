@@ -1,16 +1,17 @@
-import http from "../http-common";
+import axios from "axios";
 import authHeader from "./auth-header";
+const baseURL = "http://localhost:8080/api/test";
 const getPublicContent = () => {
-  return http.get("/test/all");
+  return axios.get(baseURL + "/all");
 };
 const getUserBoard = () => {
-  return http.get("test/user", { headers: authHeader() });
+  return axios.get(baseURL + "/user", { headers: authHeader() });
 };
 const getModeratorBoard = () => {
-  return http.get("test/mod", { headers: authHeader() });
+  return axios.get(baseURL + "/mod", { headers: authHeader() });
 };
 const getAdminBoard = () => {
-  return http.get("test/admin", { headers: authHeader() });
+  return axios.get(baseURL + "/admin", { headers: authHeader() });
 };
 const UserService = {
   getPublicContent,

@@ -1,14 +1,15 @@
-import http from "../http-common";
+import axios from "axios";
+const baseURL = "http://localhost:8080/api/auth";
 const register = (username, email, password) => {
-  return http.post("/auth/signup", {
+  return axios.post(baseURL + "/signup", {
     username,
     email,
     password,
   });
 };
 const login = (username, password) => {
-  return http
-    .post("/auth/signin", {
+  return axios
+    .post(baseURL + "/signin", {
       username,
       password,
     })
