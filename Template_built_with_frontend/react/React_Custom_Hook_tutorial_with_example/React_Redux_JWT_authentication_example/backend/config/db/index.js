@@ -40,6 +40,8 @@ function initial() {
           });
       }
     })
-    .catch((error) => {});
+    .catch((error) => {
+      console.log(error);
+    });
 }
 module.exports = { connectDB };

@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 const Role = require("../models/role.model");
 verifyToken = (req, res, next) => {
-  let token = req.session.token;
+  let token = req.headers["x-access-token"];
   if (!token) {
     return res.status(403).json({ message: "No token provided" });
   }
@@ -10,7 +10,8 @@ verifyToken = (req, res, next) => {
     if (err) {
       return res.status(401).json({ message: "Unauthorized!" });
     }
-    (res.userId = decoded.id), next();
+    res.userId = decoded.id;
+    next();
   });
 };
 isAdmin = (req, res, next) => {
