@@ -38,7 +38,12 @@
                 Find by Title
               </button>
             </div>
-            <button class="btn btn-sm btn-warning ml-2">clear</button>
+            <button
+              class="btn btn-sm btn-warning ml-2"
+              onclick="clearGetOutput()"
+            >
+              clear
+            </button>
           </div>
           <div id="getResult"></div>
         </div>
@@ -102,7 +107,7 @@
           <button class="btn btn-sm btn-primary" onclick="putData()">
             Update Data
           </button>
-          <button class="btn btn-sm btn-primary" onclick="clearPutOutput()">
+          <button class="btn btn-sm btn-warning" onclick="clearPutOutput()">
             Clear
           </button>
           <div id="putResult"></div>
