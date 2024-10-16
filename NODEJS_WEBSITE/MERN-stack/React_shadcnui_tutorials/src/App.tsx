@@ -1,10 +1,10 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "./page/Button/index";
+import Card from "./page/Card/index";
 function App() {
   return (
     <>
-      <Button />
+      <Card />
     </>
   );
 }
