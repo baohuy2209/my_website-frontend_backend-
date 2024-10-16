@@ -5,7 +5,7 @@ interface IAsChildProps {}
 
 const AsChild: React.FunctionComponent<IAsChildProps> = () => {
   return (
-    <div className="container">
+    <div className="container mb-3">
       <Default />
       <NewYork />
     </div>
