@@ -1,10 +1,10 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Carousel from "./page/Carousel/index";
+import ChartComponent from "./page/Chart/index";
 function App() {
   return (
     <>
-      <Carousel />
+      <ChartComponent />
     </>
   );
 }
