@@ -1,10 +1,10 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ChartComponent from "./page/Chart/index";
+import CheckBox from "./page/Checkbox/index";
 function App() {
   return (
     <>
-      <ChartComponent />
+      <CheckBox />
     </>
   );
 }
