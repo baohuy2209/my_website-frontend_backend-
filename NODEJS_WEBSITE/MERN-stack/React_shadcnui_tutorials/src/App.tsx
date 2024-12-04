@@ -1,10 +1,10 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import CheckBox from "./page/Checkbox/index";
+import Collapsible from "./page/Collapsible/index";
 function App() {
   return (
     <>
-      <CheckBox />
+      <Collapsible />
     </>
   );
 }

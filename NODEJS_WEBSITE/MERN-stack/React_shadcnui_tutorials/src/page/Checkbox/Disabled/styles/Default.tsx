@@ -6,11 +6,13 @@ export default function Default() {
       <div className="grid gap-1.5 leading-none">
         <label
           htmlFor="terms1"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed"
+          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           Accept terms and conditions
         </label>
-        <p>You agree to our terms of Service and Privacy Policy.</p>
+        <p className="text-sm text-muted-foreground">
+          You agree to our terms of Service and Privacy Policy.
+        </p>
       </div>
     </div>
   );
