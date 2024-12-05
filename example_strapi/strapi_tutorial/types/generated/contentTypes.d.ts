@@ -470,6 +470,35 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCategoryReviewCategoryReview
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'category_reviews';
+  info: {
+    displayName: 'Category_review';
+    pluralName: 'category-reviews';
+    singularName: 'category-review';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category-review.category-review'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -528,6 +557,95 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     siteDescription: Schema.Attribute.Text & Schema.Attribute.Required;
     siteName: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiReviewReview extends Struct.CollectionTypeSchema {
+  collectionName: 'reviews';
+  info: {
+    description: '';
+    displayName: 'review';
+    pluralName: 'reviews';
+    singularName: 'review';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    body: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    category_review: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::category-review.category-review'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::review.review'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    rating: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 10;
+          min: 1;
+        },
+        number
+      >;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
+  collectionName: 'students';
+  info: {
+    displayName: 'Student';
+    pluralName: 'students';
+    singularName: 'student';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Address: Schema.Attribute.String & Schema.Attribute.Required;
+    Birthday: Schema.Attribute.Date &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'2000-01-01'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 30;
+        minLength: 5;
+      }>;
+    FullName: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 30;
+        minLength: 5;
+      }>;
+    Grade: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::student.student'
+    > &
+      Schema.Attribute.Private;
+    Password: Schema.Attribute.Password & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1046,8 +1164,11 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
+      'api::category-review.category-review': ApiCategoryReviewCategoryReview;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
+      'api::review.review': ApiReviewReview;
+      'api::student.student': ApiStudentStudent;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "students",
+  "info": {
+    "singularName": "student",
+    "pluralName": "students",
+    "displayName": "Student"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "FullName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 30,
+      "minLength": 5
+    },
+    "Birthday": {
+      "type": "date",
+      "required": true,
+      "default": "2000-01-01"
+    },
+    "Address": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "minLength": 5,
+      "maxLength": 30
+    },
+    "Password": {
+      "type": "password",
+      "required": true
+    },
+    "Grade": {
+      "type": "string"
+    }
+  }
+}
